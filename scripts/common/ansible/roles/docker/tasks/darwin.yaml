@@ -1,0 +1,9 @@
+---
+
+- name: "install docker"
+  community.general.homebrew_cask:
+    name: "docker"
+    state: present
+    install_options: no-quarantine
+    accept_external_apps: true
+  tags: homebrew

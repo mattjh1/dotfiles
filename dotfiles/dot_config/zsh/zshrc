@@ -1,0 +1,30 @@
+#!/bin/sh
+
+# Source zsh_add_* functions
+source "$ZDOTDIR/zsh-utils"
+
+# load custom executable functions
+for function in $ZDOTDIR/functions/*; do
+	local filename="${function#$ZDOTDIR/functions/}"
+  zsh_add_file "functions/$filename" 
+done
+
+# Normal files to source
+zsh_add_file "zsh-opts"
+zsh_add_file "zsh-exports"
+zsh_add_file "zsh-vim-mode"
+zsh_add_file "zsh-aliases"
+zsh_add_file "zsh-prompt"
+
+# Plugins
+# For more plugins: https://github.com/unixorn/awesome-zsh-plugins
+zsh_add_plugin "zsh-users/zsh-autosuggestions"
+zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
+zsh_add_plugin "davidde/git"
+zsh_add_plugin "johannchangpro/zsh-interactive-cd"
+zsh_add_completion "esc/conda-zsh-completion" false
+
+eval "$(zoxide init zsh)"
+eval "$(op completion zsh)"; compdef _op op
+
+source "$PYENV_ROOT/versions/3.10.8/envs/neovim/bin/activate"

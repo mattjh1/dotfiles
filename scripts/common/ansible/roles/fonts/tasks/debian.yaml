@@ -1,0 +1,17 @@
+---
+
+- name: "install firacode font"
+  become: true
+  ansible.builtin.apt:
+    name: fonts-firacode
+    update_cache: true
+    autoclean: true
+    autoremove: true
+
+- name: "install powerline font"
+  become: true
+  ansible.builtin.apt:
+    name: fonts-powerline
+    update_cache: true
+    autoclean: true
+    autoremove: true

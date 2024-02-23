@@ -1,0 +1,57 @@
+#!/bin/sh
+
+# some useful options (man zshoptions)
+setopt autocd extendedglob nomatch menucomplete
+setopt interactive_comments
+stty stop undef		# Disable ctrl-s to freeze terminal.
+zle_highlight=('paste:none')
+
+# beeping is annoying
+unsetopt BEEP
+
+# completions
+autoload -Uz compinit
+zstyle ':completion:*' menu select
+# zstyle ':completion::complete:lsof:*' menu yes select
+zmodload zsh/complist
+compinit
+
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+
+# Colors
+autoload -Uz colors && colors
+
+# Append history instead of overwriting it
+setopt APPEND_HISTORY
+
+# Save the history after each command
+setopt INC_APPEND_HISTORY
+
+# Share the history among all shell instances
+setopt SHARE_HISTORY
+
+# Make new commands from other shells available to the current shell
+fc -R
+
+# Key-bindings
+bindkey -s '^z' 'zi\n'
+bindkey "^p" up-line-or-beginning-search # Up
+bindkey "^n" down-line-or-beginning-search # Down
+
+# AWS cli completions
+autoload bashcompinit && bashcompinit
+complete -C '/usr/local/bin/aws_completer' aws
+
+# More completions https://github.com/zsh-users/zsh-completions
+
+# FZF
+source "$HOME/.fzf.zsh" 
+export FZF_DEFAULT_OPTS="--history=$HOME/.fzf-history"
+
+
+HISTFILE="$XDG_DATA_HOME"/zsh/history
+HISTSIZE=1000000
+SAVEHIST=1000000

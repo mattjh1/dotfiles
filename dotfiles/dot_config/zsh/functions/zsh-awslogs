@@ -1,0 +1,5 @@
+#!/bin/sh
+
+function awslogs {
+  aws --profile beelab --region "$1" logs tail --follow "$2" 
+}

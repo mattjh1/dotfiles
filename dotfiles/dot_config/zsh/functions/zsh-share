@@ -1,0 +1,6 @@
+#!/bin/sh
+
+function share() {
+  local mydir="$1"
+  cd "$mydir" && python3 -m http.server 8888
+}

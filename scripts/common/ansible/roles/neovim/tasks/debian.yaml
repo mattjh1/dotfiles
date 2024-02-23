@@ -1,0 +1,31 @@
+---
+
+  # TODO: make build from source platforms independent
+- import_tasks: build.yaml
+  when: neovim.build_from_source
+
+- block:
+    - name: "download nightly binary"
+      ansible.builtin.get_url:
+        url: https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.deb
+        dest: /tmp/nvim.deb
+        mode: '0755'
+      register: download_result
+      until: download_result is succeeded
+      retries: 3
+      delay: 5
+
+    - name: "install"
+      become: true
+      ansible.builtin.apt:
+        deb: "/tmp/nvim.deb"
+        autoclean: true
+        autoremove: true
+        update_cache: true
+
+    - name: "remove leftovers"
+      ansible.builtin.file:
+        path: "/tmp/nvim.deb"
+        state: absent
+
+  when: not neovim.build_from_source

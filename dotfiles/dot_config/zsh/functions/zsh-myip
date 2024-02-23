@@ -1,0 +1,15 @@
+#!/bin/bash
+
+function my-ip() {
+  local local_ips
+  local public_ip
+
+  local_ips=$(ifconfig | grep "inet " | grep -v 127.0.0.1 | cut -d\  -f2)
+  public_ip=$(curl -s ifconfig.co)
+
+  echo "Your IP Information:"
+  echo -e "\nLocal IPs:\n$local_ips"
+  echo -e "\nPublic IP: $public_ip"
+
+  echo -n "$public_ip" | pbcopy && echo -e "\nPublic IP copied to clipboard"
+}

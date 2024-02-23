@@ -1,0 +1,325 @@
+{
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.accessibilitySupport": "off",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.fontFamily": "MesloLGS NF, Monaco, 'Courier New', monospace",
+  "editor.fontSize": 10,
+  "editor.formatOnSave": true,
+  "explorer.confirmDragAndDrop": false,
+  "gitlens.defaultDateFormat": null,
+  "gitlens.defaultDateLocale": null,
+  "html.autoClosingTags": false,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "jupyter.widgetScriptSources": ["jsdelivr.com", "unpkg.com"],
+  "redhat.telemetry.enabled": false,
+  "sync-rsync.local": "/Users/holmgmat/Documents/Udemy/Ansible/Exercise-0/",
+  "sync-rsync.onSave": true,
+  "sync-rsync.options": [],
+  "terminal.explorerKind": "external",
+  "terminal.external.osxExec": "Alacritty.app",
+  "terminal.integrated.fontFamily": "MesloLGS NF, Monaco, 'Courier New', monospace",
+  "terminal.integrated.fontSize": 10,
+  "terminal.integrated.profiles.osx": {
+    "rosetta": {
+      "args": ["-x86_64", "zsh", "-l"],
+      "overrideName": true,
+      "path": "arch"
+    }
+  },
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "terminal.integrated.env.osx": {
+    "FIG_NEW_SESSION": "1"
+  },
+  "editor.inlineSuggest.enabled": true,
+  "npm.keybindingsChangedWarningShown": true,
+  "search.exclude": {
+    "**/.git": true,
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/tmp": true,
+    "**/.angular": true,
+    "**/www": true,
+    "**/dist": true,
+    "*.d.ts": true
+  },
+  // Custom tags for the parser to use
+  "yaml.customTags": [
+    "!And",
+    "!If",
+    "!Not",
+    "!Equals",
+    "!Or",
+    "!FindInMap sequence",
+    "!Base64",
+    "!Cidr",
+    "!Ref",
+    "!Sub",
+    "!GetAtt",
+    "!GetAZs",
+    "!ImportValue",
+    "!Select",
+    "!Select sequence",
+    "!Split",
+    "!Join sequence"
+  ],
+  // Enable/disable default YAML formatter (requires restart)
+  "yaml.format.enable": true,
+  "github.copilot.enable": {
+    "*": false,
+    "plaintext": true,
+    "markdown": true,
+    "scminput": false,
+    "yaml": true,
+    "typescript": false,
+    "kotlin": true
+  },
+  "[go]": {
+    "editor.defaultFormatter": "golang.go"
+  },
+  "Lua.workspace.library": [
+    "/Users/holmgmat/.vscode/extensions/ketho.wow-api-0.9.9/EmmyLua/API",
+    "/Users/holmgmat/.vscode/extensions/ketho.wow-api-0.9.9/EmmyLua/Optional"
+  ],
+  "git-autoconfig.configList": [
+    {
+      "user.email": "mattias.holmgren@tietoevry.com",
+      "user.name": "matths2"
+    },
+    {
+      "user.email": "mattias.holmgren46@gmail.com",
+      "user.name": "mattjh1"
+    }
+  ],
+  "java.server.launchMode": "Standard",
+  "tanzu.enableLiveHover": true,
+  "tanzu.sourceImage": "registry.oso.it-partner.com/tap/frontend-create-library",
+  "githubPullRequests.pullBranch": "never",
+  "go.toolsManagement.autoUpdate": true,
+  "tanzu.namespace": "holmgmat",
+
+  "editor.codeActionsOnSave": ["source.addMissingImports"],
+  "files.exclude": {
+    "**/node_modules": true,
+    "**/obj": true,
+    "*.d.ts": true,
+    "**/*.js": {
+      "when": "$(basename).ts"
+    },
+    "**/package-lock.json": true
+  },
+  "command-runner.commands": {
+    "rgf": "rgf; exit"
+  },
+  // vim stuff
+  "editor.lineNumbers": "relative",
+  "vim.useSystemClipboard": true,
+  "vim.leader": ",",
+  "vim.sneak": true,
+  "vim.ignorecase": true,
+  "vim.useCtrlKeys": true,
+  "vim.handleKeys": {
+    "<C-a>": false,
+    "<C-f>": true,
+    "<C-k>": false,
+    "<C-d>": true,
+    "<C-u>": true
+  },
+  "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": ["p"],
+      "commands": ["editor.action.clipboardPasteAction"]
+    }
+  ],
+
+  "vim.normalModeKeyBindings": [
+    {
+      "before": ["v", "n"],
+      "after": ["v", "g", "_", "y"]
+    },
+    {
+      // find the source definition instead of the .d.ts file
+      // 'f'ind the source 'd'efinition
+      "before": ["f", "d"],
+      "commands": ["typescript.goToSourceDefinition"]
+    },
+    {
+      // df is easier to hit than gd
+      // go to the 'd'e'f'inition
+      "before": ["d", "g"],
+      "after": ["g", "d"]
+    },
+    {
+      "before": ["d", "f"],
+      "commands": ["editor.action.peekDefinition"]
+    },
+    {
+      "before": ["d", "n"],
+      "after": ["d", "g", "_"]
+    },
+    {
+      "before": ["leader", "w"],
+      "commands": ["workbench.action.files.saveAll"]
+    },
+    {
+      "before": ["leader", "p"],
+      "commands": ["workbench.action.quickOpen"]
+    },
+    // tied to Bookmarks extension
+    {
+      "before": ["leader", "m"],
+      "commands": ["bookmarks.toggle"]
+    },
+    {
+      "before": ["leader", "b"],
+      "commands": ["bookmarks.list"]
+    },
+    {
+      "before": ["leader", "B"],
+      "commands": ["bookmarks.listFromAllFiles"]
+    },
+    {
+      "before": ["leader", "r"],
+      "commands": ["editor.action.rename"]
+    }
+  ],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<C-n>"],
+      "commands": [":nohl"]
+    },
+    {
+      "before": ["leader", "s"],
+      "commands": ["workbench.action.splitEditor"]
+    },
+    {
+      "before": ["leader", "t"],
+      "commands": ["workbench.action.toggleSidebarVisibility"]
+    },
+    {
+      "before": ["leader", "g"],
+      "commands": ["workbench.view.scm"]
+    },
+    {
+      "before": ["leader", "e"],
+      "commands": ["workbench.view.explorer"]
+    },
+    {
+      "before": ["leader", "F"],
+      "commands": ["revealInExplorer"]
+    },
+    // {
+    //   "before": ["leader", "f"],
+    //   "commands": ["command-runner.run"],
+    //   "args": { "command": "rgf; exit" }
+    // },
+    {
+      "before": ["leader", "f"],
+      "commands": ["workbench.view.search"]
+    },
+    {
+      "before": ["leader", "x"],
+      "commands": ["workbench.action.closeActiveEditor"]
+    },
+    {
+      "before": ["leader", "X"],
+      "commands": ["workbench.action.closeAllEditors"]
+    },
+    {
+      "before": ["u"],
+      "commands": ["undo"]
+    },
+    {
+      "before": ["<C-r>"],
+      "commands": ["redo"]
+    },
+    {
+      "before": ["<C-u>"],
+      "after": ["2", "0", "k", "z", "z"]
+    },
+    {
+      "before": ["<C-d>"],
+      "after": ["2", "0", "j", "z", "z"]
+    }
+  ],
+  // enable H/L to be used as start/end of line e.g. dH will delete from cursor position to end of line.
+  "vim.operatorPendingModeKeyBindings": [
+    {
+      "before": ["L"],
+      "after": ["$"]
+    },
+    {
+      "before": ["H"],
+      "after": ["^"]
+    }
+  ],
+  //  and  indent/outdent visual selection
+  "vim.visualModeKeyBindings": [
+    {
+      "before": [">"],
+      "commands": ["editor.action.indentLines"]
+    },
+    {
+      "before": ["<"],
+      "commands": ["editor.action.outdentLines"]
+    }
+  ],
+  "editor.cursorSurroundingLines": 25,
+  "vim.enableNeovim": true,
+  "vim.neovimPath": "/opt/homebrew/bin/nvim",
+  "settingsSync.ignoredSettings": ["-vim.neovimPath"],
+  "workbench.colorTheme": "Nord",
+  "vim.highlightedyank.enable": true,
+  "vim.highlightedyank.color": "#B48EAD",
+  "vim.highlightedyank.duration": 250,
+  // status bar airline like (according to devs, can cause performance issues. Monitor this...)
+
+  // "vim.statusBarColorControl": true,
+  // "vim.statusBarColors.normal": ["#8FBCBB", "#434C5E"],
+  // "vim.statusBarColors.insert": "#BF616A",
+  // "vim.statusBarColors.visual": "#B48EAD",
+  // "vim.statusBarColors.visualline": "#B48EAD",
+  // "vim.statusBarColors.visualblock": "#A3BE8C",
+  // "vim.statusBarColors.replace": "#D08770",
+  // "vim.statusBarColors.commandlineinprogress": "#007ACC",
+  // "vim.statusBarColors.searchinprogressmode": "#007ACC",
+  // "vim.statusBarColors.easymotionmode": "#007ACC",
+  // "vim.statusBarColors.easymotioninputmode": "#007ACC",
+  // "vim.statusBarColors.surroundinputmode": "#007ACC",
+
+  "explorer.autoRevealExclude": {
+    "**/node_modules": false
+  },
+  "material-icon-theme.folders.theme": "specific",
+  "workbench.iconTheme": "material-icon-theme",
+  "material-icon-theme.hidesExplorerArrows": false,
+  "material-icon-theme.saturation": 1,
+  "workbench.colorCustomizations": {
+    "statusBar.noFolderBackground": "#8FBCBB",
+    "statusBar.background": "#8FBCBB",
+    "statusBar.debuggingBackground": "#8FBCBB",
+    "statusBar.foreground": "#434C5E",
+    "statusBar.debuggingForeground": "#434C5E"
+  },
+  "editor.minimap.enabled": false,
+  "workbench.layoutControl.enabled": false,
+  "boot-java.rewrite.reconcile": true,
+  "prettier.useEditorConfig": false
+}

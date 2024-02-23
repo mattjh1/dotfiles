@@ -1,0 +1,14 @@
+#!/bin/sh
+
+pathprepend() {
+for ARG in "$@"
+do
+  while [[ $PATH =~ :$ARG: ]]
+  do
+    PATH=${PATH//:$ARG:/:}
+  done
+  PATH=${PATH#$ARG:}
+  PATH=${PATH%:$ARG}
+  export PATH=${ARG}:${PATH}
+done
+}

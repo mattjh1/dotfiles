@@ -1,0 +1,347 @@
+// Place your key bindings in this file to override the defaultsauto[]
+[
+  {
+    "key": "ctrl+alt+f",
+    "command": "editor.action.formatDocument",
+    "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
+  },
+  {
+    "key": "shift+alt+f",
+    "command": "-editor.action.formatDocument",
+    "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
+  },
+  {
+    "key": "cmd+[BracketLeft]",
+    "command": "workbench.action.terminal.new"
+  },
+  {
+    "key": "shift+cmd+a",
+    "command": "editor.action.blockComment",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "shift+alt+a",
+    "command": "-editor.action.blockComment",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "cmd+[Semicolon]",
+    "command": "editor.action.addCommentLine",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "cmd+k cmd+c",
+    "command": "-editor.action.addCommentLine",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "cmd+[Semicolon]",
+    "command": "editor.action.removeCommentLine",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "cmd+k cmd+u",
+    "command": "-editor.action.removeCommentLine",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "alt+cmd+[IntlBackslash]",
+    "command": "workbench.action.splitEditorRight"
+  },
+  {
+    "key": "alt+cmd+[IntlBackslash]",
+    "command": "workbench.action.splitEditor"
+  },
+  // {
+  //   "key": "ctrl+shift+alt+cmd+7",
+  //   "command": "-workbench.action.splitEditor"
+  // },
+  {
+    "key": "cmd+[Quote]",
+    "command": "explorer.newFolder"
+  },
+  {
+    "key": "alt+[IntlBackslash]",
+    "command": "editor.action.openLink"
+  },
+  // Move to the previous/next editor.
+  {
+    "key": "ctrl+k",
+    "command": "workbench.action.nextEditor"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "workbench.action.previousEditor"
+  },
+
+  // Move active editor left or right (useful for full-stack web dev).
+  {
+    "key": "cmd+ctrl+j",
+    "command": "moveActiveEditor",
+    "args": {
+      "to": "left"
+    }
+  },
+  {
+    "key": "cmd+ctrl+k",
+    "command": "moveActiveEditor",
+    "args": {
+      "to": "right"
+    }
+  },
+
+  // Traverse VSCode IntelliSense suggestions with vim keybindings.
+  {
+    "key": "ctrl+j",
+    "command": "selectNextSuggestion",
+    "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "selectPrevSuggestion",
+    "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+  },
+
+  // Traverse VSCode quick open options with vim keybindings.
+  {
+    "key": "ctrl+j",
+    "command": "workbench.action.quickOpenSelectNext",
+    "when": "inQuickOpen"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "workbench.action.quickOpenSelectPrevious",
+    "when": "inQuickOpen"
+  },
+
+  // VSCode terminal commands.
+  {
+    "key": "cmd+n",
+    "command": "workbench.action.terminal.newInActiveWorkspace"
+  },
+  {
+    "key": "cmd+enter",
+    "command": "workbench.action.terminal.toggleTerminal"
+  },
+  {
+    "key": "cmd+ctrl+enter",
+    "command": "workbench.action.toggleMaximizedPanel"
+  },
+  {
+    "key": "ctrl+s",
+    "command": "workbench.action.terminal.split",
+    "when": "terminalFocus && terminalProcessSupported"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "workbench.action.terminal.focusNextPane",
+    "when": "terminalFocus && terminalProcessSupported"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "workbench.action.terminal.focusPreviousPane",
+    "when": "terminalFocus && terminalProcessSupported"
+  },
+  {
+    "key": "ctrl+x",
+    "command": "workbench.action.terminal.kill",
+    "when": "terminalFocus"
+  },
+  // Toggle between terminal and editor focus
+  {
+    "key": "ctrl+,",
+    "command": "workbench.action.terminal.focus"
+  },
+  {
+    "args": { "command": "rgf" },
+    "command": "command-runner.run",
+    "key": "cmd+f"
+  },
+  {
+    "key": "ctrl+,",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "terminalFocus"
+  },
+  // navigate workbench ctrl+hjkl
+  {
+    "key": "ctrl+h",
+    "command": "list.collapse",
+    "when": "listFocus && !inputFocus"
+  },
+  {
+    "key": "ctrl+l",
+    "command": "list.expand",
+    "when": "listFocus && !inputFocus"
+  },
+  // {
+  //   "key": "ctrl+j",
+  //   "command": "list.focusDown",
+  //   "when": "listFocus && !inputFocus"
+  // },
+  // {
+  //   "key": "ctrl+k",
+  //   "command": "list.focusUp",
+  //   "when": "listFocus && !inputFocus"
+  // },
+  {
+    "command": "runCommands",
+    "key": "ctrl+k",
+    "args": {
+      "commands": ["list.focusUp", "workbench.action.files.openFileInPreview"]
+    },
+    "when": "listFocus && !inputFocus && listHasSelection && resourceLangId == ''"
+  },
+  {
+    "command": "runCommands",
+    "key": "ctrl+j",
+    "args": {
+      "commands": ["list.focusDown", "workbench.action.files.openFileInPreview"]
+    },
+    "when": "listFocus && !inputFocus && listHasSelection && resourceLangId == ''"
+  },
+  // toggle workbench
+  {
+    "key": ", t",
+    "command": "workbench.action.toggleSidebarVisibility",
+    "when": "!editorTextFocus"
+  },
+  {
+    "key": ", f",
+    "command": "workbench.view.search",
+    "when": "!editorTextFocus"
+  },
+  {
+    "key": ", g",
+    "command": "workbench.view.scm",
+    "when": "!editorTextFocus"
+  },
+  {
+    "key": ", e",
+    "command": "workbench.view.explorer",
+    "when": "!editorTextFocus"
+  },
+  // in file explorer, goto file-> enter, rename file CMD+enter (reversed)
+  {
+    "key": "cmd+enter",
+    "command": "renameFile",
+    "when": "explorerViewletVisible && filesExplorerFocus"
+  },
+  {
+    "key": "enter",
+    "command": "-renameFile",
+    "when": "explorerViewletVisible && filesExplorerFocus"
+  },
+  {
+    "key": "enter",
+    "command": "list.select",
+    "when": "listFocus && !inputFocus"
+  },
+  {
+    "key": "ctrl+n",
+    "command": "explorer.newFile",
+    "when": "explorerViewletFocus"
+  },
+  {
+    "key": "ctrl+e",
+    "command": "-cursorLineEnd",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "ctrl+e",
+    "command": "editor.action.marker.nextInFiles",
+    "when": "editorFocus"
+  },
+  {
+    "key": "f8",
+    "command": "-editor.action.marker.nextInFiles",
+    "when": "editorFocus"
+  },
+  {
+    "key": "ctrl+[Semicolon]",
+    "command": "problems.action.showQuickFixes",
+    "when": "problemFocus"
+  },
+  {
+    "key": "cmd+[Period]",
+    "command": "-problems.action.showQuickFixes",
+    "when": "problemFocus"
+  },
+  {
+    "key": "ctrl+'",
+    "command": "editor.action.quickFix",
+    "when": "editorHasCodeActionsProvider && textInputFocus && !editorReadonly"
+  },
+  {
+    "key": "cmd+[Period]",
+    "command": "-editor.action.quickFix",
+    "when": "editorHasCodeActionsProvider && textInputFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+u",
+    "command": "extension.vim_ctrl+u",
+    "when": "editorTextFocus && vim.active && vim.use<C-u> && !inDebugRepl"
+  },
+  {
+    "key": "ctrl+u",
+    "command": "-extension.vim_ctrl+u",
+    "when": "editorTextFocus && vim.active && vim.use<C-u> && !inDebugRepl"
+  },
+  {
+    "key": "ctrl+d",
+    "command": "extension.vim_ctrl+d",
+    "when": "editorTextFocus && vim.active && vim.use<C-d> && !inDebugRepl"
+  },
+  {
+    "key": "ctrl+d",
+    "command": "-extension.vim_ctrl+d",
+    "when": "editorTextFocus && vim.active && vim.use<C-d> && !inDebugRepl"
+  },
+  {
+    "key": "ctrl+d",
+    "command": "-deleteRight",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "ctrl+[Quote]",
+    "command": "workbench.action.keepEditor"
+  },
+  {
+    "key": "cmd+k enter",
+    "command": "-workbench.action.keepEditor"
+  },
+  {
+    "key": "a",
+    "command": "explorer.newFile",
+    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
+  },
+  {
+    "key": "f",
+    "command": "explorer.newFolder",
+    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
+  },
+  {
+    "key": "r",
+    "command": "renameFile",
+    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
+  },
+  {
+    "key": "x",
+    "command": "filesExplorer.cut",
+    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
+  },
+  {
+    "key": "y",
+    "command": "filesExplorer.copy",
+    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !inputFocus"
+  },
+  {
+    "key": "p",
+    "command": "filesExplorer.paste",
+    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceReadonly && !inputFocus"
+  },
+  {
+    "key": "tab",
+    "command": "togglePeekWidgetFocus",
+    "when": "inReferenceSearchEditor && vim.active && vim.mode != 'Insert' || referenceSearchVisible"
+  }
+]

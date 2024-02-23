@@ -1,0 +1,17 @@
+#!/bin/sh
+
+export PATH="$HOME/.local/bin":$PATH
+export MANPAGER='nvim +Man!'
+export MANWIDTH=999
+export PATH="$HOME/.yarn/bin:$PATH"
+export PATH="$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="$HOME/go/bin:$PATH"
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+export PATH="/usr/local/bin:$PATH"
+export VSCODE_USER="/Users/holmgmat/Library/Application Support/Code/User"
+export EDITOR=nvim
+
+zsh_add_file "zsh-secrets"
+zsh_add_file "zsh-lazy-load"
+

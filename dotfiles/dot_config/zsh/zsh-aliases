@@ -1,0 +1,84 @@
+#!/bin/sh
+
+alias clr="clear"
+alias reload="source ~/.config/zsh/.zshrc"
+alias zshconfig="v ~/.config/zsh"
+alias ls="lsd --group-directories-first"
+alias ll="ls --long --almost-all --human-readable" 
+alias lt='ls --tree --total-size'
+alias ..="cd .."
+alias .2="cd ../../"
+alias .3='cd ../../../'
+alias .4='cd ../../../../'
+alias .5='cd ../../../../..'
+alias mkdir='mkdir -pv'
+alias h="history"
+alias path='echo -e ${PATH//:/\\n}'
+alias ping='ping -c 5'
+alias reboot='sudo /sbin/reboot'
+alias poweroff='sudo /sbin/poweroff'
+alias count='ls -1 | wc -l'
+alias s='spotify'
+alias sp='spotify next'
+alias sn='spotify prev'
+alias spp='spotify pause'
+alias st='spotify status'
+alias zz='pmset displaysleepnow'
+alias mycomp='system_profiler SPSoftwareDataType SPHardwareDataType'
+alias kc="minikube kubectl --"
+alias vim="nvim"
+alias vi="nvim"
+alias v="nvim"
+alias cat="bat --style=plain"
+
+# Journal uses its own vim config
+alias journal="nvim -u ~/.config/nvim.old/journal.vim"
+
+# use this for dotfiles git repo
+alias dot='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
+
+# lazygit
+alias lg='lazygit'
+alias lg-dot='lazygit --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
+
+# tmux
+alias tm="tmux"
+alias tma="tmux attach-session"
+alias tmat="tmux attach-session -t"
+alias tmkas="tmux kill-session -a"
+alias tmks="killtmuxsession"
+alias tml="tmux list-sessions"
+alias tmn="tmux new-session"
+alias tmns="tmux new -s"
+alias tms="tmux new-session -s"
+alias rip="exec_all_panes" # takes one arg, a command to run on all windows/panes in current sess
+
+# ensure these programs run with color within alacritty/tmux. terminfo mess it up, but italics yey!
+alias ranger="TERM=screen-256color ranger"
+alias n="TERM=screen-256color n"
+alias htop="TERM=screen-256color htop"
+
+alias j='z'
+alias f='zi'
+alias zsh-update-plugins="find "$ZDOTDIR/plugins" -type d -exec test -e '{}/.git' ';' -print0 | xargs -I {} -0 git -C {} pull -q"
+
+# Colorize grep output (good for log files)
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
+# confirm before overwriting something
+alias cp="cp -i"
+alias mv='mv -i'
+alias rm='rm -i'
+
+# easier to read disk
+alias df='df -h'                          # human-readable sizes
+
+# get top process eating memory
+# alias psmem='ps aux | sort -nk 4,4 | tail -n 5'
+alias psmem='top -l 1 -n 10 -o rsize | tail -n +12 | awk "{print \$1, \$2, \$3, \$8, \$9, \$10}" | column -t | bat --color=always'
+
+# get top process eating cpu ##
+alias pscpu='ps aux | sort -nk 3,3 | tail -n 5'
+
