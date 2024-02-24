@@ -1,0 +1,14 @@
+---
+- name: "Install Hammerspoon"
+  community.general.homebrew_cask:
+    name: "hammerspoon"
+    state: present
+    install_options: no-quarantine
+    accept_external_apps: true
+  tags: homebrew
+
+- name: Enable Hammerspoon at startup
+  ansible.builtin.shell: "{{ item }}"
+  with_items:
+    - osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Hammerspoon.app", hidden:true}' > /dev/null
+    - osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Karabiner-Elements.app", hidden:true}' > /dev/null

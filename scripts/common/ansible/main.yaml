@@ -16,14 +16,8 @@
     - name: dotfiles
       tags: dotfiles
 
-    - name: fish
-      tags: fish
-
     - name: neovim
       tags: neovim
-
-    - name: lunarvim
-      tags: lunarvim
 
     - name: asdf
       tags: asdf
@@ -36,6 +30,9 @@
 
     - name: tmux
       tags: tmux
+
+    - name: hammerspoon
+      tags: hammerspoon
 
     - name: system_defaults
       tags: system_defaults

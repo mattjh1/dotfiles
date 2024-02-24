@@ -10,73 +10,67 @@ packages:
 brew:
   taps:
     - aws/tap
-    - carlocab/personal
     - homebrew/bundle
     - homebrew/cask
-    - homebrew/cask-fonts
     - homebrew/core
-    - cloudflare/cloudflare
+    - candid82/brew
+    - derailed/k9s
+    - yqrashawn/goku
   casks:
     - 1password
+    - chrome
+    - discord
+    - flux
+    - karabiner-elements
+    - macpass
+    - medis
+    - obsidian
+    - raycast
+    - utm
     - alacritty
     - alt-tab
     - aws-vault
     - brave-browser
-    - cloudflare/cloudflare/cf-terraforming
-    - font-fira-code-nerd-font
     - hiddenbar
-    - kdiff3
-    - multipass
-    - rectangle
-    - slack
-    - telegram
-    - tunnelblick
   packages:
     common:
-      - asciinema
       - asdf
       - autoconf
       - automake
       - awscli
-      - azure-cli
       - bat
       - codespell
       - coreutils
       - direnv
-      - dos2unix
       - dust
-      - exa
       - fd
       - fzf
       - gh
       - ghq
-      - git-delta
-      - hadolint
-      - highlight
       - jq
-      - jsonnet
       - k9s
       - kustomize
       - lazygit
-      - lua-language-server
       - p7zip
-      - packer
-      - pkg-config
       - pre-commit
       - python-yq
       - ripgrep
       - sponge
-      - terraform-docs
-      - tflint
-      - tfsec
-      - tldr
+      - tealdeer
       - tre-command
       - tree
       - tree-sitter
-      - yamllint
       - zoxide
+      - cmatrix
+      - graphviz
+      - htop
+      - imagemagick
+      - lsd
+      - ncdu
+      - redis
+      - derailed/k9s/k9s
+      - pngpaste
     darwin:
-      - carlocab/personal/unrar
       - dockutil
       - switchaudio-osx
       - ffmpeg
@@ -91,8 +85,8 @@ brew:
     - duf
 
 dotfiles:
-  repo: 'https://github.com/shmileee/dotfiles'
-  branch: 'master'
+  repo: "https://github.com/mattjh1/dotfiles"
+  branch: "main"
 
 neovim:
   build_from_source: false
@@ -116,44 +110,30 @@ asdf_plugins:
   - name: "python"
     repository: "https://github.com/danhper/asdf-python"
     versions:
-      - 3.10.1
+      - 3.12
     delete_versions: []
     global: system
 
   - name: "golang"
     repository: "https://github.com/kennyp/asdf-golang"
     versions:
-      - 1.18
+      - 1.22.0
     delete_versions: []
     global: system
 
   - name: "ruby"
     repository: "https://github.com/asdf-vm/asdf-ruby"
     versions:
-      - 3.0.3
+      - 3.3.0
     delete_versions: []
     global: system
 
   - name: "nodejs"
     repository: "https://github.com/asdf-vm/asdf-nodejs"
     versions:
-      - 17.7.2
+      - 20.11.1
     delete_versions: []
     global: system
-
-  - name: "terraform"
-    repository: "https://github.com/asdf-community/asdf-hashicorp"
-    versions:
-      - 1.1.7
-    delete_versions: []
-    global: 1.1.7
-
-  - name: "terraform-ls"
-    repository: "https://github.com/shihanng/asdf-terraform-ls"
-    versions:
-      - 0.26.0
-    delete_versions: []
-    global: 0.26.0
 
   - name: "kubectl"
     repository: "https://github.com/asdf-community/asdf-kubectl"
@@ -162,15 +142,8 @@ asdf_plugins:
     delete_versions: []
     global: 1.23.0
 
-  - name: "helm"
-    repository: "https://github.com/Antiarchitect/asdf-helm"
-    versions:
-      - 3.8.1
-    delete_versions: []
-    global: 3.8.1
-
 golang:
-  path: '{{ ansible_user_dir }}/.go'
+  path: "{{ ansible_user_dir }}/.go"
   packages:
     - golang.org/x/tools/gopls@latest
 
@@ -195,32 +168,27 @@ dockitems_disabled:
   - iTunes
 
 dockitems_enabled:
-  - name: Brave Browser
-    path: "/Applications/Brave Browser.app"
+  - name: Chrome
+    path: "/Applications/Google Chrome.app"
     pos: 1
   - name: Alacritty
     path: "/Applications/Alacritty.app"
     pos: 2
-  - name: Slack
-    path: "/Applications/Slack.app"
+  - name: Discord
+    path: "/Applications/Discord.app"
     pos: 3
-  - name: Telegram
-    path: "/Applications/Telegram.app"
+  - name: Edge
+    path: "/Applications/Microsoft Edge.app/"
     pos: 4
   - name: Spotify
     path: "/Applications/Spotify.app"
     pos: 5
-
-darwin_hotkeys:
-  # remap "show spotlight search` to `⌘ + g`
-  64:
-    parameters: "103, 5, 1048576"
-    enabled: 1
-  # disable "select the previous source in input menu"
-  60:
-    parameters: "32, 49, 262144"
-    enabled: 0
-  # remap "select the next source in input menu" to `⌘ + space`
-  61:
-    parameters: "32, 49, 1048576"
-    enabled: 1
+  - name: Obsidian
+    path: "/Applications/Obsidian.app"
+    pos: 6
+  - name: Outlook
+    path: "/Applications/Microsoft Outlook.app"
+    pos: 7
+  - name: Teams
+    path: "/Applications/Microsoft Teams (work or school).app"
+    pos: 8

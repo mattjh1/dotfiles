@@ -5,8 +5,8 @@ set -euoE pipefail
 # shellcheck disable=SC2086
 cwd="$(cd "$(dirname ${BASH_SOURCE[0]})" && pwd)"
 
-source="https://github.com/shmileee/dotfiles"
-branch="${branch:-master}"
+source="https://github.com/mattjh1/dotfiles"
+branch="${branch:-main}"
 tarball="$source/tarball/$branch"
 target="/tmp/.dotfiles"
 tar_cmd="tar -xzv -C $target --strip-components=1 --exclude='{.gitignore}'"
