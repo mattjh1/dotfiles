@@ -31,6 +31,9 @@ alias vi="nvim"
 alias v="nvim"
 alias cat="bat --style=plain"
 
+# chezmoi
+alias cm="chezmoi"
+
 # Journal uses its own vim config
 alias journal="nvim -u ~/.config/nvim.old/journal.vim"
 
