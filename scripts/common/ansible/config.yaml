@@ -18,7 +18,7 @@ brew:
     - yqrashawn/goku
   casks:
     - 1password
-    - chrome
+    - google-chrome
     - discord
     - flux
     - karabiner-elements
