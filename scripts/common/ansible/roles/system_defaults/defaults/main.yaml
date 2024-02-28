@@ -278,7 +278,7 @@ osx_global_defaults:
       name: "set the icon size of dock items to 42 pixels (monterrey)",
       domain: com.apple.dock,
       key: tilesize,
-      type: float,
+      type: int,
       value: 42,
     }
   - {
