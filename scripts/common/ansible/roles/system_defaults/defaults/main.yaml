@@ -534,28 +534,28 @@ osx_global_defaults:
 
   - {
       name: "don’t send search queries to apple",
-      domain: com.apple.safari,
+      domain: com.apple.Safari,
       key: UniversalSearchEnabled,
       type: bool,
       value: false,
     }
   - {
       name: "enable apple universal search",
-      domain: com.apple.safari,
+      domain: com.apple.Safari,
       key: UniversalSearchEnabled,
       type: bool,
       value: false,
     }
   - {
       name: "press tab to highlight each item on a web page",
-      domain: com.apple.safari,
+      domain: com.apple.Safari,
       key: WebKitTabToLinksPreferenceKey,
       type: bool,
       value: true,
     }
   - {
       name: "webkit tabs to links",
-      domain: com.apple.safari,
+      domain: com.apple.Safari,
       key: com.apple.Safari.ContentPageGroupIdentifier.WebKit2TabsToLinks,
       type: bool,
       value: true,
@@ -563,91 +563,91 @@ osx_global_defaults:
   # (note: this still hides the scheme)
   - {
       name: "show the full url in the address bar",
-      domain: com.apple.safari,
+      domain: com.apple.Safari,
       key: ShowFullURLInSmartSearchField,
       type: bool,
       value: true,
     }
   - {
-      name: "set safari’s home page to `about:blank` for faster loading",
-      domain: com.apple.safari,
+      name: "set Safari’s home page to `about:blank` for faster loading",
+      domain: com.apple.Safari,
       key: HomePage,
       type: string,
       value: "about:blank",
     }
   - {
-      name: "prevent safari from opening safe files automatically after downloading",
-      domain: com.apple.safari,
+      name: "prevent Safari from opening safe files automatically after downloading",
+      domain: com.apple.Safari,
       key: AutoOpenSafeDownloads,
       type: bool,
       value: false,
     }
   - {
       name: "allow hitting the backspace key to go to the previous page in history",
-      domain: com.apple.safari,
+      domain: com.apple.Safari,
       key: com.apple.Safari.ContentPageGroupIdentifier.WebKit2BackspaceKeyNavigationEnabled,
       type: bool,
       value: true,
     }
   - {
-      name: "hide safari’s bookmarks bar by default",
-      domain: com.apple.safari,
+      name: "hide Safari’s bookmarks bar by default",
+      domain: com.apple.Safari,
       key: ShowFavoritesBar,
       type: bool,
       value: false,
     }
   - {
-      name: "hide safari’s sidebar in top sites",
-      domain: com.apple.safari,
+      name: "hide Safari’s sidebar in top sites",
+      domain: com.apple.Safari,
       key: ShowSidebarInTopSites,
       type: bool,
       value: false,
     }
   - {
-      name: "disable safari’s thumbnail cache for history and top sites",
-      domain: com.apple.safari,
+      name: "disable Safari’s thumbnail cache for history and top sites",
+      domain: com.apple.Safari,
       key: DebugSnapshotsUpdatePolicy,
       type: int,
       value: 2,
     }
   - {
-      name: "make safari’s search banners default to contains instead of starts with",
-      domain: com.apple.safari,
+      name: "make Safari’s search banners default to contains instead of starts with",
+      domain: com.apple.Safari,
       key: FindOnPageMatchesWordStartsOnly,
       type: bool,
       value: false,
     }
   - {
       name: "enable continuous spellchecking on the web",
-      domain: com.apple.safari,
+      domain: com.apple.Safari,
       key: WebContinuousSpellCheckingEnabled,
       type: bool,
       value: true,
     }
   - {
       name: "disable auto-correct",
-      domain: com.apple.safari,
+      domain: com.apple.Safari,
       key: WebAutomaticSpellingCorrectionEnabled,
       type: bool,
       value: false,
     }
   - {
       name: "block pop-up windows",
-      domain: com.apple.safari,
+      domain: com.apple.Safari,
       key: WebKitJavaScriptCanOpenWindowsAutomatically,
       type: bool,
       value: false,
     }
   - {
       name: "javascript cannot open windows automatically",
-      domain: com.apple.safari,
+      domain: com.apple.Safari,
       key: com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaScriptCanOpenWindowsAutomatically,
       type: bool,
       value: false,
     }
   - {
       name: "enable do not track",
-      domain: com.apple.safari,
+      domain: com.apple.Safari,
       key: SendDoNotTrackHTTPHeader,
       type: bool,
       value: true,
@@ -731,20 +731,3 @@ osx_alt_tab_defaults:
       value: "\u2318",
       state: present,
     }
-# osx_rectangle_defaults:
-#   - {
-#       name: "rectangle | set spectacle-compatible shortcuts",
-#       domain: com.knollsoft.Rectangle,
-#       key: alternateDefaultShortcuts,
-#       type: int,
-#       value: 0,
-#       state: present,
-#     }
-#   - {
-#       name: "rectangle | launch on login",
-#       domain: com.knollsoft.Rectangle,
-#       key: launchOnLogin,
-#       type: int,
-#       value: 1,
-#       state: present,
-#     }
