@@ -110,7 +110,7 @@ asdf_plugins:
   - name: "python"
     repository: "https://github.com/danhper/asdf-python"
     versions:
-      - 3.12
+      - 3.11.0
     delete_versions: []
     global: system
 
