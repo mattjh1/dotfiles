@@ -532,20 +532,20 @@ osx_global_defaults:
   # Safari
   #########################################
 
-  - {
-      name: "don’t send search queries to apple",
-      domain: com.apple.Safari,
-      key: UniversalSearchEnabled,
-      type: bool,
-      value: false,
-    }
-  - {
-      name: "enable apple universal search",
-      domain: com.apple.Safari,
-      key: UniversalSearchEnabled,
-      type: bool,
-      value: false,
-    }
+  # - {
+  #     name: "don’t send search queries to apple",
+  #     domain: com.apple.Safari,
+  #     key: UniversalSearchEnabled,
+  #     type: bool,
+  #     value: false,
+  #   }
+  # - {
+  #     name: "enable apple universal search",
+  #     domain: com.apple.Safari,
+  #     key: UniversalSearchEnabled,
+  #     type: bool,
+  #     value: false,
+  #   }
   - {
       name: "press tab to highlight each item on a web page",
       domain: com.apple.Safari,
