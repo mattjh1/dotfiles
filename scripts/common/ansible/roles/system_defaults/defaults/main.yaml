@@ -532,6 +532,11 @@ osx_global_defaults:
   # Safari
   #########################################
 
+  # DEPRECATED
+  # Setting Safari preferences like this has been deprecated, Safari is now a
+  # sandboxed app protected by SIP and modifying preferences like this is no
+  # longer possible.
+  #
   # - {
   #     name: "don’t send search queries to apple",
   #     domain: com.apple.Safari,
@@ -546,112 +551,116 @@ osx_global_defaults:
   #     type: bool,
   #     value: false,
   #   }
-  - {
-      name: "press tab to highlight each item on a web page",
-      domain: com.apple.Safari,
-      key: WebKitTabToLinksPreferenceKey,
-      type: bool,
-      value: true,
-    }
-  - {
-      name: "webkit tabs to links",
-      domain: com.apple.Safari,
-      key: com.apple.Safari.ContentPageGroupIdentifier.WebKit2TabsToLinks,
-      type: bool,
-      value: true,
-    }
-  # (note: this still hides the scheme)
-  - {
-      name: "show the full url in the address bar",
-      domain: com.apple.Safari,
-      key: ShowFullURLInSmartSearchField,
-      type: bool,
-      value: true,
-    }
-  - {
-      name: "set Safari’s home page to `about:blank` for faster loading",
-      domain: com.apple.Safari,
-      key: HomePage,
-      type: string,
-      value: "about:blank",
-    }
-  - {
-      name: "prevent Safari from opening safe files automatically after downloading",
-      domain: com.apple.Safari,
-      key: AutoOpenSafeDownloads,
-      type: bool,
-      value: false,
-    }
-  - {
-      name: "allow hitting the backspace key to go to the previous page in history",
-      domain: com.apple.Safari,
-      key: com.apple.Safari.ContentPageGroupIdentifier.WebKit2BackspaceKeyNavigationEnabled,
-      type: bool,
-      value: true,
-    }
-  - {
-      name: "hide Safari’s bookmarks bar by default",
-      domain: com.apple.Safari,
-      key: ShowFavoritesBar,
-      type: bool,
-      value: false,
-    }
-  - {
-      name: "hide Safari’s sidebar in top sites",
-      domain: com.apple.Safari,
-      key: ShowSidebarInTopSites,
-      type: bool,
-      value: false,
-    }
-  - {
-      name: "disable Safari’s thumbnail cache for history and top sites",
-      domain: com.apple.Safari,
-      key: DebugSnapshotsUpdatePolicy,
-      type: int,
-      value: 2,
-    }
-  - {
-      name: "make Safari’s search banners default to contains instead of starts with",
-      domain: com.apple.Safari,
-      key: FindOnPageMatchesWordStartsOnly,
-      type: bool,
-      value: false,
-    }
-  - {
-      name: "enable continuous spellchecking on the web",
-      domain: com.apple.Safari,
-      key: WebContinuousSpellCheckingEnabled,
-      type: bool,
-      value: true,
-    }
-  - {
-      name: "disable auto-correct",
-      domain: com.apple.Safari,
-      key: WebAutomaticSpellingCorrectionEnabled,
-      type: bool,
-      value: false,
-    }
-  - {
-      name: "block pop-up windows",
-      domain: com.apple.Safari,
-      key: WebKitJavaScriptCanOpenWindowsAutomatically,
-      type: bool,
-      value: false,
-    }
-  - {
-      name: "javascript cannot open windows automatically",
-      domain: com.apple.Safari,
-      key: com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaScriptCanOpenWindowsAutomatically,
-      type: bool,
-      value: false,
-    }
-  - {
-      name: "enable do not track",
-      domain: com.apple.Safari,
-      key: SendDoNotTrackHTTPHeader,
-      type: bool,
-      value: true,
-    }
+  # - {
+  #     name: "press tab to highlight each item on a web page",
+  #     domain: com.apple.Safari,
+  #     key: WebKitTabToLinksPreferenceKey,
+  #     type: bool,
+  #     value: true,
+  #   }
+  # - {
+  #     name: "webkit tabs to links",
+  #     domain: com.apple.Safari,
+  #     key: com.apple.Safari.ContentPageGroupIdentifier.WebKit2TabsToLinks,
+  #     type: bool,
+  #     value: true,
+  #   }
+  # # (note: this still hides the scheme)
+  # - {
+  #     name: "show the full url in the address bar",
+  #     domain: com.apple.Safari,
+  #     key: ShowFullURLInSmartSearchField,
+  #     type: bool,
+  #     value: true,
+  #   }
+  # - {
+  #     name: "set Safari’s home page to `about:blank` for faster loading",
+  #     domain: com.apple.Safari,
+  #     key: HomePage,
+  #     type: string,
+  #     value: "about:blank",
+  #   }
+  # - {
+  #     name: "prevent Safari from opening safe files automatically after downloading",
+  #     domain: com.apple.Safari,
+  #     key: AutoOpenSafeDownloads,
+  #     type: bool,
+  #     value: false,
+  #   }
+  # - {
+  #     name: "allow hitting the backspace key to go to the previous page in history",
+  #     domain: com.apple.Safari,
+  #     key: com.apple.Safari.ContentPageGroupIdentifier.WebKit2BackspaceKeyNavigationEnabled,
+  #     type: bool,
+  #     value: true,
+  #   }
+  # - {
+  #     name: "hide Safari’s bookmarks bar by default",
+  #     domain: com.apple.Safari,
+  #     key: ShowFavoritesBar,
+  #     type: bool,
+  #     value: false,
+  #   }
+  # - {
+  #     name: "hide Safari’s sidebar in top sites",
+  #     domain: com.apple.Safari,
+  #     key: ShowSidebarInTopSites,
+  #     type: bool,
+  #     value: false,
+  #   }
+  # - {
+  #     name: "disable Safari’s thumbnail cache for history and top sites",
+  #     domain: com.apple.Safari,
+  #     key: DebugSnapshotsUpdatePolicy,
+  #     type: int,
+  #     value: 2,
+  #   }
+  # - {
+  #     name: "make Safari’s search banners default to contains instead of starts with",
+  #     domain: com.apple.Safari,
+  #     key: FindOnPageMatchesWordStartsOnly,
+  #     type: bool,
+  #     value: false,
+  #   }
+  # - {
+  #     name: "enable continuous spellchecking on the web",
+  #     domain: com.apple.Safari,
+  #     key: WebContinuousSpellCheckingEnabled,
+  #     type: bool,
+  #     value: true,
+  #   }
+  # - {
+  #     name: "disable auto-correct",
+  #     domain: com.apple.Safari,
+  #     key: WebAutomaticSpellingCorrectionEnabled,
+  #     type: bool,
+  #     value: false,
+  #   }
+  # - {
+  #     name: "block pop-up windows",
+  #     domain: com.apple.Safari,
+  #     key: WebKitJavaScriptCanOpenWindowsAutomatically,
+  #     type: bool,
+  #     value: false,
+  #   }
+  # - {
+  #     name: "javascript cannot open windows automatically",
+  #     domain: com.apple.Safari,
+  #     key: com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaScriptCanOpenWindowsAutomatically,
+  #     type: bool,
+  #     value: false,
+  #   }
+  # - {
+  #     name: "enable do not track",
+  #     domain: com.apple.Safari,
+  #     key: SendDoNotTrackHTTPHeader,
+  #     type: bool,
+  #     value: true,
+  #   }
+
+  #########################################
+  # Misc
+  #########################################
   - {
       name: "don't use natural scrolling",
       domain: NSGlobalDomain,
@@ -681,6 +690,9 @@ osx_global_defaults:
       value: true,
     }
 
+#########################################
+# alt-tab.app
+#########################################
 osx_alt_tab_defaults:
   - {
       name: "alt-tab | show windows from screen showing alt-tab",
