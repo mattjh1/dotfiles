@@ -20,7 +20,6 @@ brew:
     - derailed/k9s
     - yqrashawn/goku
   casks:
-    - 1password
     - google-chrome
     - discord
     - flux
@@ -38,7 +37,6 @@ brew:
     - spotify
   packages:
     common:
-      - 1password-cli
       - asdf
       - autoconf
       - automake

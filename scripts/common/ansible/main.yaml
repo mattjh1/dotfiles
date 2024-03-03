@@ -22,6 +22,9 @@
     - name: asdf
       tags: asdf
 
+    - name: 1password
+      tags: 1password
+
     - name: go
       tags: go
 
