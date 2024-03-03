@@ -1,5 +1,4 @@
 ---
-
 - name: "install chezmoi"
   community.general.homebrew:
     name:
@@ -11,6 +10,7 @@
     cmd: chezmoi init --apply {{ dotfiles.repo }} --branch {{ dotfiles.branch }}
   args:
     creates: "{{ ansible_user_dir }}/.local/share/chezmoi"
+  ignore_errors: yes
 
 - name: "chezmoi update"
   ansible.builtin.command: chezmoi update --force

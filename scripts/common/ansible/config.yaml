@@ -1,3 +1,6 @@
+contact_info:
+  email: "mattias.holmgren46@gmail.com"
+
 packages:
   - build-essential
   - libssl-dev
@@ -32,8 +35,10 @@ brew:
     - aws-vault
     - brave-browser
     - hiddenbar
+    - spotify
   packages:
     common:
+      - 1password-cli
       - asdf
       - autoconf
       - automake
@@ -151,6 +156,66 @@ nodejs:
   packages:
     - yarn
 
+vscode:
+  keybindings_path: "{{ ansible_user_dir }}/Library/Application\ Support/Code/User/keybindings.json"
+  settings_path: "{{ ansible_user_dir }}/Library/Application\ Support/Code/User/keybindings.json"
+
+  extensions:
+    - adamcowley.neo4j-vscode
+    - alefragnani.bookmarks
+    - amazonwebservices.aws-toolkit-vscode
+    - angular.ng-template
+    - arcticicestudio.nord-visual-studio-code
+    - batisteo.vscode-django
+    - bierner.markdown-emoji
+    - christian-kohler.npm-intellisense
+    - dbaeumer.vscode-eslint
+    - donjayamanne.python-environment-manager
+    - donjayamanne.python-extension-pack
+    - eamodio.gitlens
+    - ecmel.vscode-html-css
+    - editorconfig.editorconfig
+    - edonet.vscode-command-runner
+    - esbenp.prettier-vscode
+    - fivethree.vscode-ionic-snippets
+    - formulahendry.auto-rename-tag
+    - github.vscode-pull-request-github
+    - golang.go
+    - jakeboone02.cypher-query-language
+    - jebbs.plantuml
+    - johnpapa.angular-essentials
+    - johnpapa.angular2
+    - kevinrose.vsc-python-indent
+    - mechatroner.rainbow-csv
+    - mikestead.dotenv
+    - ms-azuretools.vscode-docker
+    - ms-python.black-formatter
+    - ms-python.debugpy
+    - ms-python.python
+    - ms-python.vscode-pylance
+    - ms-toolsai.jupyter
+    - ms-toolsai.jupyter-keymap
+    - ms-toolsai.jupyter-renderers
+    - ms-toolsai.vscode-jupyter-cell-tags
+    - ms-toolsai.vscode-jupyter-slideshow
+    - ms-vscode-remote.remote-containers
+    - njpwerner.autodocstring
+    - orsenkucher.vscode-graphql
+    - pkief.material-icon-theme
+    - pmneo.tsimporter
+    - redhat.vscode-yaml
+    - rvest.vs-code-prettier-eslint
+    - shyykoserhiy.git-autoconfig
+    - steoates.autoimport
+    - sumneko.lua
+    - syler.sass-indented
+    - tomoki1207.pdf
+    - visualstudioexptteam.intellicode-api-usage-examples
+    - visualstudioexptteam.vscodeintellicode
+    - vscodevim.vim
+    - wholroyd.jinja
+    - yzhang.markdown-all-in-one
+
 dockitems_disabled:
   - App Store
   - Contacts
@@ -178,7 +243,7 @@ dockitems_enabled:
     path: "/Applications/Discord.app"
     pos: 3
   - name: Edge
-    path: "/Applications/Microsoft Edge.app/"
+    path: "/Applications/Microsoft Edge.app"
     pos: 4
   - name: Spotify
     path: "/Applications/Spotify.app"
