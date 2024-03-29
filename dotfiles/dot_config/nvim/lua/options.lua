@@ -24,7 +24,7 @@ vim.opt.scrolloff = 999
 vim.opt.signcolumn = "yes"
 vim.opt.smartcase = true
 vim.opt.ignorecase = true
-vim.opt.colorcolumn = "80"
+vim.opt.colorcolumn = "90"
 
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.cmd("set foldcolumn=0")

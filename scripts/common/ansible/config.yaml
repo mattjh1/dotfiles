@@ -14,7 +14,6 @@ brew:
   taps:
     - aws/tap
     - homebrew/bundle
-    - homebrew/cask
     - homebrew/core
     - candid82/brew
     - derailed/k9s
