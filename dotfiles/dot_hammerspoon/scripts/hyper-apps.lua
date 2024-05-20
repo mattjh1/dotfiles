@@ -7,7 +7,14 @@
 -- --------------------------------------------------------------------------------
 return {
 	---  { 'a' } RESERVED FOR WINDOW MANAGEMENT
-	{ "w", "Safari" }, -- "W" for "Web Browser"
+	--
+	{ "w", "Microsoft Edge" }, -- "W" for "Web Browser"
+	-- { "w", "Google Chrome" }, -- "W" for "Web Browser"
+	-- { "w", "Safari" }, -- "W" for "Web Browser"
+	-- { "w", "Firefox" }, -- "W" for "Web Browser"
+	-- { "w", "Arc" }, -- "W" for "Web Browser"
+	-- { "w", "Brave Browser" }, -- "W" for "Web Browser"
+	--
 	-- { "c", "Hub | Microsoft Teams" }, -- "C" for "Chat" use for Teams web app
 	{ "c", "Microsoft Teams (work or school)" }, -- "C" for "Chat" use for Teams web app
 	{ "e", "Visual Studio Code" }, -- "E" for "Editor"

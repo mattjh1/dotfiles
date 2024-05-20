@@ -4,5 +4,8 @@ export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/b
 
 # Setting PATH for Python 3.10
 # The original version is saved in .zprofile.pysave
-PATH="/Library/Frameworks/Python.framework/Versions/3.10/bin:${PATH}"
+# PATH="/Library/Frameworks/Python.framework/Versions/3.10/bin:${PATH}"
+# 
+# Setting PATH for Python 3.12
+PATH="/opt/homebrew/opt/python@3.12/libexec/bin:$PATH"
 export PATH

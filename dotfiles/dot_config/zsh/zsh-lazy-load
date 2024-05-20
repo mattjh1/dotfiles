@@ -2,7 +2,7 @@
 
 # Lazy load conda
 # Add any commands which depend on conda here
-lazy_conda_aliases=('python' 'conda')
+lazy_conda_aliases=('conda')
 
 load_conda() {
   for lazy_conda_alias in $lazy_conda_aliases

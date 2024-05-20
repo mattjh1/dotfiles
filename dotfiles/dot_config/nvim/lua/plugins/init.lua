@@ -32,6 +32,24 @@ return require("lazy").setup({
 			require("plugins.obsidian")
 		end,
 	},
+	{ "mfussenegger/nvim-dap" },
+	{ "theHamsta/nvim-dap-virtual-text" },
+	{ "nvim-neotest/nvim-nio" },
+	{ "rcarriga/nvim-dap-ui" },
+	{
+		"mfussenegger/nvim-dap",
+		lazy = true,
+		dependencies = {
+			"mfussenegger/nvim-dap-python",
+			"nvim-telescope/telescope-dap.nvim",
+			"nvim-dap-virtual-text",
+			"rcarriga/nvim-dap-ui",
+			"nvim-neotest/nvim-nio",
+		},
+		config = function()
+			require("plugins.debuggers")
+		end,
+	},
 	{
 		"nvim-tree/nvim-tree.lua",
 		version = "*",
@@ -140,7 +158,8 @@ return require("lazy").setup({
 	},
 	{
 		"nvim-telescope/telescope-fzf-native.nvim",
-		build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+		build =
+		"cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
 	},
 	{
 		"nvim-telescope/telescope-file-browser.nvim",
@@ -184,6 +203,10 @@ return require("lazy").setup({
 	},
 	{
 		"nvimtools/none-ls.nvim",
+		dependencies = {
+			"nvimtools/none-ls-extras.nvim",
+			"jay-babu/mason-null-ls.nvim",
+		},
 		config = function()
 			require("plugins.none-ls")
 		end,

@@ -31,6 +31,15 @@ alias vi="nvim"
 alias v="nvim"
 alias cat="bat --style=plain"
 
+# override xcode ctags version
+alias ctags="`brew --prefix`/bin/ctags"
+
+# Original ctrl+z behavior, suspend program 
+# Repeat action to move suspended program to foreground
+_zsh_cli_fg() { fg; }
+zle -N _zsh_cli_fg
+bindkey '^Z' _zsh_cli_fg
+
 # chezmoi
 alias cm="chezmoi"
 

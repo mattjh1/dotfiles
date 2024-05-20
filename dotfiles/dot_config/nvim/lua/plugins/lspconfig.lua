@@ -63,7 +63,13 @@ lspconfig.tsserver.setup({
 
 lspconfig.pyright.setup({})
 
-lspconfig.gopls.setup({})
+lspconfig.gopls.setup({
+	settings = {
+		gopls = {
+			gofumpt = true,
+		},
+	},
+})
 
 lspconfig["lua_ls"].setup({
 	on_attach = on_attach,
