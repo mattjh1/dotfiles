@@ -72,6 +72,7 @@ brew:
       - redis
       - derailed/k9s/k9s
       - pngpaste
+      - hugo
     darwin:
       - dockutil
       - switchaudio-osx
@@ -112,7 +113,7 @@ asdf_plugins:
   - name: "python"
     repository: "https://github.com/danhper/asdf-python"
     versions:
-      - 3.11.0
+      - 3.12.0
     delete_versions: []
     global: system
 
@@ -123,26 +124,19 @@ asdf_plugins:
     delete_versions: []
     global: system
 
-  - name: "ruby"
-    repository: "https://github.com/asdf-vm/asdf-ruby"
-    versions:
-      - 3.3.0
-    delete_versions: []
-    global: system
-
   - name: "nodejs"
     repository: "https://github.com/asdf-vm/asdf-nodejs"
     versions:
-      - 20.11.1
+      - 22.2.0
     delete_versions: []
     global: system
 
   - name: "kubectl"
     repository: "https://github.com/asdf-community/asdf-kubectl"
     versions:
-      - 1.23.0
+      - 1.30.0
     delete_versions: []
-    global: 1.23.0
+    global: 1.30.0
 
 golang:
   path: "{{ ansible_user_dir }}/.go"
@@ -252,5 +246,5 @@ dockitems_enabled:
     path: "/Applications/Microsoft Outlook.app"
     pos: 7
   - name: Teams
-    path: "/Applications/Microsoft Teams (work or school).app"
+    path: "/Applications/Microsoft Teams.app"
     pos: 8
