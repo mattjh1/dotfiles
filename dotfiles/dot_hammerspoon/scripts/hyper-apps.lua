@@ -16,16 +16,16 @@ return {
 	-- { "w", "Brave Browser" }, -- "W" for "Web Browser"
 	--
 	-- { "c", "Hub | Microsoft Teams" }, -- "C" for "Chat" use for Teams web app
-	{ "c", "Microsoft Teams (work or school)" }, -- "C" for "Chat" use for Teams web app
+	{ "c", "Microsoft Teams" },   -- "C" for "Chat" use for Teams web app
 	{ "e", "Visual Studio Code" }, -- "E" for "Editor"
-	{ "f", "Finder" }, -- "F" for "Finder"
-	{ "v", "Obsidian" }, -- "F" for "Finder"
+	{ "f", "Finder" },            -- "F" for "Finder"
+	{ "v", "Obsidian" },          -- "F" for "Finder"
 	{ "o", "Microsoft Outlook" }, -- "O" for "Outlook"
-	{ "s", "Spotify" }, -- "S" for "Spotify"
-	{ "t", "Alacritty" }, -- "T" for "Terminal"
-	{ "m", "Messages" }, -- "M" for "Messages"
-	{ "d", "Discord" }, -- "D" for "Discord"
-	{ "b", "DBeaver" }, -- "B" for "Beaver"
-	{ "n", "Neo4j Desktop" }, -- "N" for "Neo4j"
-	{ "p", "1Password" }, -- "P" for "Password"
+	{ "s", "Spotify" },           -- "S" for "Spotify"
+	{ "t", "Alacritty" },         -- "T" for "Terminal"
+	{ "m", "Messages" },          -- "M" for "Messages"
+	{ "d", "Discord" },           -- "D" for "Discord"
+	{ "b", "DBeaver" },           -- "B" for "Beaver"
+	{ "n", "Neo4j Desktop" },     -- "N" for "Neo4j"
+	{ "p", "1Password" },         -- "P" for "Password"
 }
