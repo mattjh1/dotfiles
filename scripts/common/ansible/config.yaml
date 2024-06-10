@@ -14,7 +14,6 @@ brew:
   taps:
     - aws/tap
     - homebrew/bundle
-    - homebrew/core
     - candid82/brew
     - derailed/k9s
     - yqrashawn/goku
