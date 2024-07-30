@@ -19,51 +19,65 @@ PROJECT_NAME="$1"
 BASE_DIR=$(pwd)  
 
 PROJECT_DIR="$BASE_DIR/$PROJECT_NAME"
-mkdir -p "$PROJECT_DIR"
-
-FRONTEND_DIR="$PROJECT_DIR/$PROJECT_NAME-frontend"
-BACKEND_DIR="$PROJECT_DIR/$PROJECT_NAME-backend"
+FRONTEND_DIR="$PROJECT_DIR/frontend"
+BACKEND_DIR="backend"
+BACKEND_PATH="$PROJECT_DIR/$BACKEND_DIR"
 SHARED_TYPES_DIR="$PROJECT_DIR/sharedTypes"
+
+mkdir -p "$PROJECT_DIR"
 
 DB_NAME=$(prompt "Enter database name")
 DB_USER=$(prompt "Enter database user")
 DB_PASSWORD=$(prompt "Enter database password")
 
-
 echo "Creating Next.js app (Frontend)..."
-npx create-next-app $FRONTEND_DIR --typescript
+npx create-next-app "$FRONTEND_DIR" --typescript
 
-cd $FRONTEND_DIR
+echo "Updating package.json in Frontend..."
+sed -i '' -e '/"dev":/s/"dev":.*/"dev": "next dev -p 3000",/' "$FRONTEND_DIR/package.json"
+
 echo "Installing frontend dependencies..."
-npm install
-
-cd ..
+(cd "$FRONTEND_DIR" && npm install)
 
 if ! command -v nest &> /dev/null; then
     echo "Nest.js CLI not found. Installing @nestjs/cli globally..."
     npm install -g @nestjs/cli
 fi
 
+cd $PROJECT_DIR
+
 echo "Creating Nest.js app (Backend)..."
-nest new $PROJECT_NAME-backend
+nest new "$BACKEND_DIR" --skip-install
 
-echo "DATABASE_URL=postgresql://$DB_USER:$DB_PASSWORD@db:5432/$DB_NAME" > "$BACKEND_DIR/.env"
-echo ".env" >> "$BACKEND_DIR/.gitignore"
+# Adding a delay to ensure the backend files are created
+sleep 5
 
-cd $BACKEND_DIR
-echo "Installing backend dependencies..."
-npm install
+# Check if the backend directory was created successfully
+if [ -d "$BACKEND_PATH" ]; then
+    echo "Nest.js app created successfully in $BACKEND_PATH"
+else
+    echo "Error: Backend directory not found."
+    exit 1
+fi
 
-npx prisma init
+echo "Setting up environment variables..."
+echo "DATABASE_URL=postgresql://$DB_USER:$DB_PASSWORD@localhost:5432/$DB_NAME" > "$BACKEND_PATH/.env"
+echo ".env" >> "$BACKEND_PATH/.gitignore"
 
+echo "Initializing Prisma..."
+(cd "$BACKEND_DIR" && npx prisma init)
+
+mkdir -p "$BACKEND_PATH/prisma"
 echo "Updating schema.prisma with database connection details..."
-cat <<EOL >prisma/schema.prisma
+cat <<EOL >"$BACKEND_PATH/prisma/schema.prisma"
 datasource db {
  provider = "postgresql"
  url      = env("DATABASE_URL")
 }
+
 generator client {
- output = "./generated/client"
+ provider = "prisma-client-js"
+ output   = "./generated/client"
 }
 model User {
  id    Int      @id @default(autoincrement())
@@ -72,71 +86,109 @@ model User {
 }
 EOL
 
-npm run build
-
-cd "$BASE_DIR"
+echo "Installing backend dependencies..."
+(cd "$BACKEND_PATH" && npm install && npx prisma generate)
 
 echo "Creating Docker Compose file..."
 cat <<EOL >$PROJECT_DIR/docker-compose.yml
 version: '3.8'
 services:
- postgres:
-   image: postgres
-   restart: always
-   environment:
-     POSTGRES_DB: $DB_NAME
-     POSTGRES_USER: $DB_USER
-     POSTGRES_PASSWORD: $DB_PASSWORD
- backend:
-   build:
-     context: .
-     dockerfile: Dockerfile-backend
-   restart: always
-   ports:
-     - "3002:3002"
-   depends_on:
-     - postgres
- frontend:
-   build:
-     context: .
-     dockerfile: Dockerfile-frontend
-   restart: always
-   ports:
-     - "3001:3000"
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: $DB_NAME
+      POSTGRES_USER: $DB_USER
+      POSTGRES_PASSWORD: $DB_PASSWORD
+    networks:
+      - internal
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "3001:3000"
+    depends_on:
+      - postgres
+    env_file:
+      - ./backend/.env
+    networks:
+      - internal
+    volumes:
+      - sharedTypes:/usr/src/app/node_modules/sharedTypes
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "3000:3000"
+    networks:
+      - internal
+    volumes:
+      - sharedTypes:/usr/src/app/node_modules/sharedTypes
+
+networks:
+  internal:
+    driver: bridge
+
+volumes:
+  sharedTypes:
+    driver: local
 EOL
 
 echo "Creating Dockerfile for Backend..."
-cat <<EOL >$PROJECT_DIR/Dockerfile-backend
-FROM node:lts
+cat <<EOL >"$BACKEND_PATH/Dockerfile"
+FROM node:lts-slim
+
+# Set working directory
 WORKDIR /usr/src/app
-COPY $PROJECT_NAME-backend/package*.json ./
+
+# Copy the package.json and package-lock.json to the container
+COPY package*.json ./
+
+# Install dependencies
 RUN npm install
-COPY $PROJECT_NAME-backend .
+
+# Copy the rest of the application code to the container
+COPY . .
+
+# Expose the backend port
 EXPOSE 3000
+
+# Command to run the Nest.js application
 CMD ["npm", "run", "start:dev"]
 EOL
 
 echo "Creating Dockerfile for Frontend..."
-cat <<EOL >$PROJECT_DIR/Dockerfile-frontend
-FROM node:lts
+cat <<EOL >"$FRONTEND_DIR/Dockerfile"
+FROM node:lts-slim
+
+# Set working directory
 WORKDIR /usr/src/app
-COPY $PROJECT_NAME-frontend/package*.json ./
+
+# Copy the package.json and package-lock.json to the container
+COPY package*.json ./
+
+# Install dependencies
 RUN npm install
-COPY $PROJECT_NAME-frontend .
+
+# Copy the rest of the application code to the container
+COPY . .
+
+# Expose the frontend port
 EXPOSE 3000
+
+# Command to run the Next.js application
 CMD ["npm", "run", "dev"]
 EOL
 
 echo "Creating sharedTypes directory..."
-mkdir $SHARED_TYPES_DIR
-
-echo "Updating package.json in Frontend..."
-sed -i '' -e '/"dev":/s/"dev":.*/"dev": "next dev -p 3001",/' "$FRONTEND_DIR/package.json"
-sed -i '' 's/"scripts": {/"scripts": {\n    "postinstall": "ln -s ..\/sharedTypes .\/node_modules\/sharedTypes",/g' "$FRONTEND_DIR/package.json"
-
-echo "Updating package.json in Backend..."
-sed -i '' -e '/"start:dev":/s/"start:dev":.*/"start:dev": "nest start --watch --port 3002",/' "$BACKEND_DIR/package.json"
-sed -i '' 's/"scripts": {/"scripts": {\n    "postinstall": "ln -s ..\/sharedTypes .\/node_modules\/sharedTypes",/g' "$BACKEND_DIR/package.json"
+mkdir -p "$SHARED_TYPES_DIR"
 
 echo "Setup complete. Your Next.js app (Frontend) with Nest.js, Prisma, sharedTypes, and Docker is ready!"
 echo "Run docker-compose up to start the application"
+
