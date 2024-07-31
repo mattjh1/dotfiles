@@ -69,6 +69,20 @@ return require("lazy").setup({
 	{
 		"folke/trouble.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
+		opts = {
+			focus = true,
+			modes = {
+				test = {
+					mode = "diagnostics",
+					preview = {
+						type = "split",
+						relative = "win",
+						position = "right",
+						size = 0.3,
+					},
+				},
+			},
+		},
 	},
 	{
 		"kylechui/nvim-surround",
