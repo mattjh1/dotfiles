@@ -130,6 +130,13 @@ asdf_plugins:
     delete_versions: []
     global: system
 
+  - name: "yarn"
+    repository: "https://github.com/twuni/asdf-yarn.git"
+    versions:
+      - 4.4.0
+    delete_versions: []
+    global: system
+
   - name: "kubectl"
     repository: "https://github.com/asdf-community/asdf-kubectl"
     versions:
