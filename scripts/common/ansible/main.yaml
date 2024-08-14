@@ -39,3 +39,6 @@
 
     - name: system_defaults
       tags: system_defaults
+
+    - name: zsh
+      tags: zsh

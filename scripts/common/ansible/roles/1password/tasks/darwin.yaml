@@ -1,0 +1,13 @@
+---
+- name: "Install 1password"
+  community.general.homebrew_cask:
+    name: "1password"
+    state: present
+    install_options: no-quarantine
+    accept_external_apps: true
+  tags: homebrew
+
+- name: "Install 1password-cli"
+  community.general.homebrew:
+    name: "1password-cli"
+  tags: homebrew

@@ -1,0 +1,11 @@
+---
+- name: Install Zsh on RedHat-based systems
+  ansible.builtin.yum:
+    name: zsh
+    state: present
+  when: is_redhat
+
+- name: Change default shell to Zsh on RedHat-based systems
+  ansible.builtin.shell: |
+    chsh -s $(which zsh) "{{ ansible_user }}"
+  when: current_shell.stdout != "/bin/zsh"
