@@ -26,14 +26,18 @@
   ansible.builtin.package:
     name: "{{ packages_debian }}"
     state: present
-  when: packages_debian is defined
+  when:
+    - ansible_os_family == "Debian"
+    - packages_debian is defined
 
 - name: "packages | install (RedHat)"
   become: true
   ansible.builtin.package:
     name: "{{ packages_redhat }}"
     state: present
-  when: packages_redhat is defined
+  when:
+    - packages_redhat is defined
+    - ansible_os_family == "RedHat"
 
 - name: "apt | upgrade to the latest version (Debian)"
   become: true
