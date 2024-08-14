@@ -133,7 +133,7 @@ asdf_plugins:
   - name: "yarn"
     repository: "https://github.com/twuni/asdf-yarn.git"
     versions:
-      - 4.4.0
+      - 1.22.22
     delete_versions: []
     global: system
 
