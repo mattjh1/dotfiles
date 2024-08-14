@@ -60,12 +60,10 @@
     autoremove: true
   when: ansible_os_family == "Debian"
 
-- name: "yum | clean (RedHat)"
+- name: "Remove orphaned packages (RedHat)"
   become: true
-  ansible.builtin.yum:
-    name: "*"
-    state: absent
-    autoremove: true
+  ansible.builtin.command:
+    cmd: "dnf autoremove -y"
   when: ansible_os_family == "RedHat"
 
 - name: "Enable EPEL repository"
