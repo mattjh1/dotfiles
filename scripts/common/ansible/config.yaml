@@ -1,12 +1,22 @@
 contact_info:
   email: "mattias.holmgren46@gmail.com"
 
-packages:
+packages_debian:
   - build-essential
   - libssl-dev
   - llvm
   - python3-pip
   - python-is-python3
+  - vim
+  - less
+
+packages_redhat:
+  - gcc
+  - gcc-c++
+  - make
+  - openssl-devel
+  - llvm
+  - python3-pip
   - vim
   - less
 

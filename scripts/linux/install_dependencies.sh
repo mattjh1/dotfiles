@@ -36,8 +36,10 @@ install_debian_packages() {
 install_rhel_packages() {
   yum="sudo yum -y"
 
+  sudo $yum install epel-release
   sudo $yum update
 
+  sudo yum-config-manager --enable epel
   sudo yum install -y yum-utils
 
   install_from_package_list() {

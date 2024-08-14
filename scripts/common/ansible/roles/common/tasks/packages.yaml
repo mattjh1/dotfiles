@@ -1,8 +1,13 @@
 ---
-- name: "packages | list"
+- name: "packages | list (Debian)"
   ansible.builtin.debug:
-    msg: "{{ packages }}"
-  when: packages is defined
+    msg: "{{ packages_debian }}"
+  when: packages_debian is defined
+
+- name: "packages | list (RedHat)"
+  ansible.builtin.debug:
+    msg: "{{ packages_redhat }}"
+  when: packages_redhat is defined
 
 - name: "apt | update (Debian)"
   become: true
@@ -16,12 +21,19 @@
     update_cache: true
   when: ansible_os_family == "RedHat"
 
-- name: "packages | install"
+- name: "packages | install (Debian)"
   become: true
   ansible.builtin.package:
-    name: "{{ packages }}"
+    name: "{{ packages_debian }}"
     state: present
-  when: packages is defined
+  when: packages_debian is defined
+
+- name: "packages | install (RedHat)"
+  become: true
+  ansible.builtin.package:
+    name: "{{ packages_redhat }}"
+    state: present
+  when: packages_redhat is defined
 
 - name: "apt | upgrade to the latest version (Debian)"
   become: true
