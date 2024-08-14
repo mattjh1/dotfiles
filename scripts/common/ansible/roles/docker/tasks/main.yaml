@@ -4,3 +4,6 @@
 
 - import_tasks: ubuntu.yaml
   when: ansible_distribution == "Ubuntu"
+
+- import_tasks: rhel.yaml
+  when: ansible_distribution == "RedHat"

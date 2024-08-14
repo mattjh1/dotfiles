@@ -1,15 +1,20 @@
 ---
-
 - name: "packages | list"
   ansible.builtin.debug:
     msg: "{{ packages }}"
   when: packages is defined
 
-- name: "apt | update"
+- name: "apt | update (Debian)"
   become: true
   ansible.builtin.apt:
     update_cache: true
   when: ansible_os_family == "Debian"
+
+- name: "yum | update (RedHat)"
+  become: true
+  ansible.builtin.yum:
+    update_cache: true
+  when: ansible_os_family == "RedHat"
 
 - name: "packages | install"
   become: true
@@ -18,16 +23,38 @@
     state: present
   when: packages is defined
 
-- name: "apt | upgrade to the latest version"
+- name: "apt | upgrade to the latest version (Debian)"
   become: true
   ansible.builtin.apt:
     upgrade: safe
   changed_when: false
   when: ansible_os_family == "Debian"
 
-- name: "apt | clean"
+- name: "yum | upgrade to the latest version (RedHat)"
+  become: true
+  ansible.builtin.yum:
+    name: "*"
+    state: latest
+  when: ansible_os_family == "RedHat"
+
+- name: "apt | clean (Debian)"
   become: true
   ansible.builtin.apt:
     autoclean: true
     autoremove: true
   when: ansible_os_family == "Debian"
+
+- name: "yum | clean (RedHat)"
+  become: true
+  ansible.builtin.yum:
+    name: "*"
+    state: absent
+    autoremove: true
+  when: ansible_os_family == "RedHat"
+
+- name: "Enable EPEL repository"
+  become: true
+  ansible.builtin.yum:
+    name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+    state: present
+  when: ansible_os_family == "RedHat"

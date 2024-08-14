@@ -1,0 +1,13 @@
+---
+- name: Ensure EPEL repository is installed
+  ansible.builtin.yum:
+    name: epel-release
+    state: present
+
+- name: Install FiraCode font from EPEL
+  ansible.builtin.yum:
+    name: fira-code-fonts
+    state: present
+
+- name: Refresh font cache
+  ansible.builtin.shell: fc-cache -f -v

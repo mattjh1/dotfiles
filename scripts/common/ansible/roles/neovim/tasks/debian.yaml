@@ -1,6 +1,5 @@
 ---
-
-  # TODO: make build from source platforms independent
+# TODO: make build from source platforms independent
 - import_tasks: build.yaml
   when: neovim.build_from_source
 
@@ -9,7 +8,7 @@
       ansible.builtin.get_url:
         url: https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.deb
         dest: /tmp/nvim.deb
-        mode: '0755'
+        mode: "0755"
       register: download_result
       until: download_result is succeeded
       retries: 3

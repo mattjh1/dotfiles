@@ -1,0 +1,17 @@
+# Bare Necessities
+ca-certificates
+git
+gpg
+locales
+make
+sudo
+
+# Editor
+vim-enhanced
+
+# Download Manager
+curl
+wget
+
+# Ansible
+ansible

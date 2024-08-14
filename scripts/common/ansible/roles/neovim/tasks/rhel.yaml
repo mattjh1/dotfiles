@@ -1,0 +1,15 @@
+---
+# TODO: make build from source platforms independent
+- import_tasks: build.yaml
+  when: neovim.build_from_source
+
+- block:
+    - name: "Install Neovim and python3-neovim"
+      become: true
+      ansible.builtin.yum:
+        name:
+          - neovim
+          - python3-neovim
+        state: present
+
+  when: not neovim.build_from_source

@@ -1,0 +1,17 @@
+- name: Install Docker dependencies on RHEL
+  yum:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - yum-utils
+    - device-mapper-persistent-data
+    - lvm2
+
+- name: Add Docker repository for RHEL
+  command: >
+    yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+
+- name: Install Docker on RHEL
+  yum:
+    name: docker-ce
+    state: present
