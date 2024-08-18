@@ -30,6 +30,54 @@ capabilities.textDocument.completion.completionItem = {
 }
 
 -- LSP Server config
+
+-- tsserver
+lspconfig.tsserver.setup({
+	capabilities = capabilities,
+	on_attach = function(client)
+		client.server_capabilities.docmentRangeFormattingProvider = false
+	end,
+	commands = {
+		OrganizeImports = {
+			organize_imports,
+			description = "Organize Imports",
+		},
+	},
+})
+
+-- emmet
+lspconfig.emmet_ls.setup({
+	-- on_attach = on_attach,
+	capabilities = capabilities,
+	filetypes = {
+		"css",
+		"html",
+		"javascript",
+		"javascriptreact",
+		"less",
+		"sass",
+		"scss",
+		"typescriptreact",
+	},
+})
+
+-- html
+lspconfig.html.setup({
+	on_attach = function(client)
+		client.server_capabilities.docmentRangeFormattingProvider = false
+	end,
+	capabilities = capabilities,
+})
+
+-- tailwindcss
+lspconfig.tailwindcss.setup({
+	on_attach = function(client)
+		client.server_capabilities.docmentRangeFormattingProvider = false
+	end,
+	capabilities = capabilities,
+})
+
+-- css
 lspconfig.cssls.setup({
 	capabilities = capabilities,
 	settings = {
@@ -49,19 +97,8 @@ lspconfig.cssls.setup({
 		client.server_capabilities.docmentRangeFormattingProvider = false
 	end,
 })
-lspconfig.tsserver.setup({
-	capabilities = capabilities,
-	on_attach = function(client)
-		client.server_capabilities.docmentRangeFormattingProvider = false
-	end,
-	commands = {
-		OrganizeImports = {
-			organize_imports,
-			description = "Organize Imports",
-		},
-	},
-})
 
+-- python
 require("lspconfig").ruff.setup({})
 
 require("lspconfig").pyright.setup({
@@ -79,6 +116,7 @@ require("lspconfig").pyright.setup({
 	},
 })
 
+-- lua
 lspconfig["lua_ls"].setup({
 	on_attach = on_attach,
 	capabilities = capabilities,

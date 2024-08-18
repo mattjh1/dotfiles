@@ -69,6 +69,6 @@
 - name: "Enable EPEL repository"
   become: true
   ansible.builtin.yum:
-    name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+    name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
     state: present
   when: ansible_os_family == "RedHat"
