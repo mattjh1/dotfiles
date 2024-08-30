@@ -28,4 +28,5 @@ return {
 	{ "b", "DBeaver" },           -- "B" for "Beaver"
 	{ "n", "Neo4j Desktop" },     -- "N" for "Neo4j"
 	{ "p", "1Password" },         -- "P" for "Password"
+	{ "g", "Citrix Viewer" },     -- "P" for "Password"
 }
