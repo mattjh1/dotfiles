@@ -5,8 +5,12 @@ local opts = { silent = true, noremap = true }
 
 vim.keymap.set("", "Y", "y$", opts)
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
-vim.keymap.set("n", "j", "gj", opts)
-vim.keymap.set("n", "k", "gk", opts)
+vim.keymap.set({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
+vim.keymap.set({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
+j
+-- better indenting
+vim.keymap.set("v", "<", "<gv")
+vim.keymap.set("v", ">", ">gv")
 
 -- Move line up/down
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", opts)
@@ -116,3 +120,32 @@ vim.keymap.set("n", "<leadet>t", "<cmd>Trouble diagnostics toggle filter.buf=0<c
 vim.keymap.set("n", "<leader>xw", "<cmd>Trouble diagnostics toggle<cr>")
 vim.keymap.set("n", "<leader>gt", "<cmd>Trouble symbols toggle pinned=true win.relative=win win.position=right<cr>")
 vim.keymap.set("n", "gr", "<cmd>Trouble lsp_references toggle <cr>")
+
+-- Harpoon
+vim.keymap.set("n", "<leader>a", function()
+	require("harpoon"):list():add()
+end)
+
+vim.keymap.set("n", "<leader>1", function()
+	require("harpoon"):list():select(1)
+end)
+vim.keymap.set("n", "<leader>2", function()
+	require("harpoon"):list():select(2)
+end)
+vim.keymap.set("n", "<leader>3", function()
+	require("harpoon"):list():select(3)
+end)
+vim.keymap.set("n", "<leader>4", function()
+	require("harpoon"):list():select(4)
+end)
+vim.keymap.set("n", "<leader>5", function()
+	require("harpoon"):list():select(5)
+end)
+
+-- Toggle previous & next buffers stored within Harpoon list
+vim.keymap.set("n", "<C-P>", function()
+	require("harpoon"):list():prev()
+end)
+vim.keymap.set("n", "<C-N>", function()
+	require("harpoon"):list():next()
+end)

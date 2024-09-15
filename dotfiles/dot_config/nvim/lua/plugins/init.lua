@@ -12,7 +12,22 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 return require("lazy").setup({
-	defaults = { lazy = true },
+	performance = {
+		rtp = {
+			reset = false,
+      disabled_plugins = {
+        "gzip",
+        "matchit",
+        "matchparen",
+        "netrwPlugin",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
+		},
+	},
+},
+	defaults = { lazy = false },
 	"rafamadriz/friendly-snippets",
 	"saadparwaiz1/cmp_luasnip",
 	"hrsh7th/cmp-nvim-lua",
@@ -65,6 +80,30 @@ return require("lazy").setup({
 		config = function()
 			require("plugins.auto-session")
 		end,
+	},
+	{
+		"ThePrimeagen/harpoon",
+		branch = "harpoon2",
+		dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
+		config = function()
+			require("plugins.harpoon")
+		end,
+	},
+	{
+		"kdheepak/lazygit.nvim",
+		cmd = {
+			"LazyGit",
+			"LazyGitConfig",
+			"LazyGitCurrentFile",
+			"LazyGitFilter",
+			"LazyGitFilterCurrentFile",
+		},
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+		keys = {
+			{ "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
+		},
 	},
 	{
 		"folke/trouble.nvim",
@@ -172,8 +211,7 @@ return require("lazy").setup({
 	},
 	{
 		"nvim-telescope/telescope-fzf-native.nvim",
-		build =
-		"cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+		build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
 	},
 	{
 		"nvim-telescope/telescope-file-browser.nvim",
