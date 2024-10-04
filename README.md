@@ -15,7 +15,7 @@ Install packages, set system settings, install chezmoi and apply dotfiles, insta
 
 ### Chezmoi
 
-Leverage templates to handle host differences in a clean way, incorporates the use of 1password to supply my own credentials.
+Leverage templates to handle host differences in a clean way.
 Config files for `zsh`, `nvim`, `tmux`, `alacritty`, `git`, `karabiner`, `vscode`, `bat`, and `hammerspoon`.
 
 ## Setup
@@ -26,9 +26,12 @@ Install everything with single curl command:
 curl -fsSL https://raw.githubusercontent.com/mattjh1/dotfiles/main/scripts/setup.sh | sh -s -- --all
 ```
 
-Some of the configurations relies on details stored in my personal 1password vault, if you run the
-playbook a second time without my 1password configured, you're gonna have a bad time :p
-No fix for this as of yet, if someone wants my config i might deal with it.
+Some of the configurations relies on my 1password vault, for example:
+
+- [ssh config](./dotfiles/private_dot_ssh/private_config.tmpl)
+- [zsh-secrets.tmpl](./dotfiles/dot_config/zsh/zsh-secrets.tmpl)
+
+The install will still work, but don't expect to get the secret sauce
 
 ## Inspiration
 
