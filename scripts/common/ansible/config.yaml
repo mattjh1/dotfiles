@@ -1,5 +1,5 @@
 contact_info:
-  email: "mattias.holmgren46@gmail.com"
+  email: "me@mattjh.sh"
 
 packages_debian:
   - build-essential
@@ -52,6 +52,8 @@ brew:
       - bat
       - codespell
       - coreutils
+      - moreutils
+      - gnu-sed
       - direnv
       - dust
       - fd
@@ -61,6 +63,9 @@ brew:
       - jq
       - k9s
       - kustomize
+      - git
+      - git-lfs
+      - lua
       - lazygit
       - p7zip
       - pre-commit
@@ -88,7 +93,6 @@ brew:
       - ffmpeg
       - gawk
       - gnu-getopt
-      - gnu-sed
       - watch
       - wget
       - xz

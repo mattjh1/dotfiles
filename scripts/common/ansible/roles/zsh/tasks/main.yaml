@@ -3,4 +3,4 @@
   when: ansible_system == "Darwin"
 
 - import_tasks: rhel.yaml
-  when: ansible_system == "Darwin"
+  when: ansible_system == "RedHat"

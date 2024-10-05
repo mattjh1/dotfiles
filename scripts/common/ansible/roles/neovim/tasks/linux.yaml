@@ -1,0 +1,64 @@
+---
+# TODO: make build from source platforms independent
+- import_tasks: build.yaml
+  when: neovim.build_from_source
+
+- name: "Ensure required dependencies are installed"
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - libstdc++6
+    - libncurses5
+    - libncursesw5
+  become: true
+  when: ansible_os_family == "Debian"
+
+- name: "Ensure required dependencies are installed on RHEL"
+  ansible.builtin.yum:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - ncurses
+    - libstdc++
+  become: true
+  when: ansible_os_family == "RedHat"
+
+- block:
+    - name: "Download nightly binary tar.gz"
+      ansible.builtin.get_url:
+        url: https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz
+        dest: /tmp/nvim.tar.gz
+        mode: "0755"
+      register: download_result
+      until: download_result is succeeded
+      retries: 3
+      delay: 5
+
+    - name: "Create installation directory"
+      ansible.builtin.file:
+        path: "/usr/local/neovim"
+        state: directory
+        mode: "0755"
+      become: true
+
+    - name: "Extract Neovim tar.gz"
+      ansible.builtin.unarchive:
+        src: /tmp/nvim.tar.gz
+        dest: /usr/local/neovim
+        remote_src: yes
+      become: true
+
+    - name: "Create symbolic link for Neovim"
+      ansible.builtin.file:
+        src: /usr/local/neovim/nvim-linux64/bin/nvim
+        dest: /usr/local/bin/nvim
+        state: link
+      become: true
+
+    - name: "Remove leftover tar.gz"
+      ansible.builtin.file:
+        path: "/tmp/nvim.tar.gz"
+        state: absent
+
+  when: not neovim.build_from_source
