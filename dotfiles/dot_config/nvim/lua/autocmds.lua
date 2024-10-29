@@ -1,5 +1,18 @@
 local autocmd = vim.api.nvim_create_autocmd
 
+-- Check if html file contains go templating (hugo), treat as go template then
+autocmd({ "BufRead", "BufNewFile" }, {
+	pattern = "*.html",
+	callback = function()
+		if vim.fn.expand("%:e") == "html" then
+			if vim.fn.search("{{", "nw") ~= 0 then
+				vim.bo.filetype = "gohtmltmpl"
+			end
+		end
+	end,
+	group = vim.api.nvim_create_augroup("filetypedetect", { clear = true }),
+})
+
 -- Use relative & absolute line numbers in 'n' & 'i' modes respectively
 autocmd("InsertEnter", {
 	callback = function()

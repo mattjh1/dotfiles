@@ -32,7 +32,7 @@ capabilities.textDocument.completion.completionItem = {
 -- LSP Server config
 
 -- tsserver
-lspconfig.tsserver.setup({
+lspconfig.ts_ls.setup({
 	capabilities = capabilities,
 	on_attach = function(client)
 		client.server_capabilities.docmentRangeFormattingProvider = false

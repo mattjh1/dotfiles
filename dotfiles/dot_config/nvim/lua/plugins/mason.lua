@@ -14,7 +14,7 @@ require("mason").setup(options)
 
 require("mason-lspconfig").setup({
 	ensure_installed = {
-		"tsserver",
+		"ts_ls",
 		"html",
 		"cssls",
 		"tailwindcss",
@@ -40,7 +40,7 @@ require("mason-tool-installer").setup({
 		"pylint",
 		"eslint_d",
 		"gopls",
-		"tsserver",
+		"ts_ls",
 		"html",
 		"cssls",
 		"lua_ls",
