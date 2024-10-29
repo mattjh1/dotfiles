@@ -36,5 +36,6 @@ require("scripts.delete-words")
 require("scripts.hyper")
 require("scripts.windows")
 require("scripts.media-controls")
+require("scripts.alacritty-exit")
 
 hs.notify.new({ title = "Hammerspoon", informativeText = "Ready to rock 🤘" }):send()
