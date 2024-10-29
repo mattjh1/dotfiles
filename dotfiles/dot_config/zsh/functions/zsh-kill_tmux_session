@@ -1,6 +1,6 @@
 #!/bin/sh
 
-function killtmuxsession() {
+function ktms() {
 	if [ -z "$1" ]; then
 		echo "Available tmux sessions to kill:"
 		tmux list-sessions | awk -F: '{print $1}'
