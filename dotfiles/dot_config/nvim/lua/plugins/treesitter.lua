@@ -4,6 +4,7 @@ local options = {
 		"vim",
 		"typescript",
 		"graphql",
+		"gotmpl",
 		"yaml",
 		"python",
 		"c",

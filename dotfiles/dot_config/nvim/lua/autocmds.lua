@@ -12,6 +12,18 @@ autocmd({ "BufRead", "BufNewFile" }, {
 	end,
 	group = vim.api.nvim_create_augroup("filetypedetect", { clear = true }),
 })
+--
+-- -- let prettier treat gohtmltmpl as html
+-- autocmd({ "BufRead", "BufNewFile" }, {
+-- 	pattern = "*.html",
+-- 	callback = function()
+-- 		if vim.fn.expand("%:e") == "html" and vim.fn.search("{{", "nw") ~= 0 then
+-- 			vim.bo.filetype = "gohtmltmpl" -- Set filetype for syntax highlighting
+-- 			vim.bo.syntax = "html" -- Set syntax highlighting to HTML for Prettier
+-- 		end
+-- 	end,
+-- 	group = vim.api.nvim_create_augroup("filetypedetect", { clear = true }),
+-- })
 
 -- Use relative & absolute line numbers in 'n' & 'i' modes respectively
 autocmd("InsertEnter", {
