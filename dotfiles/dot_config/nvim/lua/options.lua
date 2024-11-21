@@ -10,6 +10,8 @@ vim.opt.undofile = true
 vim.opt.showmode = false
 vim.opt.conceallevel = 1
 
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+
 vim.opt.laststatus = 3
 vim.opt.statusline = " "
 vim.opt.cmdheight = 1
