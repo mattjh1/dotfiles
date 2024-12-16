@@ -1,7 +1,7 @@
 vim.opt.completeopt = "menuone,noselect"
 
 local cmp = require("cmp")
-local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 
 local options = {
 	window = {
@@ -16,7 +16,7 @@ local options = {
 			side_padding = 1,
 			winhighlight = "Normal:Normal,FloatBorder:Normal,CursorLine:Visual,Search:None",
 			zindex = 1001,
-		}
+		},
 	},
 	snippet = {
 		expand = function(args)
@@ -24,14 +24,14 @@ local options = {
 		end,
 	},
 	formatting = {
-		format = require 'lspkind'.cmp_format({ mode = "symbol_text" }),
+		format = require("lspkind").cmp_format({ mode = "symbol_text" }),
 	},
 	mapping = {
 		["<C-Space>"] = cmp.mapping.complete(),
-		["<CR>"] = cmp.mapping.confirm {
+		["<CR>"] = cmp.mapping.confirm({
 			behavior = cmp.ConfirmBehavior.Replace,
 			select = false,
-		},
+		}),
 		["<Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item()
@@ -62,13 +62,10 @@ local options = {
 		{ name = "nvim_lsp" },
 		{ name = "nvim_lua" },
 		{ name = "path" },
-		{ name = 'nvim_lsp_signature_help' },
+		{ name = "nvim_lsp_signature_help" },
 	},
 }
 
-cmp.event:on(
-	'confirm_done',
-	cmp_autopairs.on_confirm_done()
-)
+cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
 cmp.setup(options)

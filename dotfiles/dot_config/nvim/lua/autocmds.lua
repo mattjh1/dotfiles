@@ -1,8 +1,11 @@
 local autocmd = vim.api.nvim_create_autocmd
+local augroup = vim.api.nvim_create_augroup
+local filetypedetect_group = augroup("filetypedetect", { clear = true })
 
 -- Check if html file contains go templating (hugo), treat as go template then
-autocmd({ "BufRead", "BufNewFile" }, {
+autocmd({ "BufRead", "BufNewFile", "BufReadPost", "BufWinEnter" }, {
 	pattern = "*.html",
+	group = filetypedetect_group,
 	callback = function()
 		if vim.fn.expand("%:e") == "html" then
 			if vim.fn.search("{{", "nw") ~= 0 then
@@ -10,20 +13,21 @@ autocmd({ "BufRead", "BufNewFile" }, {
 			end
 		end
 	end,
-	group = vim.api.nvim_create_augroup("filetypedetect", { clear = true }),
 })
---
--- -- let prettier treat gohtmltmpl as html
--- autocmd({ "BufRead", "BufNewFile" }, {
--- 	pattern = "*.html",
--- 	callback = function()
--- 		if vim.fn.expand("%:e") == "html" and vim.fn.search("{{", "nw") ~= 0 then
--- 			vim.bo.filetype = "gohtmltmpl" -- Set filetype for syntax highlighting
--- 			vim.bo.syntax = "html" -- Set syntax highlighting to HTML for Prettier
--- 		end
--- 	end,
--- 	group = vim.api.nvim_create_augroup("filetypedetect", { clear = true }),
--- })
+
+autocmd("VimEnter", {
+	group = filetypedetect_group,
+	callback = function()
+		for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+			if vim.bo[buf].buftype == "" and vim.api.nvim_buf_is_loaded(buf) then
+				local filename = vim.api.nvim_buf_get_name(buf)
+				if filename:match("%.html$") and vim.fn.search("{{", "nw", buf) ~= 0 then
+					vim.bo[buf].filetype = "gohtmltmpl"
+				end
+			end
+		end
+	end,
+})
 
 -- Use relative & absolute line numbers in 'n' & 'i' modes respectively
 autocmd("InsertEnter", {
