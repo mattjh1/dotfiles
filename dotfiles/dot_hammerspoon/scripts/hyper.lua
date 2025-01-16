@@ -4,7 +4,7 @@ if not status then
 	hyperModeAppMappings = require("scripts.hyper-apps")
 end
 
-for i, mapping in ipairs(hyperModeAppMappings) do
+for _, mapping in ipairs(hyperModeAppMappings) do
 	local key = mapping[1]
 	local app = mapping[2]
 	hs.hotkey.bind({ "shift", "ctrl", "alt", "cmd" }, key, function()
