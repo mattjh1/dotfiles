@@ -134,8 +134,19 @@ return require("lazy").setup({
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
+		event = { "BufReadPre", "BufNewFile" },
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter-textobjects",
+		},
 		config = function()
 			require("plugins.treesitter")
+		end,
+	},
+	{
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		lazy = true,
+		config = function()
+			require("plugins.treesitter-textobjects")
 		end,
 	},
 	{

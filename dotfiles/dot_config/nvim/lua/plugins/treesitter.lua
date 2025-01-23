@@ -36,7 +36,6 @@ local options = {
 		"scss",
 		"sql",
 		"toml",
-		"vim",
 		"yaml",
 		"markdown",
 		"markdown_inline",
@@ -45,6 +44,7 @@ local options = {
 		enable = true,
 		use_languagetree = true,
 	},
+	indent = { enable = true },
 }
 
 require("nvim-treesitter.configs").setup(options)
