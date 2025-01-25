@@ -1,0 +1,45 @@
+[user]
+  signingkey = ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCdtoTrDZcfOt5ZLmwDoeeBW+evZ/veRMV53Yvv2Yp1hSN3i8ooghvI8yHkn1ODoSOU55FP5PrBeOiEtFyizV+3QDG/6PnfFky+Lr7TVvO2R7LQ378OIr8/gcoRp3PbbdN3TPnPteVhfQiMdwd1Um5azAlMGcrilEARJHRI4mUgBw/4ZImpxX9tOCJSEmTuo3ci4ccIJ6sAueW6kqeGr5O9S0lhTU/qKRFP+Xgo+AOwbYLItjZrTrG1EXU0wN2BzfcGWn17g7oZrnrimsU080ZVnxun4YfJm3XXxAHT1n6xV7+6PKQyQK8CEh4Ye/kKRuSCpFYtso8UrM+hQ+mY+24sKd2z+iMkv5TU32xpiu3yb4QeRkQnUZl5tc0cdEgRGfPHbVZopWb5XLRg7ZS8gX+ryuW+XgcS10lC3uisV3YPY8RvbIEEFTT7XGT1jySHGWy886Ks7XP+D16Z6UQxyuFNgqwpa8UPc7FyMa+o9mV124pLk8uwtWJcEOYS1BmGc/8nblxdpr5D7TeqRGorwVKwk+0noAoyqC0lTwI1SK163krsF3//GENgKMguaqhNqqSUg64YZiwuqzzy5sgGgmIO+Sx/lsSiJkwLGgBwMJaFjbr2u4AnvgrgcPInb+oL79KIQqUVl28PAsnlW/ydzs8a1RVpFOfWpRUThJi/nS2dwQ==
+	email = me@mattjh.sh
+	name = Mattias Holmgren
+
+[gpg]
+  format = ssh
+
+[gpg "ssh"]
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+
+[commit]
+  gpgsign = true
+
+[fetch]
+  prune = true
+
+[init]
+  defaultBranch = main
+	
+[pull]
+	rebase = true
+	
+[color]
+	ui = true
+
+[core]
+    pager = delta
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true  # use n and N to move between diff sections
+    side-by-side = true
+    features = nord
+
+[delta "nord"]
+    syntax-theme = Nord
+
+[merge]
+    conflictstyle = zdi
+
+[diff]
+    colorMoved = default
