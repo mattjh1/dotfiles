@@ -39,7 +39,7 @@
     syntax-theme = Nord
 
 [merge]
-    conflictstyle = zdi
+    conflictstyle = diff3
 
 [diff]
     colorMoved = default
