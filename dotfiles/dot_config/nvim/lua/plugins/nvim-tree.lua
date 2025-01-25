@@ -1,10 +1,9 @@
 local tree = require("nvim-tree")
 
 tree.setup({
-	hijack_cursor = true,
-	sync_root_with_cwd = true,
 	view = {
-		adaptive_size = true,
+		width = 35,
+		relativenumber = true,
 	},
 	renderer = {
 		full_name = true,
@@ -15,6 +14,12 @@ tree.setup({
 			enable = true,
 		},
 		icons = {
+			glyphs = {
+				folder = {
+					arrow_closed = "", -- arrow when folder is closed
+					arrow_open = "", -- arrow when folder is open
+				},
+			},
 			git_placement = "signcolumn",
 			show = {
 				file = true,
@@ -35,9 +40,12 @@ tree.setup({
 	},
 	filters = {
 		custom = {
-			"^.git$",
+			".DS_Store",
 		},
 		dotfiles = false,
+	},
+	git = {
+		ignore = false,
 	},
 	actions = {
 		change_dir = {

@@ -6,8 +6,13 @@ local trouble = require("trouble.sources.telescope")
 
 require("telescope").setup({
 	defaults = {
+		path_display = { "smart" },
 		mappings = {
-			i = { ["<c-t>"] = trouble.open_with_trouble, ["<c-e>"] = actions.to_fuzzy_refine },
+			i = {
+				["<c-t>"] = trouble.open_with_trouble,
+				["<c-e>"] = actions.to_fuzzy_refine,
+				["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+			},
 			n = { ["<c-t>"] = trouble.open_with_trouble, ["<c-e>"] = actions.to_fuzzy_refine },
 		},
 	},

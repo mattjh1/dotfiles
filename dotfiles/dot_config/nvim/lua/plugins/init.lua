@@ -66,6 +66,10 @@ return require("lazy").setup({
 		end,
 	},
 	{
+		"stevearc/dressing.nvim",
+		event = "VeryLazy",
+	},
+	{
 		"nvim-tree/nvim-tree.lua",
 		version = "*",
 		dependencies = {

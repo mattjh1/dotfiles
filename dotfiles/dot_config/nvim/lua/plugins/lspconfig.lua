@@ -161,3 +161,8 @@ end
 lspconfig.golangci_lint_ls.setup({
 	filetypes = { "go", "gomod" },
 })
+
+-- c/c++
+lspconfig.clangd.setup({
+	capabilities = capabilities,
+})

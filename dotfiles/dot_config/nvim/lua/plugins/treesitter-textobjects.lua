@@ -48,14 +48,14 @@ local options = {
 				["mcc"] = { query = "@class.outer", desc = "Next class end" },
 			},
 			goto_previous_start = {
-				["m,f"] = { query = "@call.outer", desc = "Prev function call start" },
-				["m,m"] = { query = "@function.outer", desc = "Prev method/function def start" },
-				["m,c"] = { query = "@class.outer", desc = "Prev class start" },
+				[",mf"] = { query = "@call.outer", desc = "Prev function call start" },
+				[",mm"] = { query = "@function.outer", desc = "Prev method/function def start" },
+				[",mc"] = { query = "@class.outer", desc = "Prev class start" },
 			},
 			goto_previous_end = {
-				["m,ff"] = { query = "@call.outer", desc = "Prev function call end" },
-				["m,mm"] = { query = "@function.outer", desc = "Prev method/function def end" },
-				["m,cc"] = { query = "@class.outer", desc = "Prev class end" },
+				[",mff"] = { query = "@call.outer", desc = "Prev function call end" },
+				[",mmm"] = { query = "@function.outer", desc = "Prev method/function def end" },
+				[",mcc"] = { query = "@class.outer", desc = "Prev class end" },
 			},
 		},
 	},
@@ -70,7 +70,7 @@ vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move)
 vim.keymap.set({ "n", "x", "o" }, "'", ts_repeat_move.repeat_last_move_opposite)
 
 -- Optionally, make builtin f, F, t, T also repeatable with ; and ,
-vim.keymap.set({ "n", "x", "o" }, "f", ts_repeat_move.builtin_f)
-vim.keymap.set({ "n", "x", "o" }, "F", ts_repeat_move.builtin_F)
-vim.keymap.set({ "n", "x", "o" }, "t", ts_repeat_move.builtin_t)
-vim.keymap.set({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T)
+vim.keymap.set({ "n", "x", "o" }, "f", ts_repeat_move.builtin_f_expr, { expr = true })
+vim.keymap.set({ "n", "x", "o" }, "F", ts_repeat_move.builtin_F_expr, { expr = true })
+vim.keymap.set({ "n", "x", "o" }, "t", ts_repeat_move.builtin_t_expr, { expr = true })
+vim.keymap.set({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T_expr, { expr = true })
