@@ -1,5 +1,5 @@
 local options = {
-	automatic_installation = true,
+	automatic_installation = false,
 
 	ui = {
 		icons = {
