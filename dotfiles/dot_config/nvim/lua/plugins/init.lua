@@ -71,6 +71,7 @@ return require("lazy").setup({
 	},
 	{
 		"nvim-tree/nvim-tree.lua",
+		cmd = "NvimTreeToggle",
 		version = "*",
 		dependencies = {
 			"kyazdani42/nvim-web-devicons",
@@ -111,6 +112,7 @@ return require("lazy").setup({
 	},
 	{
 		"folke/trouble.nvim",
+		event = "VeryLazy",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		opts = {
 			focus = true,
@@ -155,6 +157,8 @@ return require("lazy").setup({
 	},
 	{
 		"williamboman/mason.nvim",
+		cmd = "Mason",
+		event = "VeryLazy",
 		dependencies = {
 			"williamboman/mason-lspconfig.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
@@ -165,6 +169,7 @@ return require("lazy").setup({
 	},
 	{
 		"neovim/nvim-lspconfig",
+		event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			require("plugins.lspconfig")
 		end,
@@ -226,16 +231,15 @@ return require("lazy").setup({
 	},
 	{
 		"nvim-telescope/telescope-fzf-native.nvim",
-		build =
-		"cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+		build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
 	},
 	{
 		"nvim-telescope/telescope-file-browser.nvim",
 		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim", "kyazdani42/nvim-web-devicons" },
 	},
 	{
-		lazy = true,
 		"nvim-telescope/telescope.nvim",
+		event = "VeryLazy",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope-fzf-native.nvim",
@@ -247,8 +251,8 @@ return require("lazy").setup({
 		end,
 	},
 	{
-		lazy = true,
 		"chrisgrieser/nvim-spider",
+		event = "VeryLazy",
 	},
 	{
 		lazy = false,
@@ -271,6 +275,7 @@ return require("lazy").setup({
 	},
 	{
 		"nvimtools/none-ls.nvim",
+		event = "BufReadPre",
 		dependencies = {
 			"nvimtools/none-ls-extras.nvim",
 			"jay-babu/mason-null-ls.nvim",

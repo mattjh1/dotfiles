@@ -45,59 +45,6 @@ lspconfig.ts_ls.setup({
 	},
 })
 
--- emmet
-lspconfig.emmet_ls.setup({
-	-- on_attach = on_attach,
-	capabilities = capabilities,
-	filetypes = {
-		"css",
-		"html",
-		"javascript",
-		"javascriptreact",
-		"less",
-		"sass",
-		"scss",
-		"typescriptreact",
-	},
-})
-
--- html
-lspconfig.html.setup({
-	on_attach = function(client)
-		client.server_capabilities.docmentRangeFormattingProvider = false
-	end,
-	capabilities = capabilities,
-})
-
--- tailwindcss
-lspconfig.tailwindcss.setup({
-	on_attach = function(client)
-		client.server_capabilities.docmentRangeFormattingProvider = false
-	end,
-	capabilities = capabilities,
-})
-
--- css
-lspconfig.cssls.setup({
-	capabilities = capabilities,
-	settings = {
-		scss = {
-			lint = {
-				idSelector = "warning",
-				zeroUnits = "warning",
-				duplicateProperties = "warning",
-			},
-			completion = {
-				completePropertyWithSemicolon = true,
-				triggerPropertyValueCompletion = true,
-			},
-		},
-	},
-	on_attach = function(client)
-		client.server_capabilities.docmentRangeFormattingProvider = false
-	end,
-})
-
 -- python
 require("lspconfig").ruff.setup({})
 
@@ -160,9 +107,4 @@ if not configs.golangcilsp then
 end
 lspconfig.golangci_lint_ls.setup({
 	filetypes = { "go", "gomod" },
-})
-
--- c/c++
-lspconfig.clangd.setup({
-	capabilities = capabilities,
 })
