@@ -65,9 +65,17 @@ return require("lazy").setup({
 			require("plugins.debuggers")
 		end,
 	},
+	-- lazy.nvim
 	{
-		"stevearc/dressing.nvim",
+		"folke/noice.nvim",
 		event = "VeryLazy",
+		dependencies = {
+			"MunifTanjim/nui.nvim",
+			"rcarriga/nvim-notify",
+		},
+		config = function()
+			require("plugins.noice")
+		end,
 	},
 	{
 		"nvim-tree/nvim-tree.lua",
@@ -231,7 +239,8 @@ return require("lazy").setup({
 	},
 	{
 		"nvim-telescope/telescope-fzf-native.nvim",
-		build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+		build =
+		"cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
 	},
 	{
 		"nvim-telescope/telescope-file-browser.nvim",

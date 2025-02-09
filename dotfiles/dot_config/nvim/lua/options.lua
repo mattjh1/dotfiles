@@ -15,7 +15,7 @@ vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,
 vim.opt.laststatus = 3
 vim.opt.statusline = " "
 vim.opt.cmdheight = 1
-vim.opt.lazyredraw = true
+vim.opt.lazyredraw = false
 
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
