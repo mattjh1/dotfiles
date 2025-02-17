@@ -87,6 +87,11 @@ brew:
       - derailed/k9s/k9s
       - pngpaste
       - hugo
+      - universal-ctags
+      - git-delta
+      - irssi
+      - colima
+      - golangci-lint
     darwin:
       - dockutil
       - switchaudio-osx
@@ -133,7 +138,7 @@ asdf_plugins:
   - name: "golang"
     repository: "https://github.com/kennyp/asdf-golang"
     versions:
-      - 1.22.0
+      - 1.24.0
     delete_versions: []
     global: system
 
