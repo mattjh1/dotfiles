@@ -1,0 +1,36 @@
+---
+- name: Install Podman Desktop
+  community.general.homebrew_cask:
+    name: podman-desktop
+    state: present
+    install_options: no-quarantine
+    accept_external_apps: true
+  tags: homebrew
+
+- name: Install Lima (Homebrew formula)
+  homebrew:
+    name: lima
+    state: present
+  tags: homebrew
+
+- name: Initialize Podman machine
+  shell: podman machine init
+  args:
+    creates: ~/.local/share/containers/podman/machine/qemu/podman-machine-default.json
+
+- name: Start Podman machine
+  shell: podman machine start
+
+- name: Enable Podman API socket
+  shell: podman system service --time=0 unix:///run/user/$(id -u)/podman/podman.sock &
+  async: 10
+  poll: 0
+
+- name: Verify Podman installation
+  shell: podman info
+  register: podman_info
+  changed_when: false
+
+- name: Print Podman info
+  debug:
+    msg: "{{ podman_info.stdout }}"

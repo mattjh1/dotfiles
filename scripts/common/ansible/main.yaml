@@ -1,5 +1,6 @@
 ---
 - hosts: 127.0.0.1
+  gather_facts: yes
   strategy: linear
   connection: local
 
@@ -42,3 +43,6 @@
 
     - name: zsh
       tags: zsh
+
+    - name: podman
+      tags: podman
