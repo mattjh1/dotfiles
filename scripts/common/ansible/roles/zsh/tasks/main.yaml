@@ -1,6 +1,6 @@
 ---
 - import_tasks: darwin.yaml
-  when: ansible_system == "Darwin"
+  when: ansible_facts['os_family'] == "Darwin"
 
 - import_tasks: rhel.yaml
-  when: ansible_system == "RedHat"
+  when: ansible_facts['os_family'] == "RedHat"

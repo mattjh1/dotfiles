@@ -3,4 +3,3 @@
   ansible.builtin.homebrew:
     name: zsh
     state: latest
-  when: is_macos

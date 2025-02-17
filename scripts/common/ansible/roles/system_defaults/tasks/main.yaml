@@ -1,4 +1,3 @@
 ---
-
 - import_tasks: darwin.yaml
-  when: ansible_system == "Darwin"
+  when: ansible_facts['os_family'] == "Darwin"
