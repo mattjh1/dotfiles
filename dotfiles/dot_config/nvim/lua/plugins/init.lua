@@ -28,17 +28,11 @@ return require("lazy").setup({
 		},
 	},
 	defaults = { lazy = false },
-	"rafamadriz/friendly-snippets",
-	"saadparwaiz1/cmp_luasnip",
-	"hrsh7th/cmp-nvim-lua",
-	"hrsh7th/cmp-nvim-lsp",
-	"hrsh7th/cmp-path",
 	"ojroques/nvim-bufdel",
 	"ahmedkhalf/project.nvim",
 	{
 		"epwalsh/obsidian.nvim",
 		version = "*",
-		lazy = true,
 		ft = "markdown",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
@@ -47,13 +41,9 @@ return require("lazy").setup({
 			require("plugins.obsidian")
 		end,
 	},
-	{ "mfussenegger/nvim-dap" },
-	{ "theHamsta/nvim-dap-virtual-text" },
-	{ "nvim-neotest/nvim-nio" },
-	{ "rcarriga/nvim-dap-ui" },
 	{
 		"mfussenegger/nvim-dap",
-		lazy = true,
+		event = "BufReadPre",
 		dependencies = {
 			"mfussenegger/nvim-dap-python",
 			"nvim-telescope/telescope-dap.nvim",
@@ -120,7 +110,7 @@ return require("lazy").setup({
 	},
 	{
 		"folke/trouble.nvim",
-		event = "VeryLazy",
+		cmd = { "TroubleToggle", "Trouble" },
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		opts = {
 			focus = true,
@@ -158,7 +148,7 @@ return require("lazy").setup({
 	},
 	{
 		"nvim-treesitter/nvim-treesitter-textobjects",
-		lazy = true,
+		event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			require("plugins.treesitter-textobjects")
 		end,
@@ -177,14 +167,20 @@ return require("lazy").setup({
 	},
 	{
 		"neovim/nvim-lspconfig",
-		event = { "BufReadPre", "BufNewFile" },
+		event = { "LspAttach" },
 		config = function()
 			require("plugins.lspconfig")
 		end,
 	},
 	{
 		"hrsh7th/nvim-cmp",
-		lazy = true,
+		event = "InsertEnter",
+		dependencies = {
+			"hrsh7th/cmp-nvim-lua",
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-path",
+			"saadparwaiz1/cmp_luasnip",
+		},
 		config = function()
 			require("plugins.cmp")
 		end,
@@ -192,7 +188,7 @@ return require("lazy").setup({
 	{
 		"L3MON4D3/LuaSnip",
 		version = "v2.*",
-		lazy = true,
+		event = "InsertEnter",
 		dependencies = { "onsails/lspkind.nvim", "rafamadriz/friendly-snippets" },
 		run = "make install_jsregexp",
 		config = function()
@@ -217,8 +213,8 @@ return require("lazy").setup({
 		end,
 	},
 	{
-		lazy = true,
 		"numToStr/Comment.nvim",
+		keys = { "gc", "gb" },
 		config = function()
 			require("Comment").setup()
 		end,
@@ -239,8 +235,7 @@ return require("lazy").setup({
 	},
 	{
 		"nvim-telescope/telescope-fzf-native.nvim",
-		build =
-		"cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+		build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
 	},
 	{
 		"nvim-telescope/telescope-file-browser.nvim",
@@ -279,7 +274,7 @@ return require("lazy").setup({
 	},
 	{
 		"windwp/nvim-autopairs",
-		event = "InsertEnter",
+		event = { "InsertEnter", "CmdlineEnter" },
 		opts = {},
 	},
 	{
@@ -303,7 +298,6 @@ return require("lazy").setup({
 		config = function()
 			require("go").setup()
 		end,
-		event = { "CmdlineEnter" },
 		ft = { "go", "gomod" },
 		build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
 	},

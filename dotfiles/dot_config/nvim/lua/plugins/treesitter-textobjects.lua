@@ -2,6 +2,7 @@ local options = {
 	textobjects = {
 		select = {
 			enable = true,
+			disable = { "markdown" },
 
 			-- Automatically jump forward to textobj, similar to targets.vim
 			lookahead = true,
