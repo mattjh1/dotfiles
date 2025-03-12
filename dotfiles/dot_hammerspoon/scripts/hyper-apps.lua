@@ -16,7 +16,6 @@ return {
 	--
 	-- { "c", "Hub | Microsoft Teams" }, -- "C" for "Chat" use for Teams PWA app
 	{ "c", "Microsoft Teams" }, -- "C" for "Chat" use for Teams app
-	{ "e", "Visual Studio Code" }, -- "E" for "Editor"
 	{ "f", "Finder" }, -- "F" for "Finder"
 	{ "v", "Obsidian" }, -- "F" for "Finder"
 	{ "o", "Microsoft Outlook" }, -- "O" for "Outlook"
