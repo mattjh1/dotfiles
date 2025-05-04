@@ -9,7 +9,7 @@ autocmd({ "BufRead", "BufNewFile", "BufReadPost", "BufWinEnter" }, {
 	callback = function()
 		if vim.fn.expand("%:e") == "html" then
 			if vim.fn.search("{{", "nw") ~= 0 then
-				vim.bo.filetype = "gohtmltmpl"
+				vim.b.is_hugo_template = true
 			end
 		end
 	end,
