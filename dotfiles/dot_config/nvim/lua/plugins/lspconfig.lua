@@ -78,6 +78,7 @@ lspconfig["lua_ls"].setup({
 
 -- golang
 lspconfig.gopls.setup({
+	filetypes = { "go", "gomod", "gowork", "gotmpl", "gohtmltmpl" },
 	settings = {
 		gopls = {
 			gofumpt = true,

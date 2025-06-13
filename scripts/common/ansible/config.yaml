@@ -92,6 +92,7 @@ brew:
       - irssi
       - colima
       - golangci-lint
+      - cloc
     darwin:
       - dockutil
       - switchaudio-osx
@@ -131,21 +132,21 @@ asdf_plugins:
   - name: "python"
     repository: "https://github.com/danhper/asdf-python"
     versions:
-      - 3.12.0
+      - 3.13.5
     delete_versions: []
     global: system
 
   - name: "golang"
     repository: "https://github.com/kennyp/asdf-golang"
     versions:
-      - 1.24.0
+      - 1.24.4
     delete_versions: []
     global: system
 
   - name: "nodejs"
     repository: "https://github.com/asdf-vm/asdf-nodejs"
     versions:
-      - 22.2.0
+      - 24.2.0
     delete_versions: []
     global: system
 
@@ -159,9 +160,9 @@ asdf_plugins:
   - name: "kubectl"
     repository: "https://github.com/asdf-community/asdf-kubectl"
     versions:
-      - 1.30.0
+      - 1.33.1
     delete_versions: []
-    global: 1.30.0
+    global: 1.33.1
 
 golang:
   path: "{{ ansible_user_dir }}/.go"

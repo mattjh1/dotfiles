@@ -7,17 +7,20 @@ null_ls.setup({
 		null_ls.builtins.formatting.stylua,
 		null_ls.builtins.formatting.prettier.with({
 			filetypes = { "html" },
-			condition = function()
-				return vim.b.is_hugo_template or true
+			condition = function(utils)
+				return utils.root_has_file_matches("^config%.(yaml|toml)$")
+					or utils.root_has_file("hugo.yaml")
+					or utils.root_has_file("hugo.toml")
+					or utils.root_has_file("layouts/index.html")
+					or utils.root_has_file("content/_index.md")
 			end,
 		}),
 		null_ls.builtins.formatting.isort,
 		null_ls.builtins.formatting.black,
 		null_ls.builtins.formatting.goimports,
 
-		require("none-ls.code_actions.eslint_d"),
-
 		-- require("none-ls.formatting.autopep8"),
+		require("none-ls.code_actions.eslint_d"),
 		require("none-ls.diagnostics.eslint_d"),
 	},
 	on_attach = function(client, bufnr)
