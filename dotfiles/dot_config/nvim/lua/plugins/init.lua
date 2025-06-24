@@ -40,7 +40,20 @@ return require("lazy").setup({
 		config = function()
 			require("plugins.obsidian")
 		end,
-	},
+  {
+    "ellisonleao/glow.nvim",
+    cmd = "Glow",
+    ft = { "markdown" },
+    config = function()
+      require("glow").setup({
+        style = "dark", -- "dark" or "light"
+        width = 120,
+        height = 100,
+        width_ratio = 0.8,
+        height_ratio = 0.8,
+      })
+    end,
+  },
 	{
 		"mfussenegger/nvim-dap",
 		event = "BufReadPre",
@@ -301,4 +314,4 @@ return require("lazy").setup({
 		ft = { "go", "gomod" },
 		build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
 	},
-})
+}})

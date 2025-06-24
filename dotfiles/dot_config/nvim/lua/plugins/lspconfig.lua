@@ -82,6 +82,7 @@ lspconfig.gopls.setup({
 	settings = {
 		gopls = {
 			gofumpt = true,
+			buildFlags = { "-tags=testable" },
 		},
 	},
 })
@@ -108,4 +109,10 @@ if not configs.golangcilsp then
 end
 lspconfig.golangci_lint_ls.setup({
 	filetypes = { "go", "gomod" },
+})
+
+require("lspconfig").marksman.setup({
+	-- Optional: specific settings for Obsidian
+	filetypes = { "markdown", "markdown.mdx" },
+	root_dir = require("lspconfig.util").root_pattern(".obsidian", ".git"),
 })
