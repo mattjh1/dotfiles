@@ -1,0 +1,6 @@
+# Enable file completion for all commands in ~/.local/bin
+for cmd in ~/.local/bin/*; do
+    if [[ -x "$cmd" ]]; then
+        compdef _files $(basename "$cmd")
+    fi
+done
