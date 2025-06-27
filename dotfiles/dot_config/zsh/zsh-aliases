@@ -26,7 +26,6 @@ alias st='spotify status'
 alias zz='pmset displaysleepnow'
 alias mycomp='system_profiler SPSoftwareDataType SPHardwareDataType'
 alias kc="minikube kubectl --"
-alias vim="nvim"
 alias vi="nvim"
 alias v="nvim"
 alias cat="bat --style=plain"
