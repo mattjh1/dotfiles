@@ -1,0 +1,18 @@
+# <type>[optional scope]: <description>
+#
+# Types:
+#   feat     – new feature
+#   fix      – bug fix
+#   docs     – documentation only changes
+#   style    – formatting, missing semi colons, etc
+#   refactor – refactoring production code
+#   test     – adding missing tests
+#   chore    – changes to the build process, CI, etc
+#
+# Examples:
+#   feat: add sitemap parser
+#   fix(cli): handle empty URLs gracefully
+#   docs(readme): update usage instructions
+#
+# --------------------
+# Write your commit message below this line:
