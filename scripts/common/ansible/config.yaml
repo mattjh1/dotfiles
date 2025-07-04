@@ -50,6 +50,7 @@ brew:
       - automake
       - awscli
       - bat
+      - cloudflared
       - codespell
       - coreutils
       - moreutils
