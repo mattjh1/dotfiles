@@ -1,0 +1,205 @@
+" Basic Vim configuration resembling Neovim setup
+
+" General UI and behavior
+set clipboard=unnamed
+set nocompatible              " Be iMproved, required
+filetype off                  " required
+
+" Plug-in management
+call plug#begin('~/.vim/plugged')
+
+Plug 'junegunn/vim-plug'
+Plug 'itchyny/lightline.vim'
+Plug 'preservim/nerdtree'
+Plug 'airblade/vim-gitgutter'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+
+call plug#end()
+
+set relativenumber            " Relative line numbers
+set number                    " Absolute line numbers
+set numberwidth=2             " Width of the number column
+set showmode                  " Don't show -- INSERT -- etc.
+set undofile                  " Persistent undo
+set undodir=~/.vim/undodir    " Directory for undo files
+set laststatus=2              " Always show status line
+set cmdheight=1               " Command line height
+set lazyredraw                " Don't redraw while executing macros
+
+" Indentation and formatting
+set smartindent               " Smart auto-indenting
+set expandtab                 " Use spaces instead of tabs
+set tabstop=2                 " Number of spaces a tab counts for
+set shiftwidth=2              " Number of spaces to use for autoindent
+set softtabstop=2             " Number of spaces a tab counts for when editing
+
+" Searching
+set hlsearch                  " Highlight search results
+set incsearch                 " Incremental search
+set scrolloff=999             " Keep cursor in the middle of the screen
+set signcolumn=yes            " Always show the sign column
+set smartcase                 " Smart case search
+set ignorecase                " Ignore case in search patterns
+
+" Folding
+set foldcolumn=0              " No fold column
+set foldenable                " Enable folding
+set foldlevel=99              " Don't fold anything by default
+set foldmethod=indent         " Fold based on indentation
+set foldnestmax=1             " Maximum fold level
+
+" Colors and appearance
+set termguicolors             " Enable true colors
+
+" Session options (basic equivalent)
+set sessionoptions=blank,buffers,curdir,folds,help,tabpages,winsize,winpos
+
+" Keybinds
+let mapleader = ","
+let maplocalleader = ","
+
+" Basic mappings
+nnoremap Y y$
+nnoremap <leader>d "_d
+xnoremap <leader>d "_d
+
+" Better indenting
+vnoremap < <gv
+vnoremap > >gv
+
+" Move line up/down
+vnoremap K :m '<-2<CR>gv=gv
+vnoremap J :m '>+1<CR>gv=gv
+
+" Change pane vertically
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+
+" Change pane horizontally
+nnoremap J <C-w>j
+nnoremap K <C-w>k
+
+" New line up/down without entering insert mode
+nnoremap OO O<Esc>k
+nnoremap oo o<Esc>j
+
+" Center on movements
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+" Save
+nnoremap <leader>w :wa<CR>
+
+" Plugin specific configurations
+" Lightline
+let g:lightline = {
+      \ 'colorscheme': 'powerline',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
+      \   'right': [ [ 'lineinfo' ],
+      \              [ 'percent' ],
+      \              [ 'fileformat', 'fileencoding', 'filetype' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head'
+      \ },
+      \}
+
+" NERDTree
+nnoremap <leader>e :NERDTreeToggle<CR>
+let g:NERDTreeDirArrows = 1
+let g:NERDTreeShowHidden = 1
+
+" FZF
+nnoremap <leader>p :Files<CR>
+nnoremap <leader>f :Rg<CR>
+
+" Goyo and Limelight (basic setup)
+" You can configure these further as needed.
+" For example:
+" let g:goyo_width = 100
+" let g:goyo_height = '70%'
+" let g:limelight_conceal_cursorline = 0
+
+" The following keybinds are dependent on Neovim plugins and Lua functions.
+" They are commented out as they won't work in a basic Vim setup without
+" those plugins and their corresponding Vimscript implementations.
+
+" nnoremap <leader>x :lua require("bufdel")<CR> <cmd>BufDel<cr>
+" nnoremap <leader>X :lua require("bufdel")<CR> <cmd>BufDelOthers<cr>
+
+" Obsidian (requires obsidian.nvim)
+" nnoremap <leader>op :ObsidianQuickSwitch<CR>
+" nnoremap <leader>of :ObsidianSearch<CR>
+" nnoremap <leader>ot :ObsidianToday<CR>
+
+" Telescope (requires telescope.nvim)
+" nnoremap <leader>b :Telescope file_browser path=%:p:h select_buffer=true<CR>
+" nnoremap <leader>f :lua require("telescope")<CR> <cmd>Telescope live_grep<cr>
+" nnoremap <leader>p :lua require("telescope")<CR> <cmd>Telescope find_files<cr>
+" nnoremap <leader>bb :lua require("telescope")<CR> <cmd>Telescope buffers<cr>
+" nnoremap dr :lua require("telescope.builtin").lsp_references()<CR>
+
+" Bufferline (requires bufferline.nvim)
+" nnoremap <C-j> :BufferLineCycleNext<CR>
+" nnoremap <C-k> :BufferLineCyclePrev<CR>
+
+" Nvim tree (requires nvim-tree.lua)
+" nnoremap :qa :NvimTreeClose<CR>:qa<CR>
+" nnoremap :qa! :NvimTreeClose<CR>:qa!<CR>
+" nnoremap :wqa :NvimTreeClose<CR>:wa<CR>:qa<CR>
+" nnoremap :wq :NvimTreeClose<CR>:wa<CR>:qa<CR>
+" nnoremap <leader>e :NvimTreeToggle<CR>
+
+" nvim-spider (requires nvim-spider)
+" nnoremap w <cmd>lua require('spider').motion('w')<CR>
+" onoremap w <cmd>lua require('spider').motion('w')<CR>
+" xnoremap w <cmd>lua require('spider').motion('w')<CR>
+" nnoremap e <cmd>lua require('spider').motion('e')<CR>
+" onoremap e <cmd>lua require('spider').motion('e')<CR>
+" xnoremap e <cmd>lua require('spider').motion('e')<CR>
+" nnoremap b <cmd>lua require('spider').motion('b')<CR>
+" onoremap b <cmd>lua require('spider').motion('b')<CR>
+" xnoremap b <cmd>lua require('spider').motion('b')<CR>
+" nnoremap ge <cmd>lua require('spider').motion('ge')<CR>
+" onoremap ge <cmd>lua require('spider').motion('ge')<CR>
+" xnoremap ge <cmd>lua require('spider').motion('ge')<CR>
+
+" Comment (requires Comment.nvim)
+" nnoremap gcc <cmd> :lua require('Comment.api').toggle.linewise.current()<CR>
+" vnoremap gc <esc><cmd> :lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>
+
+" LSP (requires nvim-lspconfig)
+" nnoremap df :lua vim.lsp.buf.definition()<CR>
+" nnoremap ga :lua vim.lsp.buf.code_action()<CR>
+" nnoremap gh :lua vim.diagnostic.open_float({ scope = "line" })<CR>
+" nnoremap <leader>r :lua vim.lsp.buf.rename()<CR>
+
+" DAP (requires nvim-dap)
+" nnoremap <leader>dc :lua require("dap").continue()<CR>
+" nnoremap <F10> :lua require("dap").step_over()<CR>
+" nnoremap <F11> :lua require("dap").step_into()<CR>
+" nnoremap <F12> :lua require("dap").step_out()<CR>
+" nnoremap <Leader>db :lua require("dap").toggle_breakpoint()<CR>
+
+" Trouble (requires trouble.nvim)
+" nnoremap <leadet>t <cmd>Trouble diagnostics toggle filter.buf=0<cr>
+" nnoremap <leader>xw <cmd>Trouble diagnostics toggle<cr>
+" nnoremap <leader>gt <cmd>Trouble symbols toggle pinned=true win.relative=win win.position=right<cr>
+" nnoremap gr <cmd>Trouble lsp_references toggle <cr>
+
+" Harpoon (requires harpoon)
+" nnoremap <leader>a :lua require("harpoon"):list():add()<CR>
+" nnoremap <leader>1 :lua require("harpoon"):list():select(1)<CR>
+" nnoremap <leader>2 :lua require("harpoon"):list():select(2)<CR>
+" nnoremap <leader>3 :lua require("harpoon"):list():select(3)<CR>
+" nnoremap <leader>4 :lua require("harpoon"):list():select(4)<CR>
+" nnoremap <leader>5 :lua require("harpoon"):list():select(5)<CR>
+" nnoremap <C-P> :lua require("harpoon"):list():prev()<CR>
+" nnoremap <C-N> :lua require("harpoon"):list():next()<CR>
