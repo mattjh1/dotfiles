@@ -9,13 +9,24 @@ else
   USE_BAT=true
 fi
 
+# Detect if output is being piped
+if [ -t 1 ]; then
+  IS_TTY=true
+else
+  IS_TTY=false
+fi
+
 for file in "$@"; do
   if [[ -f "$file" ]]; then
     echo -e "\n===================="
     echo "📄 $file"
     echo "===================="
     if [ "$USE_BAT" = true ]; then
-      bat --style=numbers --color=always --paging=never "$file"
+      if [ "$IS_TTY" = true ]; then
+        bat --style=numbers --color=always --paging=never "$file"
+      else
+        bat --style=plain --color=never --paging=never "$file"
+      fi
     else
       cat -n "$file"
     fi
