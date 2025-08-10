@@ -15,11 +15,25 @@ dap.listeners.before.event_exited.dapui_config = function()
 	dapui.close()
 end
 
-local path = require("mason-registry").get_package("debugpy"):get_install_path()
-print(path)
+-- Setup debugpy without calling refresh()
+local function setup_debugpy()
+	local mason_registry = require("mason-registry")
 
-dap_python.setup(path .. "/venv/bin/python")
-dap_python.test_runner = "pytest"
-dap_python.default_port = 38000
+	-- Check if debugpy is installed without calling refresh
+	local ok, debugpy = pcall(mason_registry.get_package, mason_registry, "debugpy")
+	if ok and debugpy:is_installed() then
+		local path = debugpy:get_install_path()
+		dap_python.setup(path .. "/venv/bin/python")
+		dap_python.test_runner = "pytest"
+	else
+		-- Fallback to system python
+		print("debugpy not found in Mason registry. Please install it with :MasonInstall debugpy")
+		dap_python.setup() -- This will use system python
+		dap_python.test_runner = "pytest"
+	end
+end
+
+-- Setup with a small delay to ensure Mason registry is ready
+vim.defer_fn(setup_debugpy, 100)
 
 dapui.setup()

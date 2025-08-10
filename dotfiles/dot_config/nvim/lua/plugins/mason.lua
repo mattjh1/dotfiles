@@ -1,6 +1,4 @@
 local options = {
-	automatic_installation = false,
-
 	ui = {
 		icons = {
 			package_installed = "✓",
@@ -20,8 +18,6 @@ require("mason-lspconfig").setup({
 		"gopls",
 		"marksman",
 	},
-	-- auto-install configured servers (with lspconfig)
-	automatic_installation = true,
 })
 
 require("mason-tool-installer").setup({
