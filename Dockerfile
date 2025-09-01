@@ -1,4 +1,4 @@
-FROM homebrew/ubuntu20.04:3.4.2
+FROM homebrew/ubuntu20.04:3.6.21
 
 ENV TIMEZONE "Europe/Stockholm"
 ENV DEBIAN_FRONTEND=noninteractive
