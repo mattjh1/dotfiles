@@ -1,16 +1,19 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:base"],
+  "extends": [
+    "config:recommended"
+  ],
   "timezone": "Europe/Stockholm",
-  "schedule": ["before 6am on monday"],
+  "schedule": [
+    "before 6am on monday"
+  ],
   "prConcurrentLimit": 2,
-  
   "customManagers": [
     {
       "customType": "regex",
       "description": "Update Neovim plugin versions in nested config",
-      "fileMatch": [
-        "^dotfiles/dot_config/nvim/.*\\.lua$"
+      "managerFilePatterns": [
+        "/^dotfiles/dot_config/nvim/.*\\.lua$/"
       ],
       "matchStrings": [
         "version\\s*=\\s*[\"'](?<currentValue>\\^?[0-9]+\\.[0-9]+\\.[0-9]+)[\"'][\\s,]*--\\s*(?<depName>[\\w-]+/[\\w.-]+)"
@@ -22,7 +25,9 @@
     {
       "customType": "regex",
       "description": "Update plugins in lazy-lock.json",
-      "fileMatch": ["^dotfiles/dot_config/nvim/lazy-lock\\.json$"],
+      "managerFilePatterns": [
+        "/^dotfiles/dot_config/nvim/lazy-lock\\.json$/"
+      ],
       "matchStrings": [
         "\"(?<depName>[^/]+/[^\"]+)\": \\{[^}]*\"commit\": \"(?<currentDigest>[a-f0-9]{7,40})\""
       ],
@@ -32,21 +37,26 @@
       "currentValueTemplate": "main"
     }
   ],
-  
   "packageRules": [
     {
       "description": "Neovim plugins - minor and patch updates only",
-      "matchFileNames": ["^dotfiles/dot_config/nvim/.*"],
-      "updateTypes": ["minor", "patch"],
-      "stabilityDays": 3,
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/.*"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "minimumReleaseAge": "3 days",
       "commitMessagePrefix": "chore(nvim): ",
       "semanticCommits": "enabled",
       "prPriority": -5
     },
-    
     {
       "description": "Critical Neovim plugins - patch only",
-      "matchFileNames": ["^dotfiles/dot_config/nvim/.*"],
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/.*"
+      ],
       "matchPackageNames": [
         "neovim/nvim-lspconfig",
         "hrsh7th/nvim-cmp",
@@ -54,39 +64,54 @@
         "williamboman/mason.nvim",
         "L3MON4D3/LuaSnip"
       ],
-      "updateTypes": ["patch"],
-      "stabilityDays": 7,
+      "matchUpdateTypes": [
+        "patch"
+      ],
+      "minimumReleaseAge": "7 days",
       "groupName": "Critical Neovim plugins",
       "prPriority": 10
     },
-    
     {
-      "description": "UI plugins can update more frequently", 
-      "matchFileNames": ["^dotfiles/dot_config/nvim/.*"],
+      "description": "UI plugins can update more frequently",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/.*"
+      ],
       "matchPackageNames": [
         "nvim-lualine/lualine.nvim",
-        "akinsho/bufferline.nvim", 
+        "akinsho/bufferline.nvim",
         "folke/noice.nvim",
         "gbprod/nord.nvim",
         "nvim-tree/nvim-tree.lua"
       ],
-      "updateTypes": ["minor", "patch"],
-      "stabilityDays": 1,
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "minimumReleaseAge": "1 day",
       "groupName": "UI Neovim plugins"
     },
-    
     {
       "description": "Group lazy-lock.json updates",
-      "matchFileNames": ["^dotfiles/dot_config/nvim/lazy-lock\\.json$"],
-      "updateTypes": ["patch", "minor"],
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchUpdateTypes": [
+        "patch",
+        "minor"
+      ],
       "groupName": "Neovim plugin commits",
-      "schedule": ["before 6am on monday"]
+      "schedule": [
+        "before 6am on monday"
+      ]
     }
   ],
-  
-  "assignees": ["mattjh1"],
-  "labels": ["dependencies", "neovim"],
+  "assignees": [
+    "mattjh1"
+  ],
+  "labels": [
+    "dependencies",
+    "neovim"
+  ],
   "prTitle": "chore(nvim): update {{#if groupName}}{{{groupName}}}{{else}}{{depName}}{{/if}}",
-  
   "prBodyTemplate": "This PR updates Neovim plugins.\n\n{{{table}}}\n\n---\n\n**Testing checklist:**\n- [ ] `nvim --headless +checkhealth +qa` passes\n- [ ] Core functionality works (LSP, completion, etc.)\n- [ ] No obvious startup errors\n\n_Updates are limited to patch/minor versions to avoid breaking changes._"
 }
