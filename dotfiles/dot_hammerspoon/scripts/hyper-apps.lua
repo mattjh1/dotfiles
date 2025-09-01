@@ -16,9 +16,7 @@ return {
 	--
 	-- { "c", "Hub | Microsoft Teams" }, -- "C" for "Chat" use for Teams PWA app
 	--
-	-- COMMENT THIS OUT TIL WORK STARTS AGAIN
-	-- { "c", "Microsoft Teams" },  -- "C" for "Chat" use for Teams app
-
+	{ "c", "Microsoft Teams" }, -- "C" for "Chat" use for Teams app
 	{ "f", "Finder" }, -- "F" for "Finder"
 	{ "v", "Obsidian" }, -- "F" for "Finder"
 	{ "o", "Microsoft Outlook" }, -- "O" for "Outlook"
