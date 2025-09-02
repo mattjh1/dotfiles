@@ -37,228 +37,497 @@
   "packageRules": [
     {
       "description": "Map lazy-lock.json plugin names to GitHub repos",
-      "matchFileNames": ["^dotfiles/dot_config/nvim/lazy-lock\\.json$"],
-      "packageRules": [
-        {
-          "matchPackageNames": ["LuaSnip"],
-          "packageName": "L3MON4D3/LuaSnip"
-        },
-        {
-          "matchPackageNames": ["Comment.nvim"],
-          "packageName": "numToStr/Comment.nvim"
-        },
-        {
-          "matchPackageNames": ["auto-session"],
-          "packageName": "rmagatti/auto-session"
-        },
-        {
-          "matchPackageNames": ["bufferline.nvim"],
-          "packageName": "akinsho/bufferline.nvim"
-        },
-        {
-          "matchPackageNames": ["cmp-nvim-lsp"],
-          "packageName": "hrsh7th/cmp-nvim-lsp"
-        },
-        {
-          "matchPackageNames": ["cmp-nvim-lua"],
-          "packageName": "hrsh7th/cmp-nvim-lua"
-        },
-        {
-          "matchPackageNames": ["cmp-path"],
-          "packageName": "hrsh7th/cmp-path"
-        },
-        {
-          "matchPackageNames": ["cmp_luasnip"],
-          "packageName": "saadparwaiz1/cmp_luasnip"
-        },
-        {
-          "matchPackageNames": ["friendly-snippets"],
-          "packageName": "rafamadriz/friendly-snippets"
-        },
-        {
-          "matchPackageNames": ["gitsigns.nvim"],
-          "packageName": "lewis6991/gitsigns.nvim"
-        },
-        {
-          "matchPackageNames": ["glow.nvim"],
-          "packageName": "ellisonleao/glow.nvim"
-        },
-        {
-          "matchPackageNames": ["go.nvim"],
-          "packageName": "ray-x/go.nvim"
-        },
-        {
-          "matchPackageNames": ["guihua.lua"],
-          "packageName": "ray-x/guihua.lua"
-        },
-        {
-          "matchPackageNames": ["harpoon"],
-          "packageName": "ThePrimeagen/harpoon"
-        },
-        {
-          "matchPackageNames": ["indent-blankline.nvim"],
-          "packageName": "lukas-reineke/indent-blankline.nvim"
-        },
-        {
-          "matchPackageNames": ["lazy.nvim"],
-          "packageName": "folke/lazy.nvim"
-        },
-        {
-          "matchPackageNames": ["lazygit.nvim"],
-          "packageName": "kdheepak/lazygit.nvim"
-        },
-        {
-          "matchPackageNames": ["lsp_signature.nvim"],
-          "packageName": "ray-x/lsp_signature.nvim"
-        },
-        {
-          "matchPackageNames": ["lspkind.nvim"],
-          "packageName": "onsails/lspkind.nvim"
-        },
-        {
-          "matchPackageNames": ["lualine.nvim"],
-          "packageName": "nvim-lualine/lualine.nvim"
-        },
-        {
-          "matchPackageNames": ["mason-lspconfig.nvim"],
-          "packageName": "williamboman/mason-lspconfig.nvim"
-        },
-        {
-          "matchPackageNames": ["mason-null-ls.nvim"],
-          "packageName": "jay-babu/mason-null-ls.nvim"
-        },
-        {
-          "matchPackageNames": ["mason-tool-installer.nvim"],
-          "packageName": "WhoIsSethDaniel/mason-tool-installer.nvim"
-        },
-        {
-          "matchPackageNames": ["mason.nvim"],
-          "packageName": "williamboman/mason.nvim"
-        },
-        {
-          "matchPackageNames": ["noice.nvim"],
-          "packageName": "folke/noice.nvim"
-        },
-        {
-          "matchPackageNames": ["none-ls-extras.nvim"],
-          "packageName": "nvimtools/none-ls-extras.nvim"
-        },
-        {
-          "matchPackageNames": ["none-ls.nvim"],
-          "packageName": "nvimtools/none-ls.nvim"
-        },
-        {
-          "matchPackageNames": ["nord.nvim"],
-          "packageName": "gbprod/nord.nvim"
-        },
-        {
-          "matchPackageNames": ["nui.nvim"],
-          "packageName": "MunifTanjim/nui.nvim"
-        },
-        {
-          "matchPackageNames": ["nvim-autopairs"],
-          "packageName": "windwp/nvim-autopairs"
-        },
-        {
-          "matchPackageNames": ["nvim-bufdel"],
-          "packageName": "ojroques/nvim-bufdel"
-        },
-        {
-          "matchPackageNames": ["nvim-cmp"],
-          "packageName": "hrsh7th/nvim-cmp"
-        },
-        {
-          "matchPackageNames": ["nvim-colorizer.lua"],
-          "packageName": "norcalli/nvim-colorizer.lua"
-        },
-        {
-          "matchPackageNames": ["nvim-dap"],
-          "packageName": "mfussenegger/nvim-dap"
-        },
-        {
-          "matchPackageNames": ["nvim-dap-python"],
-          "packageName": "mfussenegger/nvim-dap-python"
-        },
-        {
-          "matchPackageNames": ["nvim-dap-ui"],
-          "packageName": "rcarriga/nvim-dap-ui"
-        },
-        {
-          "matchPackageNames": ["nvim-dap-virtual-text"],
-          "packageName": "theHamsta/nvim-dap-virtual-text"
-        },
-        {
-          "matchPackageNames": ["nvim-lspconfig"],
-          "packageName": "neovim/nvim-lspconfig"
-        },
-        {
-          "matchPackageNames": ["nvim-nio"],
-          "packageName": "nvim-neotest/nvim-nio"
-        },
-        {
-          "matchPackageNames": ["nvim-notify"],
-          "packageName": "rcarriga/nvim-notify"
-        },
-        {
-          "matchPackageNames": ["nvim-spider"],
-          "packageName": "chrisgrieser/nvim-spider"
-        },
-        {
-          "matchPackageNames": ["nvim-surround"],
-          "packageName": "kylechui/nvim-surround"
-        },
-        {
-          "matchPackageNames": ["nvim-tree.lua"],
-          "packageName": "nvim-tree/nvim-tree.lua"
-        },
-        {
-          "matchPackageNames": ["nvim-treesitter"],
-          "packageName": "nvim-treesitter/nvim-treesitter"
-        },
-        {
-          "matchPackageNames": ["nvim-treesitter-textobjects"],
-          "packageName": "nvim-treesitter/nvim-treesitter-textobjects"
-        },
-        {
-          "matchPackageNames": ["nvim-web-devicons"],
-          "packageName": "nvim-tree/nvim-web-devicons"
-        },
-        {
-          "matchPackageNames": ["obsidian.nvim"],
-          "packageName": "epwalsh/obsidian.nvim"
-        },
-        {
-          "matchPackageNames": ["plenary.nvim"],
-          "packageName": "nvim-lua/plenary.nvim"
-        },
-        {
-          "matchPackageNames": ["project.nvim"],
-          "packageName": "ahmedkhalf/project.nvim"
-        },
-        {
-          "matchPackageNames": ["telescope-dap.nvim"],
-          "packageName": "nvim-telescope/telescope-dap.nvim"
-        },
-        {
-          "matchPackageNames": ["telescope-file-browser.nvim"],
-          "packageName": "nvim-telescope/telescope-file-browser.nvim"
-        },
-        {
-          "matchPackageNames": ["telescope-fzf-native.nvim"],
-          "packageName": "nvim-telescope/telescope-fzf-native.nvim"
-        },
-        {
-          "matchPackageNames": ["telescope-ui-select.nvim"],
-          "packageName": "nvim-telescope/telescope-ui-select.nvim"
-        },
-        {
-          "matchPackageNames": ["telescope.nvim"],
-          "packageName": "nvim-telescope/telescope.nvim"
-        },
-        {
-          "matchPackageNames": ["trouble.nvim"],
-          "packageName": "folke/trouble.nvim"
-        }
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "L3MON4D3/LuaSnip"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "numToStr/Comment.nvim"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "rmagatti/auto-session"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "akinsho/bufferline.nvim"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "hrsh7th/cmp-nvim-lsp"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "hrsh7th/cmp-nvim-lua"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "hrsh7th/cmp-path"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "saadparwaiz1/cmp_luasnip"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "rafamadriz/friendly-snippets"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "lewis6991/gitsigns.nvim"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "ellisonleao/glow.nvim"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "ray-x/go.nvim"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "ray-x/guihua.lua"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "ThePrimeagen/harpoon"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "lukas-reineke/indent-blankline.nvim"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "folke/lazy.nvim"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "kdheepak/lazygit.nvim"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "ray-x/lsp_signature.nvim"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "onsails/lspkind.nvim"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "nvim-lualine/lualine.nvim"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "williamboman/mason-lspconfig.nvim"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "jay-babu/mason-null-ls.nvim"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "WhoIsSethDaniel/mason-tool-installer.nvim"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "williamboman/mason.nvim"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "folke/noice.nvim"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "nvimtools/none-ls-extras.nvim"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "nvimtools/none-ls.nvim"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "gbprod/nord.nvim"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "MunifTanjim/nui.nvim"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "windwp/nvim-autopairs"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "ojroques/nvim-bufdel"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "hrsh7th/nvim-cmp"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "norcalli/nvim-colorizer.lua"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "mfussenegger/nvim-dap"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "mfussenegger/nvim-dap-python"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "rcarriga/nvim-dap-ui"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "theHamsta/nvim-dap-virtual-text"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "neovim/nvim-lspconfig"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "nvim-neotest/nvim-nio"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "rcarriga/nvim-notify"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "chrisgrieser/nvim-spider"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "kylechui/nvim-surround"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "nvim-tree/nvim-tree.lua"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "nvim-treesitter/nvim-treesitter"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "nvim-treesitter/nvim-treesitter-textobjects"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "nvim-tree/nvim-web-devicons"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "epwalsh/obsidian.nvim"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "nvim-lua/plenary.nvim"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "ahmedkhalf/project.nvim"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "nvim-telescope/telescope-dap.nvim"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "nvim-telescope/telescope-file-browser.nvim"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "nvim-telescope/telescope-fzf-native.nvim"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "nvim-telescope/telescope-ui-select.nvim"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "nvim-telescope/telescope.nvim"
+      ]
+    },
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": [
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
+      ],
+      "matchPackageNames": [
+        "folke/trouble.nvim"
       ]
     },
     {
