@@ -11,33 +11,256 @@
   "customManagers": [
     {
       "customType": "regex",
-      "description": "Update Neovim plugin versions in nested config",
+      "description": "Update Neovim plugin versions in Lua specs",
       "managerFilePatterns": [
-        "/^dotfiles/dot_config/nvim/.*\\.lua$/"
+        "^dotfiles/dot_config/nvim/.*\\.lua$"
       ],
       "matchStrings": [
-        "version\\s*=\\s*[\"'](?<currentValue>\\^?[0-9]+\\.[0-9]+\\.[0-9]+)[\"'][\\s,]*--\\s*(?<depName>[\\w-]+/[\\w.-]+)"
+        "[\"'](?<depName>[\\w-]+/[\\w.-]+)[\"'].*?version\\s*=\\s*[\"'](?<currentValue>\\^?[0-9]+\\.[0-9]+\\.[0-9]+)[\"']"
       ],
       "datasourceTemplate": "github-releases",
-      "depNameTemplate": "{{{depName}}}",
       "versioningTemplate": "semver"
     },
     {
       "customType": "regex",
-      "description": "Update plugins in lazy-lock.json",
+      "description": "Update plugins in lazy-lock.json with repo mapping",
       "managerFilePatterns": [
-        "/^dotfiles/dot_config/nvim/lazy-lock\\.json$/"
+        "^dotfiles/dot_config/nvim/lazy-lock\\.json$"
       ],
       "matchStrings": [
-        "\"(?<depName>[^/]+/[^\"]+)\": \\{[^}]*\"commit\": \"(?<currentDigest>[a-f0-9]{7,40})\""
+        "\"(?<depName>[A-Za-z0-9_.-]+)\": \\{[^}]*\"commit\": \"(?<currentDigest>[a-f0-9]{7,40})\""
       ],
-      "datasourceTemplate": "github-releases",
-      "depNameTemplate": "{{{depName}}}",
-      "packageNameTemplate": "{{{depName}}}",
+      "datasourceTemplate": "github-tags",
       "currentValueTemplate": "main"
     }
   ],
   "packageRules": [
+    {
+      "description": "Map lazy-lock.json plugin names to GitHub repos",
+      "matchFileNames": ["^dotfiles/dot_config/nvim/lazy-lock\\.json$"],
+      "packageRules": [
+        {
+          "matchPackageNames": ["LuaSnip"],
+          "packageName": "L3MON4D3/LuaSnip"
+        },
+        {
+          "matchPackageNames": ["Comment.nvim"],
+          "packageName": "numToStr/Comment.nvim"
+        },
+        {
+          "matchPackageNames": ["auto-session"],
+          "packageName": "rmagatti/auto-session"
+        },
+        {
+          "matchPackageNames": ["bufferline.nvim"],
+          "packageName": "akinsho/bufferline.nvim"
+        },
+        {
+          "matchPackageNames": ["cmp-nvim-lsp"],
+          "packageName": "hrsh7th/cmp-nvim-lsp"
+        },
+        {
+          "matchPackageNames": ["cmp-nvim-lua"],
+          "packageName": "hrsh7th/cmp-nvim-lua"
+        },
+        {
+          "matchPackageNames": ["cmp-path"],
+          "packageName": "hrsh7th/cmp-path"
+        },
+        {
+          "matchPackageNames": ["cmp_luasnip"],
+          "packageName": "saadparwaiz1/cmp_luasnip"
+        },
+        {
+          "matchPackageNames": ["friendly-snippets"],
+          "packageName": "rafamadriz/friendly-snippets"
+        },
+        {
+          "matchPackageNames": ["gitsigns.nvim"],
+          "packageName": "lewis6991/gitsigns.nvim"
+        },
+        {
+          "matchPackageNames": ["glow.nvim"],
+          "packageName": "ellisonleao/glow.nvim"
+        },
+        {
+          "matchPackageNames": ["go.nvim"],
+          "packageName": "ray-x/go.nvim"
+        },
+        {
+          "matchPackageNames": ["guihua.lua"],
+          "packageName": "ray-x/guihua.lua"
+        },
+        {
+          "matchPackageNames": ["harpoon"],
+          "packageName": "ThePrimeagen/harpoon"
+        },
+        {
+          "matchPackageNames": ["indent-blankline.nvim"],
+          "packageName": "lukas-reineke/indent-blankline.nvim"
+        },
+        {
+          "matchPackageNames": ["lazy.nvim"],
+          "packageName": "folke/lazy.nvim"
+        },
+        {
+          "matchPackageNames": ["lazygit.nvim"],
+          "packageName": "kdheepak/lazygit.nvim"
+        },
+        {
+          "matchPackageNames": ["lsp_signature.nvim"],
+          "packageName": "ray-x/lsp_signature.nvim"
+        },
+        {
+          "matchPackageNames": ["lspkind.nvim"],
+          "packageName": "onsails/lspkind.nvim"
+        },
+        {
+          "matchPackageNames": ["lualine.nvim"],
+          "packageName": "nvim-lualine/lualine.nvim"
+        },
+        {
+          "matchPackageNames": ["mason-lspconfig.nvim"],
+          "packageName": "williamboman/mason-lspconfig.nvim"
+        },
+        {
+          "matchPackageNames": ["mason-null-ls.nvim"],
+          "packageName": "jay-babu/mason-null-ls.nvim"
+        },
+        {
+          "matchPackageNames": ["mason-tool-installer.nvim"],
+          "packageName": "WhoIsSethDaniel/mason-tool-installer.nvim"
+        },
+        {
+          "matchPackageNames": ["mason.nvim"],
+          "packageName": "williamboman/mason.nvim"
+        },
+        {
+          "matchPackageNames": ["noice.nvim"],
+          "packageName": "folke/noice.nvim"
+        },
+        {
+          "matchPackageNames": ["none-ls-extras.nvim"],
+          "packageName": "nvimtools/none-ls-extras.nvim"
+        },
+        {
+          "matchPackageNames": ["none-ls.nvim"],
+          "packageName": "nvimtools/none-ls.nvim"
+        },
+        {
+          "matchPackageNames": ["nord.nvim"],
+          "packageName": "gbprod/nord.nvim"
+        },
+        {
+          "matchPackageNames": ["nui.nvim"],
+          "packageName": "MunifTanjim/nui.nvim"
+        },
+        {
+          "matchPackageNames": ["nvim-autopairs"],
+          "packageName": "windwp/nvim-autopairs"
+        },
+        {
+          "matchPackageNames": ["nvim-bufdel"],
+          "packageName": "ojroques/nvim-bufdel"
+        },
+        {
+          "matchPackageNames": ["nvim-cmp"],
+          "packageName": "hrsh7th/nvim-cmp"
+        },
+        {
+          "matchPackageNames": ["nvim-colorizer.lua"],
+          "packageName": "norcalli/nvim-colorizer.lua"
+        },
+        {
+          "matchPackageNames": ["nvim-dap"],
+          "packageName": "mfussenegger/nvim-dap"
+        },
+        {
+          "matchPackageNames": ["nvim-dap-python"],
+          "packageName": "mfussenegger/nvim-dap-python"
+        },
+        {
+          "matchPackageNames": ["nvim-dap-ui"],
+          "packageName": "rcarriga/nvim-dap-ui"
+        },
+        {
+          "matchPackageNames": ["nvim-dap-virtual-text"],
+          "packageName": "theHamsta/nvim-dap-virtual-text"
+        },
+        {
+          "matchPackageNames": ["nvim-lspconfig"],
+          "packageName": "neovim/nvim-lspconfig"
+        },
+        {
+          "matchPackageNames": ["nvim-nio"],
+          "packageName": "nvim-neotest/nvim-nio"
+        },
+        {
+          "matchPackageNames": ["nvim-notify"],
+          "packageName": "rcarriga/nvim-notify"
+        },
+        {
+          "matchPackageNames": ["nvim-spider"],
+          "packageName": "chrisgrieser/nvim-spider"
+        },
+        {
+          "matchPackageNames": ["nvim-surround"],
+          "packageName": "kylechui/nvim-surround"
+        },
+        {
+          "matchPackageNames": ["nvim-tree.lua"],
+          "packageName": "nvim-tree/nvim-tree.lua"
+        },
+        {
+          "matchPackageNames": ["nvim-treesitter"],
+          "packageName": "nvim-treesitter/nvim-treesitter"
+        },
+        {
+          "matchPackageNames": ["nvim-treesitter-textobjects"],
+          "packageName": "nvim-treesitter/nvim-treesitter-textobjects"
+        },
+        {
+          "matchPackageNames": ["nvim-web-devicons"],
+          "packageName": "nvim-tree/nvim-web-devicons"
+        },
+        {
+          "matchPackageNames": ["obsidian.nvim"],
+          "packageName": "epwalsh/obsidian.nvim"
+        },
+        {
+          "matchPackageNames": ["plenary.nvim"],
+          "packageName": "nvim-lua/plenary.nvim"
+        },
+        {
+          "matchPackageNames": ["project.nvim"],
+          "packageName": "ahmedkhalf/project.nvim"
+        },
+        {
+          "matchPackageNames": ["telescope-dap.nvim"],
+          "packageName": "nvim-telescope/telescope-dap.nvim"
+        },
+        {
+          "matchPackageNames": ["telescope-file-browser.nvim"],
+          "packageName": "nvim-telescope/telescope-file-browser.nvim"
+        },
+        {
+          "matchPackageNames": ["telescope-fzf-native.nvim"],
+          "packageName": "nvim-telescope/telescope-fzf-native.nvim"
+        },
+        {
+          "matchPackageNames": ["telescope-ui-select.nvim"],
+          "packageName": "nvim-telescope/telescope-ui-select.nvim"
+        },
+        {
+          "matchPackageNames": ["telescope.nvim"],
+          "packageName": "nvim-telescope/telescope.nvim"
+        },
+        {
+          "matchPackageNames": ["trouble.nvim"],
+          "packageName": "folke/trouble.nvim"
+        }
+      ]
+    },
     {
       "description": "Neovim plugins - minor and patch updates only",
       "matchFileNames": [
