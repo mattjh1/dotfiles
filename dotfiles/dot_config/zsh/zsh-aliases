@@ -95,4 +95,3 @@ alias psmem='top -l 1 -n 10 -o rsize | tail -n +12 | awk "{print \$1, \$2, \$3, 
 
 # get top process eating cpu ##
 alias pscpu='ps aux | { head -n 1; tail -n +2 | sort -k3nr | head -n 5; }'
-

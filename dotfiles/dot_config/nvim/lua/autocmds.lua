@@ -2,46 +2,47 @@ local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 local filetypedetect_group = augroup("filetypedetect", { clear = true })
 
+
 -- Check if html file contains go templating (hugo), treat as go template then
-autocmd({ "BufRead", "BufNewFile", "BufReadPost", "BufWinEnter" }, {
-  pattern = "*.html",
-  group = filetypedetect_group,
-  callback = function()
-    if vim.fn.expand("%:e") == "html" then
-      if vim.fn.search("{{", "nw") ~= 0 then
-        vim.b.is_hugo_template = true
-      end
-    end
-  end,
-})
+-- autocmd({ "BufRead", "BufNewFile", "BufReadPost", "BufWinEnter" }, {
+--   pattern = "*.html",
+--   group = filetypedetect_group,
+--   callback = function()
+--     if vim.fn.expand("%:e") == "html" then
+--       if vim.fn.search("{{", "nw") ~= 0 then
+--         vim.b.is_hugo_template = true
+--       end
+--     end
+--   end,
+-- })
 
-vim.filetype.add({
-  extension = {
-    html = function(_, bufnr)
-      local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
-      for _, line in ipairs(lines) do
-        if line:match("{{.*}}") then
-          return "gohtmltmpl"
-        end
-      end
-      return "html"
-    end,
-  },
-})
-
-autocmd("VimEnter", {
-  group = filetypedetect_group,
-  callback = function()
-    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-      if vim.bo[buf].buftype == "" and vim.api.nvim_buf_is_loaded(buf) then
-        local filename = vim.api.nvim_buf_get_name(buf)
-        if filename:match("%.html$") and vim.fn.search("{{", "nw", buf) ~= 0 then
-          vim.bo[buf].filetype = "gohtmltmpl"
-        end
-      end
-    end
-  end,
-})
+-- vim.filetype.add({
+--   extension = {
+--     html = function(_, bufnr)
+--       local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+--       for _, line in ipairs(lines) do
+--         if line:match("{{.*}}") then
+--           return "gohtmltmpl"
+--         end
+--       end
+--       return "html"
+--     end,
+--   },
+-- })
+--
+-- autocmd("VimEnter", {
+--   group = filetypedetect_group,
+--   callback = function()
+--     for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+--       if vim.bo[buf].buftype == "" and vim.api.nvim_buf_is_loaded(buf) then
+--         local filename = vim.api.nvim_buf_get_name(buf)
+--         if filename:match("%.html$") and vim.fn.search("{{", "nw", buf) ~= 0 then
+--           vim.bo[buf].filetype = "gohtmltmpl"
+--         end
+--       end
+--     end
+--   end,
+-- })
 
 -- Use relative & absolute line numbers in 'n' & 'i' modes respectively
 autocmd("InsertEnter", {

@@ -76,7 +76,6 @@ return require("lazy").setup({
     dependencies = {
       "mfussenegger/nvim-dap-python", -- mfussenegger/nvim-dap-python
       "nvim-telescope/telescope-dap.nvim", -- nvim-telescope/telescope-dap.nvim
-      "nvim-dap-virtual-text", -- nvim-dap-virtual-text
       "rcarriga/nvim-dap-ui", -- rcarriga/nvim-dap-ui
       "nvim-neotest/nvim-nio", -- nvim-neotest/nvim-nio
     },
@@ -177,21 +176,21 @@ return require("lazy").setup({
     "nvim-treesitter/nvim-treesitter", -- nvim-treesitter/nvim-treesitter (no releases)
     build = ":TSUpdate",
     event = { "BufReadPre", "BufNewFile" },
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter-textobjects", -- nvim-treesitter/nvim-treesitter-textobjects
-    },
+    -- dependencies = {
+    --   "nvim-treesitter/nvim-treesitter-textobjects", -- nvim-treesitter/nvim-treesitter-textobjects
+    -- },
     config = function()
       require("plugins.treesitter")
     end,
   },
   
-  {
-    "nvim-treesitter/nvim-treesitter-textobjects", -- nvim-treesitter/nvim-treesitter-textobjects
-    event = { "BufReadPre", "BufNewFile" },
-    config = function()
-      require("plugins.treesitter-textobjects")
-    end,
-  },
+  -- {
+  --   "nvim-treesitter/nvim-treesitter-textobjects", -- nvim-treesitter/nvim-treesitter-textobjects
+  --   event = "BufReadPost",
+  --   config = function()
+  --     require("plugins.treesitter-textobjects")
+  --   end,
+  -- },
   
   {
     "williamboman/mason.nvim", -- williamboman/mason.nvim (no releases)
@@ -209,7 +208,7 @@ return require("lazy").setup({
   {
     "neovim/nvim-lspconfig", -- neovim/nvim-lspconfig
     version = "^2.4.0",
-    event = { "LspAttach" },
+    event = { "BufReadPre", "BufNewFile" },  -- ✅ load before opening a buffer
     config = function()
       require("plugins.lspconfig")
     end,
