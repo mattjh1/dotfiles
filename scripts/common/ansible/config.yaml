@@ -128,7 +128,7 @@ neovim:
     - pkg-config
     - unzip
 
-asdf_version: "v0.9.0"
+asdf_version: "v0.14.1"
 asdf_plugins:
   - name: "python"
     repository: "https://github.com/danhper/asdf-python"
@@ -141,6 +141,7 @@ asdf_plugins:
     repository: "https://github.com/kennyp/asdf-golang"
     versions:
       - 1.24.4
+      - 1.25.4
     delete_versions: []
     global: system
 
@@ -148,6 +149,7 @@ asdf_plugins:
     repository: "https://github.com/asdf-vm/asdf-nodejs"
     versions:
       - 24.2.0
+      - 22.21.0
     delete_versions: []
     global: system
 
