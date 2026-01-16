@@ -1,0 +1,68 @@
+set clipboard=unnamed
+set cul=false
+set relativenumber
+set smartindent
+set fillchars=eob:\
+set number
+set numberwidth=2
+set timeoutlen=400
+set undofile
+set showmode=false
+set conceallevel=1
+
+set laststatus=3
+set statusline=
+set cmdheight=1
+set lazyredraw
+
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set hlsearch
+set incsearch
+set scrolloff=999
+set signcolumn=yes
+set smartcase
+set ignorecase
+set colorcolumn=80
+
+set foldcolumn=0
+set foldenable
+set foldlevel=99
+set foldmethod=indent
+set foldnestmax=1
+set termguicolors
+
+let g:mapleader = ","
+let g:maplocalleader = ","
+
+nnoremap Y y$
+nnoremap <leader>d "_d
+nnoremap j gj
+nnoremap k gk
+
+xnoremap K :m '<-2<CR>gv=gv
+xnoremap J :m '>+1<CR>gv=gv
+
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+
+nnoremap J <C-w>j
+nnoremap K <C-w>k
+
+nnoremap OO O<Esc>k
+nnoremap oo O<Esc>j
+
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+nnoremap <leader>w :wa<CR>
+
+call plug#begin()
+Plug 'tpope/vim-commentary'
+Plug 'justinmk/vim-sneak'
+Plug 'tpope/vim-surround'
+Plug 'machakann/vim-highlightedyank'
+call plug#end()
