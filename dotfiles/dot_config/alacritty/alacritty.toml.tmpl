@@ -1,13 +1,21 @@
+{{ if eq .chezmoi.os "linux" -}}
+[general]
 import = ["~/.config/alacritty/themes/nord.toml"]
 live_config_reload = true
+{{- else -}}
+import = ["~/.config/alacritty/themes/nord.toml"]
+live_config_reload = true
+{{- end }}
 
 [bell]
 animation = "EaseOutExpo"
 duration = 0
 
+{{ if eq .chezmoi.os "darwin" -}}
 [colors]
 draw_bold_text_with_bright_colors = true
 
+{{ end -}}
 [cursor]
 style = "Block"
 unfocused_hollow = false
@@ -16,11 +24,31 @@ unfocused_hollow = false
 render_timer = false
 
 [env]
+{{ if eq .chezmoi.os "linux" -}}
+TERM = "xterm-256color"
+{{- else -}}
 TERM = "alacritty-direct"
+{{- end }}
 
 [font]
 size = 14.0
 
+{{ if eq .chezmoi.os "linux" -}}
+[font.normal]
+family = "JetBrainsMono Nerd Font"
+style = "Regular"
+
+[font.bold]
+family = "JetBrainsMono Nerd Font"
+style = "Bold"
+
+[font.italic]
+family = "JetBrainsMono Nerd Font"
+style = "Italic"
+
+[[font.fallback]]
+family = "Noto Color Emoji"
+{{- else -}}
 [font.bold]
 family = "Hack Nerd Font Mono"
 style = "Bold"
@@ -40,21 +68,63 @@ style = "Regular"
 [font.offset]
 x = 0
 y = 0
+{{- end }}
 
 [[hints.enabled]]
+{{ if eq .chezmoi.os "linux" -}}
+command = "xdg-open"
+{{- else -}}
 command = "open"
+{{- end }}
 hyperlinks = true
 post_processing = true
-regex = "(ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)[^\u0000-\u001F\u007F-<>\"\\s{-}\\^⟨⟩`]+"
+regex = "(ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)[^\u0000-\u001F\u007F-<>\"\\s{-}\\^⟨⟩`]+"
 
 [hints.enabled.binding]
 key = "U"
+{{ if eq .chezmoi.os "linux" -}}
+mods = "Control|Shift"
+{{- else -}}
 mods = "Command"
+{{- end }}
 
 [hints.enabled.mouse]
 enabled = true
 mods = "None"
 
+{{ if eq .chezmoi.os "linux" -}}
+# Basic clipboard operations
+[[keyboard.bindings]]
+action = "Paste"
+key = "V"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "Copy"
+key = "C"
+mods = "Control|Shift"
+
+# Terminal control
+[[keyboard.bindings]]
+action = "ResetFontSize"
+key = "Key0"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "IncreaseFontSize"
+key = "Plus"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "IncreaseFontSize"
+key = "Equals"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "DecreaseFontSize"
+key = "Minus"
+mods = "Control"
+{{- else -}}
 [[keyboard.bindings]]
 action = "Paste"
 key = "V"
@@ -76,22 +146,22 @@ key = "N"
 mods = "Command"
 
 [[keyboard.bindings]]
-chars = "\u001BOH"
+chars = "OH"
 key = "Home"
 mode = "AppCursor"
 
 [[keyboard.bindings]]
-chars = "\u001B[H"
+chars = "[H"
 key = "Home"
 mode = "~AppCursor"
 
 [[keyboard.bindings]]
-chars = "\u001BOF"
+chars = "OF"
 key = "End"
 mode = "AppCursor"
 
 [[keyboard.bindings]]
-chars = "\u001B[F"
+chars = "[F"
 key = "End"
 mode = "~AppCursor"
 
@@ -111,562 +181,563 @@ key = "Minus"
 mods = "Command"
 
 [[keyboard.bindings]]
-chars = "\u001B[5;2~"
+chars = "[5;2~"
 key = "PageUp"
 mods = "Shift"
 
 [[keyboard.bindings]]
-chars = "\u001B[5;5~"
+chars = "[5;5~"
 key = "PageUp"
 mods = "Control"
 
 [[keyboard.bindings]]
-chars = "\u001B[5~"
+chars = "[5~"
 key = "PageUp"
 
 [[keyboard.bindings]]
-chars = "\u001B[6;2~"
+chars = "[6;2~"
 key = "PageDown"
 mods = "Shift"
 
 [[keyboard.bindings]]
-chars = "\u001B[6;5~"
+chars = "[6;5~"
 key = "PageDown"
 mods = "Control"
 
 [[keyboard.bindings]]
-chars = "\u001B[6~"
+chars = "[6~"
 key = "PageDown"
 
 [[keyboard.bindings]]
-chars = "\u001B[Z"
+chars = "[Z"
 key = "Tab"
 mods = "Shift"
 
 [[keyboard.bindings]]
-chars = "\u007F"
+chars = ""
 key = "Back"
 
 [[keyboard.bindings]]
-chars = "\u001B\u007F"
+chars = ""
 key = "Back"
 mods = "Alt"
 
 [[keyboard.bindings]]
-chars = "\u001B[2~"
+chars = "[2~"
 key = "Insert"
 
 [[keyboard.bindings]]
-chars = "\u001B[3~"
+chars = "[3~"
 key = "Delete"
 
 [[keyboard.bindings]]
-chars = "\u001B[1;2D"
+chars = "[1;2D"
 key = "Left"
 mods = "Shift"
 
 [[keyboard.bindings]]
-chars = "\u001B[1;5D"
+chars = "[1;5D"
 key = "Left"
 mods = "Control"
 
 [[keyboard.bindings]]
-chars = "\u001B[1;3D"
+chars = "[1;3D"
 key = "Left"
 mods = "Alt"
 
 [[keyboard.bindings]]
-chars = "\u001B[D"
+chars = "[D"
 key = "Left"
 mode = "~AppCursor"
 
 [[keyboard.bindings]]
-chars = "\u001BOD"
+chars = "OD"
 key = "Left"
 mode = "AppCursor"
 
 [[keyboard.bindings]]
-chars = "\u001B[1;2C"
+chars = "[1;2C"
 key = "Right"
 mods = "Shift"
 
 [[keyboard.bindings]]
-chars = "\u001B[1;5C"
+chars = "[1;5C"
 key = "Right"
 mods = "Control"
 
 [[keyboard.bindings]]
-chars = "\u001B[1;3C"
+chars = "[1;3C"
 key = "Right"
 mods = "Alt"
 
 [[keyboard.bindings]]
-chars = "\u001B[C"
+chars = "[C"
 key = "Right"
 mode = "~AppCursor"
 
 [[keyboard.bindings]]
-chars = "\u001BOC"
+chars = "OC"
 key = "Right"
 mode = "AppCursor"
 
 [[keyboard.bindings]]
-chars = "\u001B[1;2A"
+chars = "[1;2A"
 key = "Up"
 mods = "Shift"
 
 [[keyboard.bindings]]
-chars = "\u001B[1;5A"
+chars = "[1;5A"
 key = "Up"
 mods = "Control"
 
 [[keyboard.bindings]]
-chars = "\u001B[1;3A"
+chars = "[1;3A"
 key = "Up"
 mods = "Alt"
 
 [[keyboard.bindings]]
-chars = "\u001B[A"
+chars = "[A"
 key = "Up"
 mode = "~AppCursor"
 
 [[keyboard.bindings]]
-chars = "\u001BOA"
+chars = "OA"
 key = "Up"
 mode = "AppCursor"
 
 [[keyboard.bindings]]
-chars = "\u001B[1;2B"
+chars = "[1;2B"
 key = "Down"
 mods = "Shift"
 
 [[keyboard.bindings]]
-chars = "\u001B[1;5B"
+chars = "[1;5B"
 key = "Down"
 mods = "Control"
 
 [[keyboard.bindings]]
-chars = "\u001B[1;3B"
+chars = "[1;3B"
 key = "Down"
 mods = "Alt"
 
 [[keyboard.bindings]]
-chars = "\u001B[B"
+chars = "[B"
 key = "Down"
 mode = "~AppCursor"
 
 [[keyboard.bindings]]
-chars = "\u001BOB"
+chars = "OB"
 key = "Down"
 mode = "AppCursor"
 
 [[keyboard.bindings]]
-chars = "\u001BOP"
+chars = "OP"
 key = "F1"
 
 [[keyboard.bindings]]
-chars = "\u001BOQ"
+chars = "OQ"
 key = "F2"
 
 [[keyboard.bindings]]
-chars = "\u001BOR"
+chars = "OR"
 key = "F3"
 
 [[keyboard.bindings]]
-chars = "\u001BOS"
+chars = "OS"
 key = "F4"
 
 [[keyboard.bindings]]
-chars = "\u001B[15~"
+chars = "[15~"
 key = "F5"
 
 [[keyboard.bindings]]
-chars = "\u001B[17~"
+chars = "[17~"
 key = "F6"
 
 [[keyboard.bindings]]
-chars = "\u001B[18~"
+chars = "[18~"
 key = "F7"
 
 [[keyboard.bindings]]
-chars = "\u001B[19~"
+chars = "[19~"
 key = "F8"
 
 [[keyboard.bindings]]
-chars = "\u001B[20~"
+chars = "[20~"
 key = "F9"
 
 [[keyboard.bindings]]
-chars = "\u001B[21~"
+chars = "[21~"
 key = "F10"
 
 [[keyboard.bindings]]
-chars = "\u001B[23~"
+chars = "[23~"
 key = "F11"
 
 [[keyboard.bindings]]
-chars = "\u001B[24~"
+chars = "[24~"
 key = "F12"
 
 [[keyboard.bindings]]
-chars = "\u001B[1;2P"
+chars = "[1;2P"
 key = "F1"
 mods = "Shift"
 
 [[keyboard.bindings]]
-chars = "\u001B[1;2Q"
+chars = "[1;2Q"
 key = "F2"
 mods = "Shift"
 
 [[keyboard.bindings]]
-chars = "\u001B[1;2R"
+chars = "[1;2R"
 key = "F3"
 mods = "Shift"
 
 [[keyboard.bindings]]
-chars = "\u001B[1;2S"
+chars = "[1;2S"
 key = "F4"
 mods = "Shift"
 
 [[keyboard.bindings]]
-chars = "\u001B[15;2~"
+chars = "[15;2~"
 key = "F5"
 mods = "Shift"
 
 [[keyboard.bindings]]
-chars = "\u001B[17;2~"
+chars = "[17;2~"
 key = "F6"
 mods = "Shift"
 
 [[keyboard.bindings]]
-chars = "\u001B[18;2~"
+chars = "[18;2~"
 key = "F7"
 mods = "Shift"
 
 [[keyboard.bindings]]
-chars = "\u001B[19;2~"
+chars = "[19;2~"
 key = "F8"
 mods = "Shift"
 
 [[keyboard.bindings]]
-chars = "\u001B[20;2~"
+chars = "[20;2~"
 key = "F9"
 mods = "Shift"
 
 [[keyboard.bindings]]
-chars = "\u001B[21;2~"
+chars = "[21;2~"
 key = "F10"
 mods = "Shift"
 
 [[keyboard.bindings]]
-chars = "\u001B[23;2~"
+chars = "[23;2~"
 key = "F11"
 mods = "Shift"
 
 [[keyboard.bindings]]
-chars = "\u001B[24;2~"
+chars = "[24;2~"
 key = "F12"
 mods = "Shift"
 
 [[keyboard.bindings]]
-chars = "\u001B[1;5P"
+chars = "[1;5P"
 key = "F1"
 mods = "Control"
 
 [[keyboard.bindings]]
-chars = "\u001B[1;5Q"
+chars = "[1;5Q"
 key = "F2"
 mods = "Control"
 
 [[keyboard.bindings]]
-chars = "\u001B[1;5R"
+chars = "[1;5R"
 key = "F3"
 mods = "Control"
 
 [[keyboard.bindings]]
-chars = "\u001B[1;5S"
+chars = "[1;5S"
 key = "F4"
 mods = "Control"
 
 [[keyboard.bindings]]
-chars = "\u001B[15;5~"
+chars = "[15;5~"
 key = "F5"
 mods = "Control"
 
 [[keyboard.bindings]]
-chars = "\u001B[17;5~"
+chars = "[17;5~"
 key = "F6"
 mods = "Control"
 
 [[keyboard.bindings]]
-chars = "\u001B[18;5~"
+chars = "[18;5~"
 key = "F7"
 mods = "Control"
 
 [[keyboard.bindings]]
-chars = "\u001B[19;5~"
+chars = "[19;5~"
 key = "F8"
 mods = "Control"
 
 [[keyboard.bindings]]
-chars = "\u001B[20;5~"
+chars = "[20;5~"
 key = "F9"
 mods = "Control"
 
 [[keyboard.bindings]]
-chars = "\u001B[21;5~"
+chars = "[21;5~"
 key = "F10"
 mods = "Control"
 
 [[keyboard.bindings]]
-chars = "\u001B[23;5~"
+chars = "[23;5~"
 key = "F11"
 mods = "Control"
 
 [[keyboard.bindings]]
-chars = "\u001B[24;5~"
+chars = "[24;5~"
 key = "F12"
 mods = "Control"
 
 [[keyboard.bindings]]
-chars = "\u001B[1;6P"
+chars = "[1;6P"
 key = "F1"
 mods = "Alt"
 
 [[keyboard.bindings]]
-chars = "\u001B[1;6Q"
+chars = "[1;6Q"
 key = "F2"
 mods = "Alt"
 
 [[keyboard.bindings]]
-chars = "\u001B[1;6R"
+chars = "[1;6R"
 key = "F3"
 mods = "Alt"
 
 [[keyboard.bindings]]
-chars = "\u001B[1;6S"
+chars = "[1;6S"
 key = "F4"
 mods = "Alt"
 
 [[keyboard.bindings]]
-chars = "\u001B[15;6~"
+chars = "[15;6~"
 key = "F5"
 mods = "Alt"
 
 [[keyboard.bindings]]
-chars = "\u001B[17;6~"
+chars = "[17;6~"
 key = "F6"
 mods = "Alt"
 
 [[keyboard.bindings]]
-chars = "\u001B[18;6~"
+chars = "[18;6~"
 key = "F7"
 mods = "Alt"
 
 [[keyboard.bindings]]
-chars = "\u001B[19;6~"
+chars = "[19;6~"
 key = "F8"
 mods = "Alt"
 
 [[keyboard.bindings]]
-chars = "\u001B[20;6~"
+chars = "[20;6~"
 key = "F9"
 mods = "Alt"
 
 [[keyboard.bindings]]
-chars = "\u001B[21;6~"
+chars = "[21;6~"
 key = "F10"
 mods = "Alt"
 
 [[keyboard.bindings]]
-chars = "\u001B[23;6~"
+chars = "[23;6~"
 key = "F11"
 mods = "Alt"
 
 [[keyboard.bindings]]
-chars = "\u001B[24;6~"
+chars = "[24;6~"
 key = "F12"
 mods = "Alt"
 
 [[keyboard.bindings]]
-chars = "\u001B[1;3P"
+chars = "[1;3P"
 key = "F1"
 mods = "Command"
 
 [[keyboard.bindings]]
-chars = "\u001B[1;3Q"
+chars = "[1;3Q"
 key = "F2"
 mods = "Command"
 
 [[keyboard.bindings]]
-chars = "\u001B[1;3R"
+chars = "[1;3R"
 key = "F3"
 mods = "Command"
 
 [[keyboard.bindings]]
-chars = "\u001B[1;3S"
+chars = "[1;3S"
 key = "F4"
 mods = "Command"
 
 [[keyboard.bindings]]
-chars = "\u001B[15;3~"
+chars = "[15;3~"
 key = "F5"
 mods = "Command"
 
 [[keyboard.bindings]]
-chars = "\u001B[17;3~"
+chars = "[17;3~"
 key = "F6"
 mods = "Command"
 
 [[keyboard.bindings]]
-chars = "\u001B[18;3~"
+chars = "[18;3~"
 key = "F7"
 mods = "Command"
 
 [[keyboard.bindings]]
-chars = "\u001B[19;3~"
+chars = "[19;3~"
 key = "F8"
 mods = "Command"
 
 [[keyboard.bindings]]
-chars = "\u001B[20;3~"
+chars = "[20;3~"
 key = "F9"
 mods = "Command"
 
 [[keyboard.bindings]]
-chars = "\u001B[21;3~"
+chars = "[21;3~"
 key = "F10"
 mods = "Command"
 
 [[keyboard.bindings]]
-chars = "\u001B[23;3~"
+chars = "[23;3~"
 key = "F11"
 mods = "Command"
 
 [[keyboard.bindings]]
-chars = "\u001B[24;3~"
+chars = "[24;3~"
 key = "F12"
 mods = "Command"
 
 [[keyboard.bindings]]
-chars = "\u0006v"
+chars = "v"
 key = "D"
 mods = "Command"
 
 [[keyboard.bindings]]
-chars = "\u0006s"
+chars = "s"
 key = "D"
 mods = "Command|Shift"
 
 [[keyboard.bindings]]
-chars = "\u0006x"
+chars = "x"
 key = "W"
 mods = "Command"
 
 [[keyboard.bindings]]
-chars = "\u0006h"
+chars = "h"
 key = "H"
 mods = "Command"
 
 [[keyboard.bindings]]
-chars = "\u0006j"
+chars = "j"
 key = "J"
 mods = "Command"
 
 [[keyboard.bindings]]
-chars = "\u0006k"
+chars = "k"
 key = "K"
 mods = "Command"
 
 [[keyboard.bindings]]
-chars = "\u0006l"
+chars = "l"
 key = "L"
 mods = "Command"
 
 [[keyboard.bindings]]
-chars = "\u0006c"
+chars = "c"
 key = "T"
 mods = "Command"
 
 [[keyboard.bindings]]
-chars = "\u0006n"
+chars = "n"
 key = "RBracket"
 mods = "Command|Shift"
 
 [[keyboard.bindings]]
-chars = "\u0006p"
+chars = "p"
 key = "LBracket"
 mods = "Command|Shift"
 
 [[keyboard.bindings]]
-chars = "\u0006z"
+chars = "z"
 key = "Return"
 mods = "Command|Shift"
 
 [[keyboard.bindings]]
-chars = "\u00061"
+chars = "1"
 key = "Key1"
 mods = "Command"
 
 [[keyboard.bindings]]
-chars = "\u00062"
+chars = "2"
 key = "Key2"
 mods = "Command"
 
 [[keyboard.bindings]]
-chars = "\u00063"
+chars = "3"
 key = "Key3"
 mods = "Command"
 
 [[keyboard.bindings]]
-chars = "\u00064"
+chars = "4"
 key = "Key4"
 mods = "Command"
 
 [[keyboard.bindings]]
-chars = "\u00065"
+chars = "5"
 key = "Key5"
 mods = "Command"
 
 [[keyboard.bindings]]
-chars = "\u00066"
+chars = "6"
 key = "Key6"
 mods = "Command"
 
 [[keyboard.bindings]]
-chars = "\u00067"
+chars = "7"
 key = "Key7"
 mods = "Command"
 
 [[keyboard.bindings]]
-chars = "\u00068"
+chars = "8"
 key = "Key8"
 mods = "Command"
 
 [[keyboard.bindings]]
-chars = "\u00069"
+chars = "9"
 key = "Key9"
 mods = "Command"
 
 [[keyboard.bindings]]
-chars = "\u0006H"
+chars = "H"
 key = "Left"
 mods = "Command"
 
 [[keyboard.bindings]]
-chars = "\u0006J"
+chars = "J"
 key = "Down"
 mods = "Command"
 
 [[keyboard.bindings]]
-chars = "\u0006K"
+chars = "K"
 key = "Up"
 mods = "Command"
 
 [[keyboard.bindings]]
-chars = "\u0006L"
+chars = "L"
 key = "Right"
 mods = "Command"
+{{- end }}
 
 [mouse]
 hide_when_typing = true
@@ -683,8 +754,13 @@ multiplier = 3
 save_to_clipboard = true
 semantic_escape_chars = ",│`|:\"' ()[]{}<>"
 
+{{ if eq .chezmoi.os "linux" -}}
+[terminal]
+shell = { program = "{{ .chezmoi.homeDir }}/scripts/tmux_chooser.sh" }
+{{- else -}}
 [shell]
 program = "{{ .chezmoi.homeDir }}/scripts/tmux_chooser.sh"
+{{- end }}
 
 [window]
 decorations = "Full"

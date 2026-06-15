@@ -32,7 +32,7 @@ setopt APPEND_HISTORY
 setopt INC_APPEND_HISTORY
 
 # Share the history among all shell instances
-setopt SHARE_HISTORY
+# setopt SHARE_HISTORY
 
 # Make new commands from other shells available to the current shell
 fc -R
@@ -50,7 +50,7 @@ complete -C '/usr/local/bin/aws_completer' aws
 source "$HOME/.fzf.zsh" 
 export FZF_DEFAULT_OPTS="--history=$HOME/.fzf-history"
 
-
+mkdir -p "$XDG_DATA_HOME/zsh"
 HISTFILE="$XDG_DATA_HOME"/zsh/history
 HISTSIZE=1000000
 SAVEHIST=1000000

@@ -11,5 +11,5 @@ function my-ip() {
   echo -e "\nLocal IPs:\n$local_ips"
   echo -e "\nPublic IP: $public_ip"
 
-  echo -n "$public_ip" | pbcopy && echo -e "\nPublic IP copied to clipboard"
+  echo -n "$public_ip" | xclip -selection clipboard && echo -e "\nPublic IP copied to clipboard"
 }

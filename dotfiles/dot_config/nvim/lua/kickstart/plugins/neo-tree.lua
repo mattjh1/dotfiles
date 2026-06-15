@@ -15,6 +15,10 @@ return {
   },
   opts = {
     filesystem = {
+      -- follow_current_file = {
+      --   enabled = true,
+      --   leave_dirs_open = false,
+      -- },
       window = {
         mappings = {
           ['<leader>e'] = 'close_window',

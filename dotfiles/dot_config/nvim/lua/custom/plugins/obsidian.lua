@@ -7,10 +7,11 @@ return {
     'nvim-lua/plenary.nvim',
   },
   opts = {
+    legacy_commands = false,
     workspaces = {
       {
         name = 'notes',
-        path = '$HOME/Documents/Notes/vault',
+        path = '$HOME/notes-vault',
       },
     },
 
@@ -23,11 +24,6 @@ return {
 
     new_notes_location = 'current_dir',
 
-    completion = {
-      nvim_cmp = true,
-      min_chars = 2,
-    },
-
     wiki_link_func = function(opts)
       if opts.id == nil then
         return string.format('[[%s]]', opts.label)
@@ -37,8 +33,6 @@ return {
         return string.format('[[%s]]', opts.id)
       end
     end,
-
-    open_app_foreground = true,
 
     note_id_func = function(title)
       local suffix = ''
@@ -57,10 +51,11 @@ return {
       date_format = '%Y-%m-%d-%a',
       time_format = '%H:%M',
     },
-
-    follow_url_func = function(url)
-      vim.fn.jobstart { 'open', url } -- macOS
-      -- vim.fn.jobstart({ "xdg-open", url }) -- Linux
-    end,
+    open = {
+      func = function(uri)
+        -- vim.fn.jobstart { 'open', url } -- macOS
+        vim.ui.open(uri, { cmd = { 'xdg-open' } })
+      end,
+    },
   },
 }

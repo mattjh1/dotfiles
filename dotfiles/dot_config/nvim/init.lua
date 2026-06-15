@@ -685,18 +685,33 @@ require('lazy').setup({
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
         pyright = {},
-        gopls = {},
-        tsserver = {},
+        gopls = {
+          root_dir = function(fname)
+            return require('lspconfig.util').root_pattern('go.work', 'go.mod')(fname) or vim.fs.dirname(vim.fs.find('.git', { path = fname, upward = true })[1])
+          end,
+          settings = {
+            gopls = {
+              build = {
+                directoryFilters = { '-node_modules', '-.turbo', '-.git' },
+              },
+            },
+          },
+        },
         -- clangd = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
-        --
-        -- Some languages (like typescript) have entire language plugins that can be useful:
-        --    https://github.com/pmizio/typescript-tools.nvim
-        --
-        -- But for many setups, the LSP (`ts_ls`) will work just fine
-        ts_ls = {},
-        --
+        eslint = {
+          root_dir = function(fname)
+            -- Always use the git root for Turborepo monorepos
+            return require('lspconfig.util').find_git_ancestor(fname)
+          end,
+          settings = {
+            workingDirectory = { mode = 'auto' },
+            -- This helps ESLint find the config at the root
+            useESLintClass = true,
+          },
+        },
+
 
         lua_ls = {
           -- cmd = { ... },
@@ -729,22 +744,19 @@ require('lazy').setup({
       -- for you, so that they are available from within Neovim.
       local ensure_installed = {
         -- LSPs
-        'pyright',
-        'gopls',
-        'typescript-language-server', -- For tsserver
         'lua-language-server', -- For lua_ls
+        'eslint-lsp',
+        'gopls', -- For gopls
 
         -- Formatters
         'stylua',
         'prettierd',
+        'prettier',
         'goimports',
-        'black',
-        'isort',
+        'gofumpt',
 
         -- Linters
         'eslint_d',
-        'golangci-lint',
-        'ruff',
       }
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -761,6 +773,23 @@ require('lazy').setup({
             require('lspconfig')[server_name].setup(server)
           end,
         },
+      }
+
+      -- tsgo is not mason-managed; install via: npm install -g @typescript/native-preview
+      local lspconfig_configs = require('lspconfig.configs')
+      if not lspconfig_configs.tsgo then
+        lspconfig_configs.tsgo = {
+          default_config = {
+            cmd = { 'tsgo', 'lsp' },
+            filetypes = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx' },
+            root_dir = require('lspconfig.util').root_pattern('tsconfig.json', 'package.json', '.git'),
+            single_file_support = true,
+          },
+        }
+      end
+      require('lspconfig').tsgo.setup {
+        capabilities = capabilities,
+        root_dir = require('lspconfig.util').find_git_ancestor,
       }
     end,
   },
@@ -799,6 +828,8 @@ require('lazy').setup({
         lua = { 'stylua' },
         javascript = { 'prettierd', 'prettier', stop_after_first = true },
         typescript = { 'prettierd', 'prettier', stop_after_first = true },
+        javascriptreact = { 'prettierd', 'prettier', stop_after_first = true },
+        typescriptreact = { 'prettierd', 'prettier', stop_after_first = true },
         go = { 'goimports' },
         python = { 'isort', 'black' },
         -- Conform can also run multiple formatters sequentially
@@ -806,6 +837,13 @@ require('lazy').setup({
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
+      },
+      formatters = {
+        prettier = {
+          cwd = function(ctx)
+            return require('lspconfig.util').find_git_ancestor(ctx.filename)
+          end,
+        },
       },
     },
   },
@@ -832,12 +870,12 @@ require('lazy').setup({
           -- `friendly-snippets` contains a variety of premade snippets.
           --    See the README about individual language/framework/plugin snippets:
           --    https://github.com/rafamadriz/friendly-snippets
-          -- {
-          --   'rafamadriz/friendly-snippets',
-          --   config = function()
-          --     require('luasnip.loaders.from_vscode').lazy_load()
-          --   end,
-          -- },
+          {
+            'rafamadriz/friendly-snippets',
+            config = function()
+              require('luasnip.loaders.from_vscode').lazy_load()
+            end,
+          },
         },
         opts = {},
       },
@@ -883,7 +921,7 @@ require('lazy').setup({
       completion = {
         -- By default, you may press `<c-space>` to show the documentation.
         -- Optionally, set `auto_show = true` to show the documentation after a delay.
-        documentation = { auto_show = false, auto_show_delay_ms = 500 },
+        documentation = { auto_show = true, auto_show_delay_ms = 500 },
       },
 
       sources = {
@@ -958,35 +996,47 @@ require('lazy').setup({
         return '%2l:%-2v'
       end
 
+      -- Setup mini.bufremove for better buffer deletion
+      require('mini.bufremove').setup()
+
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
     end,
   },
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
-    build = ':TSUpdate',
-    main = 'nvim-treesitter.configs', -- Sets main module to use for opts
-    -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     config = function()
-      -- [[ CONFIGURE TREESITTER ]]
-      -- Press K for help concerning the word under the cursor
-      vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = 'Hover Documentation' })
-
-      ---@diagnostic disable-next-line: missing-fields
-      require('nvim-treesitter').setup {
-        ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc' },
-        -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
-        auto_install = false,
-        highlight = { enable = true },
-        indent = { enable = true },
+      local filetypes = {
+        'bash',
+        'c',
+        'diff',
+        'html',
+        'lua',
+        'luadoc',
+        'markdown',
+        'markdown_inline',
+        'query',
+        'vim',
+        'vimdoc',
+        'json',
+        'typescript',
+        'javascript',
+        'tsx',
+        'jsx',
+        'regex',
+        'go',
+        'gomod',
+        'gosum',
+        'gowork',
       }
+      require('nvim-treesitter').install(filetypes)
+      vim.api.nvim_create_autocmd('FileType', {
+        pattern = filetypes,
+        callback = function()
+          pcall(vim.treesitter.start)
+        end,
+      })
     end,
-    -- There are additional nvim-treesitter modules that you can use to interact
-    -- with nvim-treesitter. You should go explore a few and see what interests you:
-    --
-    --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
-    --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
-    --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
   },
 
   -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
@@ -998,10 +1048,10 @@ require('lazy').setup({
   --  Here are some example plugins that I've included in the Kickstart repository.
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
-  -- require 'kickstart.plugins.debug',
+  require 'kickstart.plugins.debug',
   require 'kickstart.plugins.indent_line',
   require 'kickstart.plugins.lint',
-  -- require 'kickstart.plugins.autopairs',
+  require 'kickstart.plugins.autopairs',
   require 'kickstart.plugins.neo-tree',
   require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 

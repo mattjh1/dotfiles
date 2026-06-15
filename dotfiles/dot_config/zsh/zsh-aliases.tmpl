@@ -4,7 +4,7 @@ alias clr="clear"
 alias reload="source ~/.config/zsh/.zshrc"
 alias zshconfig="v ~/.config/zsh"
 alias ls="lsd --group-directories-first"
-alias ll="ls --long --almost-all --human-readable" 
+alias ll="ls --long --almost-all --human-readable"
 alias lt='ls --tree --total-size --ignore-glob .git --ignore-glob node_modules --ignore-glob dist'
 alias ..="cd .."
 alias .2="cd ../../"
@@ -23,17 +23,27 @@ alias sp='spotify next'
 alias sn='spotify prev'
 alias spp='spotify pause'
 alias st='spotify status'
-alias zz='pmset displaysleepnow'
-alias mycomp='system_profiler SPSoftwareDataType SPHardwareDataType'
 alias kc="minikube kubectl --"
 alias vi="nvim"
 alias v="nvim"
+alias vim="nvim"
 alias cat="bat --style=plain"
+alias scratch='nvim /tmp/scratch'
 
-# override xcode ctags version
-alias ctags="`brew --prefix`/bin/ctags"
+{{ if eq .chezmoi.os "darwin" }}
+alias bat="bat"
+alias pbcopy='pbcopy'
+alias pbpaste='pbpaste'
+alias zz='pmset displaysleepnow'
+alias psmem='top -l 1 -n 10 -o rsize | tail -n +12 | awk "{print \$1, \$2, \$3, \$8, \$9, \$10}" | column -t | bat --color=always'
+{{ else if eq .chezmoi.os "linux" }}
+alias bat="batcat"
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
+alias psmem='ps aux | sort -nk 4,4 | tail -n 5'
+{{ end }}
 
-# Original ctrl+z behavior, suspend program 
+# Original ctrl+z behavior, suspend program
 # Repeat action to move suspended program to foreground
 _zsh_cli_fg() { fg; }
 zle -N _zsh_cli_fg
@@ -90,8 +100,4 @@ alias rm='rm -i'
 alias df='df -h'                          # human-readable sizes
 
 # get top process eating memory
-# alias psmem='ps aux | sort -nk 4,4 | tail -n 5'
-alias psmem='top -l 1 -n 10 -o rsize | tail -n +12 | awk "{print \$1, \$2, \$3, \$8, \$9, \$10}" | column -t | bat --color=always'
-
-# get top process eating cpu ##
 alias pscpu='ps aux | { head -n 1; tail -n +2 | sort -k3nr | head -n 5; }'

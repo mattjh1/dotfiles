@@ -61,8 +61,19 @@ map('n', 'N', 'Nzzzv', { desc = 'Previous search result' })
 
 map('n', '<leader>w', '<cmd>wa<CR>', { desc = '[W]rite all buffers' })
 
-map('n', '<leader>bd', '<cmd>BufDel<CR>', { desc = '[B]uffer delete' })
+map('n', '<leader>bd', function()
+  require('mini.bufremove').delete(0, false)
+end, { desc = '[B]uffer [D]elete' })
+
+map('n', '<leader>bD', function()
+  local current_buf = vim.api.nvim_get_current_buf()
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if buf ~= current_buf and vim.api.nvim_buf_is_loaded(buf) then
+      require('mini.bufremove').delete(buf, false)
+    end
+  end
+end, { desc = '[B]uffer [D]elete Others' })
+
 map('n', '<leader>bD', '<cmd>BufDelOthers<CR>', { desc = 'Delete other buffers' })
 
 map('n', '<leader>qq', '<cmd>qa<CR>', { desc = '[Q]uit all' })
-

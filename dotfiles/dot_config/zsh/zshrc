@@ -28,7 +28,7 @@ zsh_add_completion "esc/conda-zsh-completion" false
 eval "$(zoxide init zsh)"
 eval "$(op completion zsh)"; compdef _op op
 
-source ~/.config/op/plugins.sh
+# source ~/.config/op/plugins.sh
 
 if test -f "$HOME/.asdf/asdf.sh"; then
   . "$HOME/.asdf/asdf.sh"

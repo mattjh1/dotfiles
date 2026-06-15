@@ -28,9 +28,7 @@ require("mason-tool-installer").setup({
 		"black",
 		"pylint",
 		"eslint_d",
-		"gopls",
-		"ts_ls",
-		"lua_ls",
-		"pyright",
+		"goimports",
+		"gofumpt",
 	},
 })
