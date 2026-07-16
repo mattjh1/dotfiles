@@ -29,14 +29,14 @@ if git -C "$SCRATCH" diff "$last_sha".."$new_sha" --name-only | grep -qx 'init.l
   echo "    (LSP servers table + trailing custom.options/custom.keybinds requires)"
 fi
 
-rsync -a --exclude='.git' --exclude='init.lua' \
+rsync -a --exclude='.git' --exclude='.github' --exclude='init.lua' \
   --exclude='lua/custom/' --exclude='lua/plugins.old/' --exclude='lazy-lock.json' \
   "$SCRATCH"/ "$NVIM_DIR"/
 
 # chezmoi needs dot_-prefixed names; upstream ships literal dotfiles
 [ -f "$NVIM_DIR/.gitignore" ]   && mv "$NVIM_DIR/.gitignore"   "$NVIM_DIR/dot_gitignore"
 [ -f "$NVIM_DIR/.stylua.toml" ] && mv "$NVIM_DIR/.stylua.toml" "$NVIM_DIR/dot_stylua.toml"
-extra_dot=$(find "$NVIM_DIR" -maxdepth 2 -name '.*' -not -name '.git*' -not -name '.kickstart-upstream-sha')
+extra_dot=$(find "$NVIM_DIR" -maxdepth 2 -name '.*' -not -name '.git' -not -name '.kickstart-upstream-sha')
 [ -n "$extra_dot" ] && echo "!!! New unhandled dotfiles introduced, rename manually: $extra_dot"
 
 echo "$new_sha" > "$STATE_FILE"
