@@ -7,13 +7,20 @@ so staying in sync is a scripted diff-and-overwrite, not a git merge.
 
 ## Local divergence (must survive every sync)
 
-Only `init.lua` has ever diverged from stock, in two spots:
+`init.lua` diverges from stock in three spots (a 2026-07 sync missed the
+third one and briefly reverted the colorscheme to stock `tokyonight` —
+watch for this specifically on every future sync, don't assume "LSP +
+trailing requires" is the complete list without re-diffing):
 
 1. The LSP `servers` table: custom `gopls` root_dir, `tsgo` replacing
    `tsserver`/`ts_ls`, `eslint` added with a monorepo-aware root_dir, and an
    adjusted `ensure_installed` mason list.
 2. Two trailing lines after `{ import = 'custom.plugins' }`:
    `require 'custom.options'` and `require 'custom.keybinds'`.
+3. Colorscheme plugin block: `shaunsingh/nord.nvim` /
+   `vim.cmd.colorscheme 'nord'`, replacing stock's `folke/tokyonight.nvim`
+   block entirely (same position in the plugin list, same `priority = 1000`
+   shape — just swap the plugin name and `config` body, don't merge).
 
 Everything else that also exists upstream (`README.md`, `LICENSE.md`, `doc/`,
 `dot_gitignore`, `dot_stylua.toml`, `lua/kickstart/**`) is stock and safe to
