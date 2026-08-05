@@ -618,8 +618,10 @@ require('lazy').setup({
         pyright = {},
 
         gopls = {
-          root_dir = function(fname)
-            return require('lspconfig.util').root_pattern('go.work', 'go.mod')(fname) or vim.fs.dirname(vim.fs.find('.git', { path = fname, upward = true })[1])
+          root_dir = function(bufnr, on_dir)
+            local fname = vim.api.nvim_buf_get_name(bufnr)
+            local root = require('lspconfig.util').root_pattern('go.work', 'go.mod')(fname) or vim.fs.dirname(vim.fs.find('.git', { path = fname, upward = true })[1])
+            on_dir(root)
           end,
           settings = {
             gopls = {
@@ -631,9 +633,9 @@ require('lazy').setup({
         },
 
         eslint = {
-          root_dir = function(fname)
-            -- Always use the git root for Turborepo monorepos
-            return require('lspconfig.util').find_git_ancestor(fname)
+          -- Always use the git root for Turborepo monorepos
+          root_dir = function(bufnr, on_dir)
+            on_dir(require('lspconfig.util').find_git_ancestor(vim.api.nvim_buf_get_name(bufnr)))
           end,
           settings = {
             workingDirectory = { mode = 'auto' },
@@ -709,9 +711,11 @@ require('lazy').setup({
 
       -- tsgo is not mason-managed; install via: npm install -g @typescript/native-preview
       vim.lsp.config('tsgo', {
-        cmd = { 'tsgo', 'lsp' },
+        cmd = { 'tsgo', '--lsp', '--stdio' },
         filetypes = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx' },
-        root_dir = require('lspconfig.util').find_git_ancestor,
+        root_dir = function(bufnr, on_dir)
+          on_dir(require('lspconfig.util').find_git_ancestor(vim.api.nvim_buf_get_name(bufnr)))
+        end,
       })
       vim.lsp.enable 'tsgo'
     end,
