@@ -6,3 +6,7 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export ZDOTDIR=$XDG_CONFIG_HOME/zsh
 export ZSH_CACHE_DIR="$XDG_CACHE_HOME/zsh"
 
+# pin go installs to one shared dir; asdf-golang plugin defaults GOBIN to
+# per-version dirs, which drops `go install`ed tools on every go bump
+export GOBIN="$HOME/go/bin"
+

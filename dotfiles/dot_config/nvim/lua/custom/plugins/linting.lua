@@ -1,4 +1,4 @@
--- Linting configuration for javascript/typescript and go
+-- Linting configuration for python (JS/TS lints through the oxlint LSP)
 return {
   'mfussenegger/nvim-lint',
   event = { 'BufReadPre', 'BufNewFile' },
@@ -6,8 +6,6 @@ return {
     local lint = require 'lint'
 
     lint.linters_by_ft = {
-      javascript = { 'eslint_d' },
-      typescript = { 'eslint_d' },
       -- go = { 'golangcilint' },
       python = { 'ruff' },
     }

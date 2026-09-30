@@ -1,0 +1,6 @@
+github.com/air-verse/air
+golang.org/x/tools/cmd/deadcode
+github.com/gohugoio/hugo
+github.com/go-delve/delve/cmd/dlv
+gitlab.com/gitlab-org/cli/cmd/glab
+github.com/golangci/golangci-lint/v2/cmd/golangci-lint

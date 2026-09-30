@@ -632,16 +632,22 @@ require('lazy').setup({
           },
         },
 
-        eslint = {
-          -- Always use the git root for Turborepo monorepos
-          root_dir = function(bufnr, on_dir)
-            on_dir(require('lspconfig.util').find_git_ancestor(vim.api.nvim_buf_get_name(bufnr)))
+        oxlint = {
+          -- The project's oxlint; in a pnpm monorepo it sits in the root
+          -- node_modules, above the workspace the root_dir points at.
+          cmd = function(dispatchers, config)
+            local bin = 'oxlint'
+            for dir in vim.fs.parents(vim.fs.joinpath(config.root_dir, '_')) do
+              local candidate = vim.fs.joinpath(dir, 'node_modules/.bin/oxlint')
+              if vim.fn.executable(candidate) == 1 then
+                bin = candidate
+                break
+              end
+            end
+            return vim.lsp.rpc.start({ bin, '--lsp' }, dispatchers)
           end,
-          settings = {
-            workingDirectory = { mode = 'auto' },
-            -- This helps ESLint find the config at the root
-            useESLintClass = true,
-          },
+          -- tsgolint lives in node_modules, so the auto-detection misses it.
+          settings = { typeAware = true },
         },
 
         -- Special Lua Config, as recommended by neovim help docs
@@ -689,18 +695,13 @@ require('lazy').setup({
       local ensure_installed = {
         -- LSPs
         'lua-language-server', -- For lua_ls
-        'eslint-lsp',
         'gopls', -- For gopls
 
         -- Formatters
         'stylua',
-        'prettierd',
-        'prettier',
         'goimports',
         'gofumpt',
 
-        -- Linters
-        'eslint_d',
       }
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -759,8 +760,17 @@ require('lazy').setup({
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
-        -- You can use 'stop_after_first' to run the first available formatter from the list
-        -- javascript = { "prettierd", "prettier", stop_after_first = true },
+        -- oxfmt from the project's node_modules, run where .oxfmtrc.json lives
+        javascript = { 'oxfmt' },
+        javascriptreact = { 'oxfmt' },
+        typescript = { 'oxfmt' },
+        typescriptreact = { 'oxfmt' },
+        json = { 'oxfmt' },
+        jsonc = { 'oxfmt' },
+        yaml = { 'oxfmt' },
+        markdown = { 'oxfmt' },
+        css = { 'oxfmt' },
+        scss = { 'oxfmt' },
       },
     },
   },
